@@ -36,6 +36,10 @@ public class Cliente {
 	@Column(name = "esta_clie")
 	private String esta;
 	
+	public Cliente() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	
 	public Cliente(String nome, Date nasc, String rg, String cpf, String tele, String cele, String ende, String cida,
 			String esta) {
