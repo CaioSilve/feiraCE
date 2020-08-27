@@ -20,7 +20,7 @@ public class testeCliente {
 		
 		Date data = formato.parse("09/06/2002");
 		
-		Cliente clie = new Cliente(nome, nasc, rg, cpf, tele, cele, ende, cida, esta);
+		//Cliente clie = new Cliente(nome, nasc, rg, cpf, tele, cele, ende, cida, esta);
 		
 		//CONSULTA
 //		List<Cliente> clies = dao.consultar("obterNome", "nome", "%veira%");
