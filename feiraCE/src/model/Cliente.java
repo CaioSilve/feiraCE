@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Clientes")
+@Table(name = "clientes")
 public class Cliente {
 	
 	@Id
@@ -29,6 +29,8 @@ public class Cliente {
 	private String tele;
 	@Column(name = "cele_clie")
 	private String cele;
+	@Column(name = "cep_clie");
+	private String cep;
 	@Column(name = "ende_clie")
 	private String ende;
 	@Column(name = "cida_clie")
