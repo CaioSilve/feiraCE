@@ -23,11 +23,11 @@ public class testeCliente {
 		Cliente clie = new Cliente("Erick", data, "112345", "437031978-11", "981901770", "981901770", "Av:E 1265", "Orlândia", "SP");
 		
 		//CONSULTA
-		List<Cliente> clies = dao.consultar("obterNome", "nome", "%veira%");
-		
-		for (Cliente cliente : clies) {
-			JOptionPane.showMessageDialog(null, cliente.getNome());
-		}
+//		List<Cliente> clies = dao.consultar("obterNome", "nome", "%veira%");
+//		
+//		for (Cliente cliente : clies) {
+//			JOptionPane.showMessageDialog(null, cliente.getNome());
+//		}
 		
 		
 		
