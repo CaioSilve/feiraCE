@@ -1,5 +1,10 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -8,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.swing.JOptionPane;
 
 @Entity
 @Table(name = "clientes")
@@ -29,7 +35,7 @@ public class Cliente {
 	private String tele;
 	@Column(name = "cele_clie")
 	private String cele;
-	@Column(name = "cep_clie");
+	@Column(name = "cep_clie")
 	private String cep;
 	@Column(name = "ende_clie")
 	private String ende;
@@ -43,8 +49,7 @@ public class Cliente {
 	}
 	
 	
-	public Cliente(String nome, Date nasc, String rg, String cpf, String tele, String cele, String ende, String cida,
-			String esta) {
+	public Cliente(String nome, Date nasc, String rg, String cpf, String tele, String cele, String ende, String cep) {
 		super();
 		this.nome = nome;
 		this.nasc = nasc;
@@ -53,9 +58,43 @@ public class Cliente {
 		this.tele = tele;
 		this.cele = cele;
 		this.ende = ende;
-		this.cida = cida;
-		this.esta = esta;
+		this.cep = cep;
+		buscarCep(cep);
 	}
+
+
+	public void buscarCep(String cep) 
+    {
+        String json;        
+
+        try {
+            URL url = new URL("http://viacep.com.br/ws/"+ cep +"/json");
+            URLConnection urlConnection = url.openConnection();
+            InputStream is = urlConnection.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+            StringBuilder jsonSb = new StringBuilder();
+
+            br.lines().forEach(l -> jsonSb.append(l.trim()));
+            json = jsonSb.toString();
+            
+            JOptionPane.showMessageDialog(null, json);
+            
+            json = json.replaceAll("[{},:]", "");
+            json = json.replaceAll("\"", "\n");                       
+            String array[] = new String[30];
+            array = json.split("\n");
+            
+            // JOptionPane.showMessageDialog(null, array);
+                             
+            this.cida = array[19]; 
+            this.esta = array[23];
+            //JOptionPane.showMessageDialog(null, logradouro + " " + bairro + " " + cidade + " " + uf);
+            
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 	public Long getCodi() {
@@ -152,6 +191,14 @@ public class Cliente {
 		this.esta = esta;
 	}
 	
+	public String getCep() {
+		return cep;
+	}
+
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
 	
 	
 	

@@ -20,8 +20,10 @@ public class testeCliente {
 		
 		Date data = formato.parse("25/02/1997");
 		
-		Cliente clie = new Cliente("Erick", data, "112345", "437031978-11", "981901770", "981901770", "Av:E 1265", "Orlândia", "SP");
+		Cliente clie = new Cliente("Erick", data, "112345", "437031978-11", "981901770", "981901770", "Av:E 1265", "14620000");
 		
+		JOptionPane.showMessageDialog(null, clie.getCep() + ": \n" + 
+				clie.getEsta() + ", " + clie.getCida());
 		//CONSULTA
 //		List<Cliente> clies = dao.consultar("obterNome", "nome", "%veira%");
 //		
