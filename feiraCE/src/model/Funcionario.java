@@ -103,11 +103,6 @@ public class Funcionario {
         }
     }
 	
-	public void contr() {
-		
-	}
-
-
 
 	public Long getCodi() {
 		return codi;
