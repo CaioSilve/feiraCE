@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="340.0" prefWidth="300.0" styleClass="fundo" stylesheets="@estilo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.LoginControl">
    <children>
-      <TextField fx:id="txtUser" alignment="CENTER" layoutX="72.0" layoutY="170.0" minHeight="27.0" minWidth="150.0" prefHeight="27.0" prefWidth="150.0" promptText="Usuário" styleClass="txt">
+      <TextField fx:id="txtUser" alignment="CENTER" layoutX="72.0" layoutY="170.0" minHeight="27.0" minWidth="150.0" prefHeight="27.0" prefWidth="150.0" promptText="Usuário">
          <font>
             <Font name="Verdana" size="14.0" />
          </font>

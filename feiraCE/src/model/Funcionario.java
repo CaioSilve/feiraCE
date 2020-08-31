@@ -8,8 +8,6 @@ import java.net.URLConnection;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,43 +16,47 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
-import javax.swing.JOptionPane;
 
 @Entity
-@Table(name = "clientes")
-public class Cliente {
+@Table(name = "funcionarios")
+public class Funcionario {
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "codi_clie", unique = true)
+	@Column(name = "codi_func", unique = true)
 	private Long codi;
-	@Column(name = "nome_clie")
+	@Column(name = "nome_func")
 	private String nome;
-	@Column(name = "nasc_clie")
+	@Column(name = "nasc_func")
 	private Date nasc;
-	@Column(name = "rg_clie")
+	@Column(name = "rg_func")
 	private String rg;
-	@Column(name = "cpf_clie")
+	@Column(name = "cpf_func")
 	private String cpf;
-	@Column(name = "tele_clie")
+	@Column(name = "tele_func")
 	private String tele;
-	@Column(name = "cele_clie")
+	@Column(name = "cele_func")
 	private String cele;
-	@Column(name = "cep_clie")
+	@Column(name = "cep_func")
 	private String cep;
-	@Column(name = "ende_clie")
+	@Column(name = "ende_func")
 	private String ende;
-	@Column(name = "cida_clie")
+	@Column(name = "cida_func")
 	private String cida;
-	@Column(name = "esta_clie")
+	@Column(name = "esta_func")
 	private String esta;
+	@Column(name = "nive_func")
+	private int nivel;
 	
-	public Cliente() {
+	public Funcionario() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	public Cliente(String nome, Date nasc, String rg, String cpf, String tele, String cele, String ende, String cep) {
+
+
+
+	public Funcionario(String nome, Date nasc, String rg, String cpf, String tele, String cele, String ende, String cep,
+			 int nivel) {
 		super();
 		this.nome = nome;
 		this.nasc = nasc;
@@ -62,12 +64,12 @@ public class Cliente {
 		this.cpf = cpf;
 		this.tele = tele;
 		this.cele = cele;
-		this.ende = ende;
 		this.cep = cep;
+		this.ende = ende;
+		this.nivel = nivel;
 		buscarCep(cep);
 	}
-
-
+	
 	public void buscarCep(String cep) 
     {
         String json;        
@@ -102,9 +104,17 @@ public class Cliente {
     }
 
 
+
 	public Long getCodi() {
 		return codi;
 	}
+
+
+
+	public void setCodi(Long codi) {
+		this.codi = codi;
+	}
+
 
 
 	public String getNome() {
@@ -112,9 +122,11 @@ public class Cliente {
 	}
 
 
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 
 
 	public Date getNasc() {
@@ -122,9 +134,11 @@ public class Cliente {
 	}
 
 
+
 	public void setNasc(Date nasc) {
 		this.nasc = nasc;
 	}
+
 
 
 	public String getRg() {
@@ -132,9 +146,11 @@ public class Cliente {
 	}
 
 
+
 	public void setRg(String rg) {
 		this.rg = rg;
 	}
+
 
 
 	public String getCpf() {
@@ -142,9 +158,11 @@ public class Cliente {
 	}
 
 
+
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+
 
 
 	public String getTele() {
@@ -152,9 +170,11 @@ public class Cliente {
 	}
 
 
+
 	public void setTele(String tele) {
 		this.tele = tele;
 	}
+
 
 
 	public String getCele() {
@@ -162,9 +182,23 @@ public class Cliente {
 	}
 
 
+
 	public void setCele(String cele) {
 		this.cele = cele;
 	}
+
+
+
+	public String getCep() {
+		return cep;
+	}
+
+
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
 
 
 	public String getEnde() {
@@ -172,9 +206,11 @@ public class Cliente {
 	}
 
 
+
 	public void setEnde(String ende) {
 		this.ende = ende;
 	}
+
 
 
 	public String getCida() {
@@ -182,9 +218,11 @@ public class Cliente {
 	}
 
 
+
 	public void setCida(String cida) {
 		this.cida = cida;
 	}
+
 
 
 	public String getEsta() {
@@ -192,19 +230,20 @@ public class Cliente {
 	}
 
 
+
 	public void setEsta(String esta) {
 		this.esta = esta;
 	}
-	
-	public String getCep() {
-		return cep;
-	}
 
 
-	public void setCep(String cep) {
-		this.cep = cep;
+
+	public int getNivel() {
+		return nivel;
 	}
-	
+
+	public void setNivel(int nivelFunc) {
+		this.nivel = nivelFunc;
+	}
 	
 	
 }

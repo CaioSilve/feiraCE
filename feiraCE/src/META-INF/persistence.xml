@@ -8,6 +8,7 @@
 		<mapping-file>META-INF/consultas.xml</mapping-file>
 		
 		<class>model.Cliente</class>
+		<class>model.Funcionario</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

@@ -6,15 +6,3 @@
 	-fx-background-color: #0D79C1;
 }
 
-.txt{
-  -fx-font-family: inherit;
-  -fx-width: 100%;
-  -fx-border: 0;
-  -fx-border-bottom: 2px solid #696969;
-  -fx-outline: 0;
-  -fx-font-size: 1.3rem;
-  -fx-color: #fff;
-  -fx-padding: 7px 0;
-  -fx-background: transparent;
-  -fx-transition: border-color 0.2s;
-}
