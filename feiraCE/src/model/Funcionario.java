@@ -102,6 +102,10 @@ public class Funcionario {
             throw new RuntimeException(e);
         }
     }
+	
+	public void contr() {
+		
+	}
 
 
 
