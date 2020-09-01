@@ -32,7 +32,7 @@ public class testeClasses {
 ////		
 		data = formato.parse("07/09/2020");
 //		
-		Produto prod = new Produto("Pão de Forma", "Panco", 5.2f, "Alimenticia", "Pães", data);
+		Produto prod = new Produto("Pão Francês", "Panco", 3.2f, "Alimenticia", "Pães", data);
 //		
 //		
 //		dao.incluirAgora(clie);
