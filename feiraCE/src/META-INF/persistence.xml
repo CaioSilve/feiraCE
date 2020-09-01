@@ -9,6 +9,7 @@
 		
 		<class>model.Cliente</class>
 		<class>model.Funcionario</class>
+		<class>model.Produto</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

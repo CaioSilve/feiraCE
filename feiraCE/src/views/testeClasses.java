@@ -10,12 +10,14 @@ import javax.swing.JOptionPane;
 import dao.DAO;
 import model.Cliente;
 import model.Funcionario;
+import model.Produto;
 
 public class testeClasses {
 
 	public static void main(String[] args) throws ParseException {
 		
 		DAO<Cliente> dao = new DAO<>();
+		//DAO<Produto> daoProd = new DAO<>();
 		
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
 		
@@ -30,10 +32,14 @@ public class testeClasses {
 //		JOptionPane.showMessageDialog(null, func.getCep() + ": \n" + 
 //				func.getEsta() + ", " + func.getCida());
 //		
+		data = formato.parse("07/09/2020");
+		
+		Produto prod = new Produto("Pão de Forma", "Panco", 5.2f, "Alimenticia", "Pães", data );
+		
 		
 		dao.incluirAgora(clie);
 		dao.incluirAgora(func);
-		
+		dao.incluirAgora(prod);
 		
 		
 		//CONSULTA
@@ -44,7 +50,7 @@ public class testeClasses {
 //		}
 		
 		
-		
+		//daoProd.fechar();
 		dao.fechar();
 	}
 }
