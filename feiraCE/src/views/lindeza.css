@@ -1,0 +1,14 @@
+.fundo{
+	-fx-background-color: #075965;
+}
+
+.fundo-botao{
+	-fx-background-color: #040537;
+}
+
+.fundo-imagem{
+	-fx-background-image: url("../imgs/fundoLogin.jpg");
+	-fx-background-repeat: no-repeat; 
+	-fx-background-size: cover;
+}
+

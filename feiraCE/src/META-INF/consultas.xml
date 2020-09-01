@@ -7,6 +7,12 @@
 		</query>
 	</named-query>
 	
+	<named-query name="obterUsuario">
+		<query>
+			select u from Usuario u where u.nome like :nome
+		</query>
+	</named-query>
+	
 	<named-native-query name="obterTodosNomesClientes" 
 		result-set-mapping="NomeMap">
 		<query>
