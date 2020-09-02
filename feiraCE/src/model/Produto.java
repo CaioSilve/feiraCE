@@ -13,22 +13,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name="produtos")
 public class Produto {
-
-	public Produto() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	public Produto(String nome, String marca, Float valor, String categoria, String tipo, Date validade) {
-		
-		super();
-		this.nome = nome;
-		this.marca = marca;
-		this.valor = valor;
-		this.categoria = categoria;
-		this.tipo = tipo;
-		this.validade = validade;
-		
-	}
 	
 	
 	@Id
@@ -48,8 +32,21 @@ public class Produto {
 	@Column(name = "valid_prod")
 	private Date validade;
 	
+	public Produto() {
+		// TODO Auto-generated constructor stub
+	}
 	
-	
+	public Produto(String nome, String marca, Float valor, String categoria, String tipo, Date validade) {
+		
+		super();
+		this.nome = nome;
+		this.marca = marca;
+		this.valor = valor;
+		this.categoria = categoria;
+		this.tipo = tipo;
+		this.validade = validade;
+		
+	}
 	
 	
 	
