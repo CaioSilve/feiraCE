@@ -11,7 +11,9 @@
 		<class>model.Funcionario</class>
 		<class>model.Produto</class>
 		<class>model.Usuario</class>
-		<class>model.Fornecedores</class>
+		<class>model.Fornecedor</class>
+		<class>model.Compra</class>
+		<class>model.ItemCompra</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

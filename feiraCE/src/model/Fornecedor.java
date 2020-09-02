@@ -15,7 +15,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "fornecedores")
-public class Fornecedores {
+public class Fornecedor {
+	
+	public static enum TiposForn{
+		PRIVADO, MERCADO, FEIRA
+	}
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +28,8 @@ public class Fornecedores {
 	private Long codi;
 	@Column(name = "desc_forn")
 	private String desc;
+	@Column(name = "tipo_forn")
+	private String tipo;
 	@Column(name = "ende_forn")
 	private String ende;
 	@Column(name = "cep_forn")
@@ -40,11 +47,11 @@ public class Fornecedores {
 	@Column(name = "divida_forn")
 	private Double divida;
 	
-	public Fornecedores() {
+	public Fornecedor() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Fornecedores(String desc, String end, String cep, String cida, String esta, String tele, String email) {
+	public Fornecedor(String desc, String end, String cep, String cida, String esta, String tele, String email) {
 		super();
 		this.desc = desc;
 		this.ende = end;

@@ -18,7 +18,8 @@ public class DAO<E> {
 		try {
 			emf = Persistence.createEntityManagerFactory("feiraCE");
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Deu erro aqui cara " +e.getMessage());
+			//JOptionPane.showMessageDialog(null, "Deu erro aqui cara " +e.getMessage());
+			System.out.println(e.getCause());
 		}
 	}
 	

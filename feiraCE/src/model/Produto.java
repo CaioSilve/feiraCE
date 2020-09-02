@@ -19,32 +19,35 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codi_prod", unique = true)
 	private Long codi;
-	@Column(name = "nome_prod")
-	private String nome;
+	@Column(name = "desc_prod", unique = true, nullable = false)
+	private String desc;
 	@Column(name = "marca_prod")
 	private String marca;
-	@Column(name = "valor_prod")
-	private Float valor;
-	@Column(name = "categ_prod")
+	@Column(name = "valor_prod", nullable = false)
+	private Double valor;
+	@Column(name = "categ_prod", nullable = false)
 	private String categoria;
-	@Column(name = "tipo_prod")
+	@Column(name = "tipo_prod", nullable = false)
 	private String tipo;
 	@Column(name = "valid_prod")
 	private Date validade;
+	@Column(name = "qtde_prod")
+	private int qtde;
 	
 	public Produto() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Produto(String nome, String marca, Float valor, String categoria, String tipo, Date validade) {
+	public Produto(String nome, String marca, Double valor, String categoria, String tipo, Date validade) {
 		
 		super();
-		this.nome = nome;
+		this.desc = nome;
 		this.marca = marca;
 		this.valor = valor;
 		this.categoria = categoria;
 		this.tipo = tipo;
 		this.validade = validade;
+		this.qtde = 0;
 		
 	}
 	
@@ -56,11 +59,11 @@ public class Produto {
 	public void setCodi(Long codi) {
 		this.codi = codi;
 	}
-	public String getNome() {
-		return nome;
+	public String getDesc() {
+		return desc;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setDesc(String nome) {
+		this.desc = nome;
 	}
 	public String getMarca() {
 		return marca;
@@ -68,10 +71,10 @@ public class Produto {
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
-	public Float getValor() {
+	public Double getValor() {
 		return valor;
 	}
-	public void setValor(Float valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
 	public String getCategoria() {
@@ -92,6 +95,13 @@ public class Produto {
 	public void setValidade(Date validade) {
 		this.validade = validade;
 	}
+	public int getQtde() {
+		return qtde;
+	}
+	public void setQtde(int qtde) {
+		this.qtde = qtde;
+	}
+	
 	
 	
 	

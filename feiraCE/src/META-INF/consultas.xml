@@ -1,17 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <entity-mappings version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd">
 	
-	<named-query name="obterNome">
+	<named-query name="obterCliente">
 		<query>
 			select c from Cliente c where c.nome like :nome
 		</query>
 	</named-query>
+	
+	<named-query name="obterCompra">
+		<query>
+			select u from Compra u where u.codi like :codi
+		</query>
+	</named-query>
+	
+	<named-query name="obterFornecedor">
+		<query>
+			select u from Fornecedor u where u.desc like :desc
+		</query>
+	</named-query>
+	
+	<named-query name="obterFuncionario">
+		<query>
+			select u from Funcionario u where u.nome like :nome
+		</query>
+	</named-query>
+	
+	<named-query name="obterItemCompra">
+		<query>
+			select u from ItemCompra u where u.codi like :compra
+		</query>
+	</named-query>
+	
+	<named-query name="obterProduto">
+		<query>
+			select u from Produto u where u.desc like :desc
+		</query>
+	</named-query>
+	
 	
 	<named-query name="obterUsuario">
 		<query>
 			select u from Usuario u where u.nome like :nome
 		</query>
 	</named-query>
+	
+	
 	
 	<named-native-query name="obterTodosNomesClientes" 
 		result-set-mapping="NomeMap">
