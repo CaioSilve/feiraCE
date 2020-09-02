@@ -2,12 +2,13 @@ package control;
 
 import javax.swing.JOptionPane;
 
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+
 import dao.DAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Usuario;
@@ -17,10 +18,10 @@ public class LoginControl {
 	DAO<Usuario> dao = new DAO<>(Usuario.class); 
 
 	@FXML
-	public TextField txtUser;
+	public JFXTextField txtUser;
 	
 	@FXML
-	public PasswordField txtPass;
+	public JFXPasswordField txtPass;
 	
 	public void entrar() throws Exception {	
 		if (txtUser.getText().isEmpty()) {

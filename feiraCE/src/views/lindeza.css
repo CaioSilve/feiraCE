@@ -12,3 +12,8 @@
 	-fx-background-size: cover;
 }
 
+.txts{
+	-fx-text-inner-color: white;
+	-fx-prompt-text-fill: white;
+}
+
