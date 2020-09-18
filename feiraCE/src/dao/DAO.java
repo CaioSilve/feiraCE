@@ -8,6 +8,8 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 
+import model.Cliente;
+
 public class DAO<E> {
 
 	private static EntityManagerFactory emf;

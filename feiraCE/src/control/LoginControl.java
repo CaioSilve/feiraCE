@@ -36,6 +36,7 @@ public class LoginControl {
 		
 		
 		
+		try {
 			Usuario clie = dao.consultarUm("obterUsuario", "nome", txtUser.getText());
 			
 			if (txtUser.getText().equalsIgnoreCase(clie.getNome())) {
@@ -51,6 +52,9 @@ public class LoginControl {
 					JOptionPane.showMessageDialog(null, "Senha não bate com o usuário", "Senha", 0);
 				}
 			}
+		} catch(Exception ex) {
+			JOptionPane.showMessageDialog(null, "Usuário não encontrado", "Usuário", 0);
+		}
 		
 		
 		

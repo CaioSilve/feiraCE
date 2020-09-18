@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.BarraControl">
+<AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #696969;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.BarraControl">
    <children>
       <BorderPane pickOnBounds="false" prefHeight="900.0" prefWidth="1600.0">
          <left>
