@@ -10,6 +10,7 @@ import dao.DAO;
 import model.Cliente;
 import model.Funcionario;
 import model.Produto;
+import model.enums.Categorias;
 
 public class testeClasses {
 
@@ -19,9 +20,9 @@ public class testeClasses {
 		
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
 		
-		Date data = formato.parse("25/02/1997");
+		Date data = formato.parse("09/06/2002");
 		
-		Cliente clie = new Cliente("Erick", data, "112345", "437031978-11", "981901770", "981901770", "Av:E 1265", "14620000");
+		Cliente clie = new Cliente("Caio Silveira", data, "57.517.297-6", "507.480.968-17", "", "(16) 99294-1653", "14620-000", "Avenida E", "Jardim Benini", "1355", "caio.evil.silveira@gmail.com", true);
 		
 		//data = formato.parse("09/06/2002");
 		
@@ -29,9 +30,15 @@ public class testeClasses {
 		
 		//JOptionPane.showMessageDialog(null, func.getCep() + ": \n" + func.getEsta() + ", " + func.getCida());
 		
-		data = formato.parse("07/09/2020");
+		//data = formato.parse("07/09/2020");
 	
 		//Produto prod = new Produto("Pão Francês", "Panco", 3.2, "Alimenticia", "Pães", data);	
+		
+//		for (Categorias cat : Categorias.values()) {
+//			if(cat.getIndice() == 1)
+//			System.out.println(cat);
+//		}
+		
 		
 		
 		//dao.incluirAgora(clie);

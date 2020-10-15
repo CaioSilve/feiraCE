@@ -38,17 +38,31 @@ public class Cliente {
 	private String cep;
 	@Column(name = "ende_clie")
 	private String ende;
+	@Column(name = "bair_clie")
+	private String bair;
+	@Column(name = "nume_clie")
+	private String nume;
 	@Column(name = "cida_clie")
 	private String cida;
 	@Column(name = "esta_clie")
 	private String esta;
+	@Column(name = "email_clie")
+	private String email;
+	@Column(name = "contas_abertas_clie")
+	private int contas;
+	@Column(name = "rece_clie")
+	private boolean rece;
 	
 	public Cliente() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	
-	public Cliente(String nome, Date nasc, String rg, String cpf, String tele, String cele, String ende, String cep) {
+	
+
+
+	public Cliente(String nome, Date nasc, String rg, String cpf, String tele, String cele, String cep, String ende,
+			String bairro, String nume, String email, boolean rece) {
 		super();
 		this.nome = nome;
 		this.nasc = nasc;
@@ -56,10 +70,18 @@ public class Cliente {
 		this.cpf = cpf;
 		this.tele = tele;
 		this.cele = cele;
-		this.ende = ende;
 		this.cep = cep;
 		buscarCep(cep);
+		this.ende = ende;
+		this.bair = bairro;
+		this.nume = nume;
+		this.email = email;
+		this.contas = 0;
+		this.rece = rece;
 	}
+
+
+
 
 
 	public void buscarCep(String cep) 
@@ -198,6 +220,48 @@ public class Cliente {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
+
+	public String getBairro() {
+		return bair;
+	}
+
+	public void setBairro(String bairro) {
+		this.bair = bairro;
+	}
+
+	public String getNume() {
+		return nume;
+	}
+
+	public void setNume(String nume) {
+		this.nume = nume;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public int getContas() {
+		return contas;
+	}
+
+	public void setContas(int contas) {
+		this.contas = contas;
+	}
+
+	public boolean isRece() {
+		return rece;
+	}
+
+	public void setRece(boolean rece) {
+		this.rece = rece;
+	}
+	
+	
 	
 	
 	

@@ -1,0 +1,58 @@
+package model.enums;
+
+public enum Categorias {
+	ALCOOLICAS(1),
+	REFRIGERANTE(1),
+	AGUA(1),
+	LEITE(1),
+	FRUTAS(2),
+	LEGUMES_E_VERDURAS(2),
+	DOCES(2),
+	CARNES_E_OVOS(2),
+	OLEOS_E_GORDURAS(2),
+	MASSA(2),
+	CARBOIDRATOS(2),
+	FITNESS(2),
+	BUCAL(3),
+	INTIMA(3),
+	DESODARANTE(3),
+	CREMES(3),
+	FRALDAS(3),
+	ALCOOL(4),
+	DETERGENTE(4),
+	DESENGORDURANTE(4),
+	SABAO(4),
+	AMACIANTE(4),
+	DESINFETANTE(4),
+	AGUA_SANITARIA(4),
+	CAMISAS(5),
+	CAMISETAS(5),
+	SHORTS(5),
+	CALÇAS(5),
+	CHAPEUS(5),
+	BONES(5),
+	INTIMOS(5),
+	CALÇADOS(5),
+	ACESSORIOS(5),
+	ELETRONICOS(6),
+	SOBREVIVENCIA(6),
+	PROTEÇÃO(6),
+	FERRAMENTAS(6),
+	COZINHA(6),
+	COPOS(7),
+	PRATOS(7),
+	TALHERES(7),
+	OUTROS(8);
+
+	Categorias(int i) {
+		this.i = i;
+	}
+	
+	private int i;
+	
+	public int getIndice() {
+		return i;
+	}
+	
+	
+}

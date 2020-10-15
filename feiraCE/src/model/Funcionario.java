@@ -35,38 +35,57 @@ public class Funcionario {
 	private String tele;
 	@Column(name = "cele_func")
 	private String cele;
+	@Column(name = "emai_func")
+	private String emai;
 	@Column(name = "cep_func")
 	private String cep;
+	@Column(name = "bair_func")
+	private String bair;
 	@Column(name = "ende_func")
 	private String ende;
+	@Column(name = "nume_func")
+	private String nume;
 	@Column(name = "cida_func")
 	private String cida;
 	@Column(name = "esta_func")
 	private String esta;
 	@Column(name = "nive_func")
 	private int nivel;
+	@Column(name = "admis_func")
+	private Date admis;
 	
 	public Funcionario() {
 		// TODO Auto-generated constructor stub
 	}
 
 
-
-	public Funcionario(String nome, Date nasc, String rg, String cpf, String tele, String cele, String ende, String cep,
-			 int nivel) {
+	
+	
+	
+	public Funcionario(Long codi, String nome, Date nasc, String rg, String cpf, String tele, String cele, String emai,
+			String cep, String bair, String ende, String nume, int nivel, Date admis) {
 		super();
+		this.codi = codi;
 		this.nome = nome;
 		this.nasc = nasc;
 		this.rg = rg;
 		this.cpf = cpf;
 		this.tele = tele;
 		this.cele = cele;
+		this.emai = emai;
 		this.cep = cep;
-		this.ende = ende;
-		this.nivel = nivel;
 		buscarCep(cep);
+		this.bair = bair;
+		this.ende = ende;
+		this.nume = nume;
+		this.nivel = nivel;
+		this.admis = admis;
 	}
-	
+
+
+
+
+
 	public void buscarCep(String cep) 
     {
         String json;        
