@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import model.enums.Categorias;
+import model.enums.Tipos;
+
 
 @Entity
 @Table(name="produtos")
@@ -26,20 +29,21 @@ public class Produto {
 	@Column(name = "valor_prod", nullable = false)
 	private Double valor;
 	@Column(name = "categ_prod", nullable = false)
-	private String categoria;
+	private Categorias categoria;
 	@Column(name = "tipo_prod", nullable = false)
-	private String tipo;
+	private Tipos tipo;
 	@Column(name = "valid_prod")
 	private Date validade;
 	@Column(name = "qtde_prod")
 	private int qtde;
+	@Column(name = "qtde_min_prod")
+	private int qtdeMin;
 	
 	public Produto() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Produto(String nome, String marca, Double valor, String categoria, String tipo, Date validade) {
-		
+	public Produto(String nome, String marca, Double valor, Categorias categoria, Tipos tipo, Date validade) {
 		super();
 		this.desc = nome;
 		this.marca = marca;
@@ -77,16 +81,16 @@ public class Produto {
 	public void setValor(Double valor) {
 		this.valor = valor;
 	}
-	public String getCategoria() {
+	public Categorias getCategoria() {
 		return categoria;
 	}
-	public void setCategoria(String categoria) {
+	public void setCategoria(Categorias categoria) {
 		this.categoria = categoria;
 	}
-	public String getTipo() {
+	public Tipos getTipo() {
 		return tipo;
 	}
-	public void setTipo(String tipo) {
+	public void setTipo(Tipos tipo) {
 		this.tipo = tipo;
 	}
 	public Date getValidade() {
@@ -100,6 +104,9 @@ public class Produto {
 	}
 	public void setQtde(int qtde) {
 		this.qtde = qtde;
+	}
+	public double valorEsto() {
+		return valor*qtde;
 	}
 	
 	

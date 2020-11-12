@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.swing.JOptionPane;
 
 @Entity
 @Table(name = "itenscompra")
@@ -30,11 +31,12 @@ public class ItemCompra {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ItemCompra(Compra compra, Produto prod, int qtde) {
+	public ItemCompra(Compra compra, Produto prod, double valor, int qtde) {
 		super();
 		this.compra = compra;
+		this.valor = valor;
 		this.setProd(prod);
-		this.qtde = qtde;
+		this.setQtde(qtde);
 	}
 
 	public Compra getCompra() {
@@ -62,7 +64,12 @@ public class ItemCompra {
 	}
 
 	public void setQtde(int qtde) {
-		this.qtde = qtde;
+		if (qtde <= prod.getQtde()) {
+			this.qtde = qtde;
+		} else {
+			JOptionPane.showMessageDialog(null, "Quantidade indisponível", "Estoque", 1);
+			qtde = prod.getQtde();
+		}
 	}
 
 	public Double getValor() {
@@ -71,6 +78,10 @@ public class ItemCompra {
 
 	public void setValor(Double valor) {
 		this.valor = valor;
+	}
+	
+	public double precoTotal() {
+		return qtde * valor;
 	}
 	
 	
