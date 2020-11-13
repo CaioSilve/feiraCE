@@ -1,4 +1,4 @@
-package model;
+package model.entities;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

@@ -7,13 +7,13 @@
 		
 		<mapping-file>META-INF/consultas.xml</mapping-file>
 		
-		<class>model.Cliente</class>
-		<class>model.Funcionario</class>
-		<class>model.Produto</class>
-		<class>model.Usuario</class>
-		<class>model.Fornecedor</class>
-		<class>model.Compra</class>
-		<class>model.ItemCompra</class>
+		<class>model.entities.Cliente</class>
+		<class>model.entities.Funcionario</class>
+		<class>model.entities.Produto</class>
+		<class>model.entities.Usuario</class>
+		<class>model.entities.Fornecedor</class>
+		<class>model.entities.Compra</class>
+		<class>model.entities.ItemCompra</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

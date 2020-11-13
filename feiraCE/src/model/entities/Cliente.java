@@ -1,4 +1,4 @@
-package model;
+package model.entities;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -15,71 +15,69 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "funcionarios")
-public class Funcionario {
-	
+@Table(name = "clientes")
+public class Cliente {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "codi_func", unique = true)
+	@Column(name = "codi_clie", unique = true)
 	private Long codi;
-	@Column(name = "nome_func")
+	@Column(name = "nome_clie")
 	private String nome;
-	@Column(name = "nasc_func")
+	@Column(name = "nasc_clie")
 	private Date nasc;
-	@Column(name = "rg_func")
+	@Column(name = "rg_clie")
 	private String rg;
-	@Column(name = "cpf_func")
+	@Column(name = "cpf_clie")
 	private String cpf;
-	@Column(name = "tele_func")
+	@Column(name = "tele_clie")
 	private String tele;
-	@Column(name = "cele_func")
+	@Column(name = "cele_clie")
 	private String cele;
-	@Column(name = "emai_func")
-	private String emai;
-	@Column(name = "cep_func")
+	@Column(name = "cep_clie")
 	private String cep;
-	@Column(name = "bair_func")
-	private String bair;
-	@Column(name = "ende_func")
+	@Column(name = "ende_clie")
 	private String ende;
-	@Column(name = "nume_func")
+	@Column(name = "bair_clie")
+	private String bair;
+	@Column(name = "nume_clie")
 	private String nume;
-	@Column(name = "cida_func")
+	@Column(name = "cida_clie")
 	private String cida;
-	@Column(name = "esta_func")
+	@Column(name = "esta_clie")
 	private String esta;
-	@Column(name = "nive_func")
-	private int nivel;
-	@Column(name = "admis_func")
-	private Date admis;
+	@Column(name = "email_clie")
+	private String email;
+	@Column(name = "contas_abertas_clie")
+	private int contas;
+	@Column(name = "rece_clie")
+	private boolean rece;
 	
-	public Funcionario() {
+	public Cliente() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	
 
 
-	
-	
-	
-	public Funcionario(Long codi, String nome, Date nasc, String rg, String cpf, String tele, String cele, String emai,
-			String cep, String bair, String ende, String nume, int nivel, Date admis) {
+	public Cliente(String nome, Date nasc, String rg, String cpf, String tele, String cele, String cep, String ende,
+			String bairro, String nume, String email, boolean rece) {
 		super();
-		this.codi = codi;
 		this.nome = nome;
 		this.nasc = nasc;
 		this.rg = rg;
 		this.cpf = cpf;
 		this.tele = tele;
 		this.cele = cele;
-		this.emai = emai;
 		this.cep = cep;
 		buscarCep(cep);
-		this.bair = bair;
 		this.ende = ende;
+		this.bair = bairro;
 		this.nume = nume;
-		this.nivel = nivel;
-		this.admis = admis;
+		this.email = email;
+		this.contas = 0;
+		this.rece = rece;
 	}
 
 
@@ -118,18 +116,11 @@ public class Funcionario {
             throw new RuntimeException(e);
         }
     }
-	
+
 
 	public Long getCodi() {
 		return codi;
 	}
-
-
-
-	public void setCodi(Long codi) {
-		this.codi = codi;
-	}
-
 
 
 	public String getNome() {
@@ -137,11 +128,9 @@ public class Funcionario {
 	}
 
 
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 
 
 	public Date getNasc() {
@@ -149,11 +138,9 @@ public class Funcionario {
 	}
 
 
-
 	public void setNasc(Date nasc) {
 		this.nasc = nasc;
 	}
-
 
 
 	public String getRg() {
@@ -161,11 +148,9 @@ public class Funcionario {
 	}
 
 
-
 	public void setRg(String rg) {
 		this.rg = rg;
 	}
-
 
 
 	public String getCpf() {
@@ -173,11 +158,9 @@ public class Funcionario {
 	}
 
 
-
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
 
 
 	public String getTele() {
@@ -185,11 +168,9 @@ public class Funcionario {
 	}
 
 
-
 	public void setTele(String tele) {
 		this.tele = tele;
 	}
-
 
 
 	public String getCele() {
@@ -197,23 +178,9 @@ public class Funcionario {
 	}
 
 
-
 	public void setCele(String cele) {
 		this.cele = cele;
 	}
-
-
-
-	public String getCep() {
-		return cep;
-	}
-
-
-
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-
 
 
 	public String getEnde() {
@@ -221,11 +188,9 @@ public class Funcionario {
 	}
 
 
-
 	public void setEnde(String ende) {
 		this.ende = ende;
 	}
-
 
 
 	public String getCida() {
@@ -233,11 +198,9 @@ public class Funcionario {
 	}
 
 
-
 	public void setCida(String cida) {
 		this.cida = cida;
 	}
-
 
 
 	public String getEsta() {
@@ -245,20 +208,61 @@ public class Funcionario {
 	}
 
 
-
 	public void setEsta(String esta) {
 		this.esta = esta;
 	}
-
-
-
-	public int getNivel() {
-		return nivel;
+	
+	public String getCep() {
+		return cep;
 	}
 
-	public void setNivel(int nivelFunc) {
-		this.nivel = nivelFunc;
+
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
+
+	public String getBairro() {
+		return bair;
+	}
+
+	public void setBairro(String bairro) {
+		this.bair = bairro;
+	}
+
+	public String getNume() {
+		return nume;
+	}
+
+	public void setNume(String nume) {
+		this.nume = nume;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public int getContas() {
+		return contas;
+	}
+
+	public void setContas(int contas) {
+		this.contas = contas;
+	}
+
+	public boolean isRece() {
+		return rece;
+	}
+
+	public void setRece(boolean rece) {
+		this.rece = rece;
+	}
+	
+	
+	
 	
 	
 }

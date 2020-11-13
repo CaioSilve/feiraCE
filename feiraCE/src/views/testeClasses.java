@@ -7,9 +7,9 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 import dao.DAO;
-import model.Cliente;
-import model.Funcionario;
-import model.Produto;
+import model.entities.Cliente;
+import model.entities.Funcionario;
+import model.entities.Produto;
 import model.enums.Categorias;
 
 public class testeClasses {

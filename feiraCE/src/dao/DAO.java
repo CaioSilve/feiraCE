@@ -8,7 +8,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 
-import model.Cliente;
+import model.entities.Cliente;
 
 public class DAO<E> {
 
