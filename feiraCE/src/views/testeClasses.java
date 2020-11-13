@@ -9,8 +9,10 @@ import javax.swing.JOptionPane;
 import dao.DAO;
 import model.entities.Cliente;
 import model.entities.Funcionario;
+import model.entities.ItemVenda;
 import model.entities.Produto;
 import model.enums.Categorias;
+import model.enums.Tipos;
 
 public class testeClasses {
 
@@ -56,6 +58,18 @@ public class testeClasses {
 //		
 		
 		//daoProd.fechar();
+		
+		/////////Testar ItemVenda
+		
+		data = formato.parse("07/12/2020");
+		Categorias cate = Categorias.CARBOIDRATOS;
+		Tipos tipo = Tipos.COMIDAS;
+		Produto prod = new Produto("Pão Francês", "Panco", 3.2, cate, tipo, data);	
+		
+		ItemVenda itemVend = new ItemVenda(prod, 2);
+		
+		
+		
 		dao.fechar();
 	}
 }
