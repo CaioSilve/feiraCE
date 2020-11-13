@@ -16,15 +16,18 @@ public class Usuario {
 	private String nome;
 	@Column(name = "senh_usua")
 	private String senha;
+	@Column(name = "nivi_perm_usua")
+	private int permi;
 	
 	public Usuario() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Usuario(String nome, String senha) {
+	public Usuario(String nome, String senha, int permi) {
 		super();
 		this.nome = nome;
 		this.senha = senha;
+		this.permi = permi;
 	}
 
 	public String getNome() {
@@ -42,7 +45,15 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
+
+	public int getPermi() {
+		return permi;
+	}
+
+	public void setPermi(int permi) {
+		this.permi = permi;
+	}
+
 	
 	
 }

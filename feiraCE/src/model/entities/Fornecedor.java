@@ -40,26 +40,36 @@ public class Fornecedor {
 	private String esta;
 	@Column(name = "tele_forn")
 	private String tele;
-	@Column(name = "email_forn")
+	@Column(name = "emai_forn")
 	private String email;
-	@Column(name = "gastos_forn")
+	@Column(name = "gast_forn")
 	private Double gastos;
-	@Column(name = "divida_forn")
+	@Column(name = "divi_forn")
 	private Double divida;
 	
 	public Fornecedor() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Fornecedor(String desc, String end, String cep, String cida, String esta, String tele, String email) {
+
+	
+	public Fornecedor(String desc, String tipo, String ende, String cep, String cida, String esta, String tele,
+			String email, Double gastos, Double divida) {
 		super();
 		this.desc = desc;
-		this.ende = end;
+		this.tipo = tipo;
+		this.ende = ende;
 		this.cep = cep;
+		this.cida = cida;
+		this.esta = esta;
 		this.tele = tele;
 		this.email = email;
+		this.gastos = gastos;
+		this.divida = divida;
 	}
-	
+
+
+
 	public void buscarCep(String cep) 
     {
         String json;        
