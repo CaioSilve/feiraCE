@@ -14,6 +14,7 @@
 		<class>model.entities.Fornecedor</class>
 		<class>model.entities.Compra</class>
 		<class>model.entities.ItemCompra</class>
+		<class>model.entities.ItemVenda</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
