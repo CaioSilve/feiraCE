@@ -65,9 +65,14 @@ public class testeClasses {
 		Categorias cate = Categorias.CARBOIDRATOS;
 		Tipos tipo = Tipos.COMIDAS;
 		Produto prod = new Produto("Pão Francês", "Panco", 3.2, cate, tipo, data);	
+		prod.setQtde(1);
 		
 		ItemVenda itemVend = new ItemVenda(prod, 2);
 		
+		System.out.println("Item venda: " + itemVend.getProd().getDesc());
+		System.out.println("O valor do item: R$" + itemVend.getValor());
+		System.out.println("Quantia comprada: " + itemVend.getQtde());
+		System.out.println("Valor total da compra: R$" + itemVend.precoTotal());
 		
 		
 		dao.fechar();
