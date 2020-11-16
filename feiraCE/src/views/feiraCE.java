@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class feiraCE extends Application {
 	
 	Pane pane;
-	String css;
+	String css; 
 	
 	
 	@Override
