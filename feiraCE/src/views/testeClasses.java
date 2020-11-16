@@ -88,6 +88,14 @@ public class testeClasses {
 		
 		Venda vend = new Venda(data, listVend, Pagamentos.DINHEIRO, null, clie, Status.PAGO);
 		
+		dao.iniTrans();
+		dao.incluir(prod);
+		dao.incluir(prod2);
+		dao.incluir(itemVend);
+		dao.incluir(itemVend2);
+		dao.incluir(vend);
+		dao.fecTrans();
+		
 		dao.fechar();
 	}
 }
