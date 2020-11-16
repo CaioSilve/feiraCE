@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import model.enums.Pagamentos;
 import model.enums.Status;
 
-
+@Entity
 @Table(name="vendas")
 public class Venda {
 
