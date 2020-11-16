@@ -73,7 +73,7 @@ public class testeClasses {
 		System.out.println("O valor do item: R$" + itemVend.getValor());
 		System.out.println("Quantia comprada: " + itemVend.getQtde());
 		System.out.println("Valor total da compra: R$" + itemVend.precoTotal());
-		
+		//QUalquer coisa
 		
 		dao.fechar();
 	}
