@@ -15,6 +15,7 @@
 		<class>model.entities.ItemVenda</class>
 		<class>model.entities.Produto</class>
 		<class>model.entities.Usuario</class>
+		<class>model.entities.Venda</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

@@ -2,7 +2,9 @@ package views;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -11,7 +13,10 @@ import model.entities.Cliente;
 import model.entities.Funcionario;
 import model.entities.ItemVenda;
 import model.entities.Produto;
+import model.entities.Venda;
 import model.enums.Categorias;
+import model.enums.Pagamentos;
+import model.enums.Status;
 import model.enums.Tipos;
 
 public class testeClasses {
@@ -67,13 +72,21 @@ public class testeClasses {
 		Produto prod = new Produto("Pão Francês", "Panco", 3.2, cate, tipo, data);	
 		prod.setQtde(1);
 		
-		ItemVenda itemVend = new ItemVenda(prod, 2);
+		ItemVenda itemVend = new ItemVenda(prod, 2, 3.5);
 		
 		System.out.println("Item venda: " + itemVend.getProd().getDesc());
 		System.out.println("O valor do item: R$" + itemVend.getValor());
 		System.out.println("Quantia comprada: " + itemVend.getQtde());
 		System.out.println("Valor total da compra: R$" + itemVend.precoTotal());
-		//QUalquer coisa
+		
+		Produto prod2 = new Produto("Pão De Forma", "Panco", 3.2, cate, tipo, data);	
+		ItemVenda itemVend2 = new ItemVenda(prod2, 2, 3.5);
+		
+		List<ItemVenda> listVend = new ArrayList<>();
+		listVend.add(itemVend);
+		listVend.add(itemVend2);
+		
+		Venda vend = new Venda(data, listVend, Pagamentos.DINHEIRO, null, clie, Status.PAGO);
 		
 		dao.fechar();
 	}

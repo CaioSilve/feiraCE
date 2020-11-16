@@ -19,6 +19,8 @@ public class ItemVenda {
 	@Column(name = "codi_itemvenda")
 	private Long codi;
 	@ManyToOne
+	private Venda venda;
+	@ManyToOne
 	private Produto prod;
 	@Column(name = "qtde_itemvenda", nullable = false)
 	private int qtde;
@@ -29,11 +31,11 @@ public class ItemVenda {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ItemVenda(Produto prod, int qtde) {
+	public ItemVenda(Produto prod, int qtde, double valor) {
 		super();
-		this.prod = prod;
 		this.qtde = qtde;
-		this.valor = prod.getValor();
+		this.valor = valor;
+		this.setProd(prod);
 	}
 	
 
