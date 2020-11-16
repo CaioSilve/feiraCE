@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import model.enums.Pagamentos;
@@ -30,6 +31,7 @@ public class Compra {
 	private Pagamentos paga;
 	@Column(name = "total_compra", nullable = false)
 	private Double total;
+	@OneToOne
 	@Column(name = "forn_compra")
 	private Fornecedor forn;
 	@Column(name = "stat_compra", nullable = false)
