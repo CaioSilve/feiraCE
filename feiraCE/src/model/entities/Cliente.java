@@ -24,6 +24,18 @@ public class Cliente {
 	private Long codi;
 	@Column(name = "nome_clie")
 	private String nome;
+	public String getBair() {
+		return bair;
+	}
+
+
+
+
+
+	public void setBair(String bair) {
+		this.bair = bair;
+	}
+
 	@Column(name = "nasc_clie")
 	private Date nasc;
 	@Column(name = "rg_clie")
