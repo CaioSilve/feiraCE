@@ -8,13 +8,13 @@
 		<mapping-file>META-INF/consultas.xml</mapping-file>
 		
 		<class>model.entities.Cliente</class>
-		<class>model.entities.Funcionario</class>
-		<class>model.entities.Produto</class>
-		<class>model.entities.Usuario</class>
-		<class>model.entities.Fornecedor</class>
 		<class>model.entities.Compra</class>
+		<class>model.entities.Fornecedor</class>
+		<class>model.entities.Funcionario</class>
 		<class>model.entities.ItemCompra</class>
 		<class>model.entities.ItemVenda</class>
+		<class>model.entities.Produto</class>
+		<class>model.entities.Usuario</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

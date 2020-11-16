@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -32,7 +33,7 @@ public class Compra {
 	@Column(name = "total_compra", nullable = false)
 	private Double total;
 	@OneToOne
-	@Column(name = "forn_compra")
+	@JoinColumn(name = "forn_compra")
 	private Fornecedor forn;
 	@Column(name = "stat_compra", nullable = false)
 	private Status stat;
