@@ -22,15 +22,15 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codi_prod", unique = true)
 	private Long codi;
-	@Column(name = "desc_prod", unique = true, nullable = false)
+	@Column(name = "desc_prod")
 	private String desc;
 	@Column(name = "marca_prod")
 	private String marca;
-	@Column(name = "valor_prod", nullable = false)
-	private Double valor;
-	@Column(name = "categ_prod", nullable = false)
+	@Column(name = "valor_prod")
+	private double valor;
+	@Column(name = "categ_prod")
 	private Categorias categoria;
-	@Column(name = "tipo_prod", nullable = false)
+	@Column(name = "tipo_prod")
 	private Tipos tipo;
 	@Column(name = "valid_prod")
 	private Date validade;
@@ -43,20 +43,25 @@ public class Produto {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Produto(String nome, String marca, Double valor, Categorias categoria, Tipos tipo, Date validade) {
+	
+	
+	
+	
+	public Produto(String desc, String marca, double valor, Categorias categoria, Tipos tipo, Date validade, int qtde) {
 		super();
-		this.desc = nome;
+		this.desc = desc;
 		this.marca = marca;
 		this.valor = valor;
 		this.categoria = categoria;
 		this.tipo = tipo;
 		this.validade = validade;
-		this.qtde = 0;
-		
+		this.qtde = qtde;
 	}
-	
-	
-	
+
+
+
+
+
 	public Long getCodi() {
 		return codi;
 	}
@@ -75,10 +80,10 @@ public class Produto {
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
-	public Double getValor() {
+	public double getValor() {
 		return valor;
 	}
-	public void setValor(Double valor) {
+	public void setValor(double valor) {
 		this.valor = valor;
 	}
 	public Categorias getCategoria() {

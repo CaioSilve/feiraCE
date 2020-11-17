@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 
 @Entity
-@Table(name = "itensvenda")
+@Table(name = "itens_venda")
 public class ItemVenda {
 
 	@Id
@@ -25,7 +25,7 @@ public class ItemVenda {
 	@Column(name = "qtde_itemvenda", nullable = false)
 	private int qtde;
 	@Column(name = "valor_itemvenda", nullable = false)
-	private Double valor;
+	private double valor;
 	
 	public ItemVenda() {
 		// TODO Auto-generated constructor stub
@@ -46,7 +46,7 @@ public class ItemVenda {
 	public void setProd(Produto prod) {
 		this.prod = prod;
 		
-		if (prod != null && this.valor == null) {
+		if (prod != null && this.valor == 0.0) {
 			this.valor = prod.getValor();
 		}
 	}
@@ -64,11 +64,11 @@ public class ItemVenda {
 		}
 	}
 	
-	public Double getValor() {
+	public double getValor() {
 		return valor;
 	}
 	
-	public void setValor(Double valor) {
+	public void setValor(double valor) {
 		this.valor = valor;
 	}
 	

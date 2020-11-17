@@ -2,14 +2,19 @@ package model.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import model.enums.Permissoes;
 
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codi_usua")
 	private Long codi;
 	@Column(name = "desc_usua")
@@ -17,13 +22,13 @@ public class Usuario {
 	@Column(name = "senh_usua")
 	private String senha;
 	@Column(name = "nivi_perm_usua")
-	private int permi;
+	private Permissoes permi;
 	
 	public Usuario() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Usuario(String nome, String senha, int permi) {
+	public Usuario(String nome, String senha, Permissoes permi) {
 		super();
 		this.nome = nome;
 		this.senha = senha;
@@ -46,11 +51,11 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public int getPermi() {
+	public Permissoes getPermi() {
 		return permi;
 	}
 
-	public void setPermi(int permi) {
+	public void setPermi(Permissoes permi) {
 		this.permi = permi;
 	}
 

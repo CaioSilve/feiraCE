@@ -10,6 +10,7 @@ public enum Categorias {
 	DOCES(2),
 	CARNES_E_OVOS(2),
 	OLEOS_E_GORDURAS(2),
+	PAES(2),
 	MASSA(2),
 	CARBOIDRATOS(2),
 	FITNESS(2),

@@ -10,92 +10,102 @@ import javax.swing.JOptionPane;
 
 import dao.DAO;
 import model.entities.Cliente;
+import model.entities.Compra;
+import model.entities.Fornecedor;
 import model.entities.Funcionario;
+import model.entities.ItemCompra;
 import model.entities.ItemVenda;
 import model.entities.Produto;
+import model.entities.Usuario;
 import model.entities.Venda;
 import model.enums.Categorias;
+import model.enums.Niveis;
 import model.enums.Pagamentos;
+import model.enums.Permissoes;
 import model.enums.Status;
 import model.enums.Tipos;
+import model.enums.TiposForn;
 
 public class testeClasses {
 
 	public static void main(String[] args) throws ParseException {
 		
-		DAO<Cliente> dao = new DAO<>(Cliente.class);
+		
+		//teste(5.0, 5.6);
+		
+		
+		DAO<Object> dao = new DAO<>();
 		
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
 		
-		Date data = formato.parse("09/06/2002");
+		Date data = formato.parse("02/12/2001");
 		
-		Cliente clie = new Cliente("Caio Silveira", data, "57.517.297-6", "507.480.968-17", "", "(16) 99294-1653", "14620-000", "Avenida E", "Jardim Benini", "1355", "caio.evil.silveira@gmail.com", true);
 		
-		//data = formato.parse("09/06/2002");
+		//CLIENTE--------------------------------------------
+		Cliente clie = new Cliente("Caio Silveira", data, "57.517.297-6", "507.480.968-17", "12665", "(16) 99294-1653", "14620-000", "Avenida E", "Jardim Benini", "1355", "caio.evil.silveira@gmail.com", 1, true);
+//		List<Cliente> clies = dao.consultar("obterNome", "nome", "%ck%");
+//		
+//		Cliente clies = dao.consultarUm("obterNome", "esta", "SP");
+//				
+//		JOptionPane.showMessageDialog(null, clies.getNome());
+//				
+//		for (Cliente cliente : clies) {
+//			JOptionPane.showMessageDialog(null, cliente.getNome());
+//		}
 		
-		//Funcionario func = new Funcionario("Caio Silveira", data, "57517297-6", "50748096817", "", "992941653", "Avenida E", "14620000", 3);
 		
-		//JOptionPane.showMessageDialog(null, func.getCep() + ": \n" + func.getEsta() + ", " + func.getCida());
+		//FORNECEDOR--------------------------------------------
+		Fornecedor forn = new Fornecedor("Natura", TiposForn.PRIVADO, "São caetnao", "75410000", "125415", "natureza", 200.00, 200.00);
 		
-		//data = formato.parse("07/09/2020");
-	
-		//Produto prod = new Produto("Pão Francês", "Panco", 3.2, "Alimenticia", "Pães", data);	
 		
+		//FUNCIONÁRIO--------------------------------------------
+		Funcionario func = new Funcionario("Erick", data, "7188371878", "93819341873891", "dakshjdklajd", "8998891", "erick_nabotinha@gmail.com", "14620000", "Benini", "Avenida E", "1355", Niveis.ADMINISTRADOR, data);
+		
+		//PRODUTO--------------------------------------------
+		Produto prod = new Produto("Pão Frances", "Economico", 0.75, Categorias.PAES, Tipos.COMIDAS, data, 10);
+		Produto prod2 = new Produto("Smartphone", "Xiaomi", 1800.0, Categorias.ELETRONICOS, Tipos.EQUIPAMENTOS, data, 3);
+//		System.out.println(Categorias.values()[7]);
 //		for (Categorias cat : Categorias.values()) {
 //			if(cat.getIndice() == 1)
 //			System.out.println(cat);
 //		}
 		
+		//USUÁRIO--------------------------------------------
+		Usuario usua = new Usuario("Caio Silveira", "caio123", Permissoes.ADMINISTRADOR);
+			
+	
+		
+		//ITEMCOMPRA--------------------------------------------
+		ItemCompra itemCp = new ItemCompra(prod, 0, 3);
+		ItemCompra itemCp2 = new ItemCompra(prod2, 1900.0, 1);
+		
+		List<ItemCompra> itensCp = new ArrayList<ItemCompra>();
+		itensCp.add(itemCp);
+		itensCp.add(itemCp2);
 		
 		
-		//dao.incluirAgora(clie);
+		//COMPRA--------------------------------------------
+		Compra cp = new Compra(new Date(), itensCp, Pagamentos.DINHEIRO, 0.0, forn, Status.PAGO);
 		
 		
-		//List<Cliente> clies = dao.consultarUm("obterNome", "nome", "%ck%");
+		//----------------------------------------------------------------------------------------
 		
-		//Cliente clies = dao.consultarUm("obterNome", "esta", "SP");
-		
-		//JOptionPane.showMessageDialog(null, clies.getNome());
-		
-//		for (Cliente cliente : clies) {
-//			JOptionPane.showMessageDialog(null, cliente.getNome());
-//		}
-//		
-		
-		//daoProd.fechar();
-		
-		/////////Testar ItemVenda
-		
-		data = formato.parse("07/12/2020");
-		Categorias cate = Categorias.CARBOIDRATOS;
-		Tipos tipo = Tipos.COMIDAS;
-		Produto prod = new Produto("Pão Francês", "Panco", 3.2, cate, tipo, data);	
-		prod.setQtde(1);
-		
-		ItemVenda itemVend = new ItemVenda(prod, 2, 3.5);
-		
-		System.out.println("Item venda: " + itemVend.getProd().getDesc());
-		System.out.println("O valor do item: R$" + itemVend.getValor());
-		System.out.println("Quantia comprada: " + itemVend.getQtde());
-		System.out.println("Valor total da compra: R$" + itemVend.precoTotal());
-		
-		Produto prod2 = new Produto("Pão De Forma", "Panco", 3.2, cate, tipo, data);	
-		ItemVenda itemVend2 = new ItemVenda(prod2, 2, 3.5);
-		
-		List<ItemVenda> listVend = new ArrayList<>();
-		listVend.add(itemVend);
-		listVend.add(itemVend2);
-		
-		Venda vend = new Venda(data, listVend, Pagamentos.DINHEIRO, null, clie, Status.PAGO);
 		
 		dao.iniTrans();
+		
+		dao.incluir(forn);
 		dao.incluir(prod);
 		dao.incluir(prod2);
-		dao.incluir(itemVend);
-		dao.incluir(itemVend2);
-		dao.incluir(vend);
+		dao.incluir(itemCp);
+		dao.incluir(itemCp2);
+		dao.incluir(cp);
+		
 		dao.fecTrans();
 		
-		dao.fechar();
+		dao.encerrar();
+	}
+	
+	public static void teste(Double ... campos) {
+		System.out.println(campos[0]);
 	}
 }

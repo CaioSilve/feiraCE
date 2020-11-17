@@ -12,25 +12,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.swing.JOptionPane;
+
+import model.enums.TiposForn;
 
 @Entity
 @Table(name = "fornecedores")
 public class Fornecedor {
-	
-	public static enum TiposForn{
-		PRIVADO, MERCADO, FEIRA
-	}
-	
-	
-	public String getTipo() {
-		return tipo;
-	}
-
-
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +27,7 @@ public class Fornecedor {
 	@Column(name = "desc_forn")
 	private String desc;
 	@Column(name = "tipo_forn")
-	private String tipo;
+	private TiposForn tipo;
 	@Column(name = "ende_forn")
 	private String ende;
 	@Column(name = "cep_forn")
@@ -53,32 +41,28 @@ public class Fornecedor {
 	@Column(name = "emai_forn")
 	private String email;
 	@Column(name = "gast_forn")
-	private Double gastos;
+	private double gastos;
 	@Column(name = "divi_forn")
-	private Double divida;
+	private double divida;
 	
 	public Fornecedor() {
 		// TODO Auto-generated constructor stub
 	}
 
 
-	
-	public Fornecedor(String desc, String tipo, String ende, String cep, String cida, String esta, String tele,
-			String email, Double gastos, Double divida) {
+	public Fornecedor(String desc, TiposForn tipo, String ende, String cep, String tele, String email, double gastos,
+			double divida) {
 		super();
 		this.desc = desc;
 		this.tipo = tipo;
 		this.ende = ende;
 		this.cep = cep;
-		this.cida = cida;
-		this.esta = esta;
+		buscarCep(cep);
 		this.tele = tele;
 		this.email = email;
 		this.gastos = gastos;
 		this.divida = divida;
 	}
-
-
 
 	public void buscarCep(String cep) 
     {
@@ -109,6 +93,7 @@ public class Fornecedor {
             //JOptionPane.showMessageDialog(null, logradouro + " " + bairro + " " + cidade + " " + uf);
             
         } catch (Exception e) {
+        	JOptionPane.showMessageDialog(null, "Conferir cep: " + this.cep);
             throw new RuntimeException(e);
         }
     }
@@ -169,20 +154,30 @@ public class Fornecedor {
 		this.ende = ende;
 	}
 
-	public Double getGastos() {
+	public double getGastos() {
 		return gastos;
 	}
 
-	public void setGastos(Double gastos) {
+	public void setGastos(double gastos) {
 		this.gastos = gastos;
 	}
 
-	public Double getDivida() {
+	public double getDivida() {
 		return divida;
 	}
 
-	public void setDivida(Double divida) {
+	public void setDivida(double divida) {
 		this.divida = divida;
+	}
+	
+	public TiposForn getTipo() {
+		return tipo;
+	}
+
+
+
+	public void setTipo(TiposForn tipo) {
+		this.tipo = tipo;
 	}
 	
 	

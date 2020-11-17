@@ -53,7 +53,7 @@ public class DAO<E> {
 		return this.iniTrans().incluir(algo).fecTrans();
 	}
 	
-	public void fechar() {
+	public void encerrar() {
 		em.close();
 	}
 	

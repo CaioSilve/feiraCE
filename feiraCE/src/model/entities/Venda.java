@@ -25,19 +25,21 @@ public class Venda {
 	@Column(name = "codi_venda")
 	private Long codi;
 	
-	@Column(name = "comp_venda")
+	@Column(name = "data_venda")
 	private Date compra;
 	@OneToMany(mappedBy = "venda")
 	private List<ItemVenda> itens;
 	@Column(name = "form_paga_venda")
 	private Pagamentos paga;
 	@Column(name = "total_venda")
-	private Double total;
+	private double total;
 	@OneToOne
 	@JoinColumn(name = "clie_venda")
 	private Cliente clie;
 	@Column(name = "stat_venda")
 	private Status stat;
+	@OneToOne
+	private Usuario usua;
 	
 	
 	public Venda() {
@@ -46,7 +48,7 @@ public class Venda {
 	
 	
 	
-	public Venda(Date compra, List<ItemVenda> itens, Pagamentos paga, Double total, Cliente clie, Status stat) {
+	public Venda(Date compra, List<ItemVenda> itens, Pagamentos paga, double total, Cliente clie, Status stat) {
 		super();
 		this.compra = compra;
 		this.itens = itens;
@@ -94,13 +96,13 @@ public class Venda {
 
 
 
-	public Double getTotal() {
+	public double getTotal() {
 		return total;
 	}
 
 
 
-	public void setTotal(Double total) {
+	public void setTotal(double total) {
 		this.total = total;
 	}
 

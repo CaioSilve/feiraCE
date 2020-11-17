@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import javax.swing.JOptionPane;
 
 @Entity
-@Table(name = "itenscompra")
+@Table(name = "itens_compra")
 public class ItemCompra {
 
 	@Id
@@ -26,15 +26,14 @@ public class ItemCompra {
 	@Column(name = "qtde_itemcompra", nullable = false)
 	private int qtde;
 	@Column(name = "valor_itemcompra", nullable = false)
-	private Double valor;
+	private double valor;
 	
 	public ItemCompra() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ItemCompra(Compra compra, Produto prod, double valor, int qtde) {
+	public ItemCompra(Produto prod, double valor, int qtde) {
 		super();
-		this.compra = compra;
 		this.valor = valor;
 		this.setProd(prod);
 		this.setQtde(qtde);
@@ -55,7 +54,7 @@ public class ItemCompra {
 	public void setProd(Produto prod) {
 		this.prod = prod;
 		
-		if (prod != null && this.valor == null) {
+		if (prod != null && this.valor == 0.0) {
 			this.valor = prod.getValor();
 		}
 	}
@@ -73,11 +72,11 @@ public class ItemCompra {
 		}
 	}
 
-	public Double getValor() {
+	public double getValor() {
 		return valor;
 	}
 
-	public void setValor(Double valor) {
+	public void setValor(double valor) {
 		this.valor = valor;
 	}
 	

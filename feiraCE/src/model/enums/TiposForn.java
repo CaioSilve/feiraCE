@@ -1,13 +1,12 @@
 package model.enums;
 
-public enum Niveis {
+public enum TiposForn {
+		
+	PRIVADO(1), 
+	MERCADO(2), 
+	FEIRA(3);
 	
-	ADMINISTRADOR(1),
-	GESTOR(2),
-	GERENTE(3),
-	FUNCIONARIO(4);
-
-	Niveis(int i) {
+	TiposForn(int i) {
 		this.i = i;
 	}
 	
@@ -17,3 +16,4 @@ public enum Niveis {
 		return i;
 	}
 }
+

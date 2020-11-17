@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import model.enums.Niveis;
+
 @Entity
 @Table(name = "funcionarios")
 public class Funcionario {
@@ -50,7 +52,7 @@ public class Funcionario {
 	@Column(name = "esta_func")
 	private String esta;
 	@Column(name = "nive_func")
-	private int nivel;
+	private Niveis nivel;
 	@Column(name = "admis_func")
 	private Date admis;
 	
@@ -62,10 +64,9 @@ public class Funcionario {
 	
 	
 	
-	public Funcionario(Long codi, String nome, Date nasc, String rg, String cpf, String tele, String cele, String emai,
-			String cep, String bair, String ende, String nume, int nivel, Date admis) {
+	public Funcionario(String nome, Date nasc, String rg, String cpf, String tele, String cele, String emai,
+			String cep, String bair, String ende, String nume, Niveis nivel, Date admis) {
 		super();
-		this.codi = codi;
 		this.nome = nome;
 		this.nasc = nasc;
 		this.rg = rg;
@@ -252,12 +253,55 @@ public class Funcionario {
 
 
 
-	public int getNivel() {
+	public Niveis getNivel() {
 		return nivel;
 	}
 
-	public void setNivel(int nivelFunc) {
+	public void setNivel(Niveis nivelFunc) {
 		this.nivel = nivelFunc;
+	}
+	
+	public String getEmai() {
+		return emai;
+	}
+
+
+
+	public void setEmai(String emai) {
+		this.emai = emai;
+	}
+
+
+
+	public String getBair() {
+		return bair;
+	}
+
+
+
+	public void setBair(String bair) {
+		this.bair = bair;
+	}
+
+
+	public String getNume() {
+		return nume;
+	}
+
+
+	public void setNume(String nume) {
+		this.nume = nume;
+	}
+
+
+
+	public Date getAdmis() {
+		return admis;
+	}
+
+
+	public void setAdmis(Date admis) {
+		this.admis = admis;
 	}
 	
 	

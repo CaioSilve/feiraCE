@@ -50,6 +50,7 @@ public class Cliente {
 	private String email;
 	@Column(name = "contas_abertas_clie")
 	private int contas;
+	//se ele quer receber promoções ou não
 	@Column(name = "rece_clie")
 	private boolean rece;
 	
@@ -61,8 +62,14 @@ public class Cliente {
 	
 
 
+	
+
+
+
+
+
 	public Cliente(String nome, Date nasc, String rg, String cpf, String tele, String cele, String cep, String ende,
-			String bairro, String nume, String email, boolean rece) {
+			String bair, String nume, String email, int contas, boolean rece) {
 		super();
 		this.nome = nome;
 		this.nasc = nasc;
@@ -73,12 +80,18 @@ public class Cliente {
 		this.cep = cep;
 		buscarCep(cep);
 		this.ende = ende;
-		this.bair = bairro;
+		this.bair = bair;
 		this.nume = nume;
 		this.email = email;
-		this.contas = 0;
+		this.contas = contas;
 		this.rece = rece;
 	}
+
+
+
+
+
+
 
 
 

@@ -31,12 +31,14 @@ public class Compra {
 	@Column(name = "form_paga_compra", nullable = false)
 	private Pagamentos paga;
 	@Column(name = "total_compra", nullable = false)
-	private Double total;
+	private double total;
 	@OneToOne
 	@JoinColumn(name = "forn_compra")
 	private Fornecedor forn;
 	@Column(name = "stat_compra", nullable = false)
 	private Status stat;
+	@OneToOne
+	private Usuario usua;
 
 	
 	
@@ -47,12 +49,12 @@ public class Compra {
 
 	
 	
-	public Compra(Date data, List<ItemCompra> itens, Pagamentos paga, Double total, Fornecedor forn, Status stat) {
+	public Compra(Date data, List<ItemCompra> itens, Pagamentos paga, double total, Fornecedor forn, Status stat) {
 		super();
 		this.data = data;
-		this.itens = itens;
-		this.paga = paga;
 		this.total = total;
+		this.setItens(itens);
+		this.paga = paga;
 		this.forn = forn;
 		this.stat = stat;
 	}
@@ -93,7 +95,7 @@ public class Compra {
 		this.forn = forn;
 	}
 
-	public Double getTotal() {
+	public double getTotal() {
 		return total;
 	}
 
@@ -105,11 +107,17 @@ public class Compra {
 
 	public void setItens(List<ItemCompra> itens) {
 		this.itens = itens;
+		
+		if (total == 0.0) {
+			for(ItemCompra x: itens) {
+				total += x.precoTotal();
+			}
+		}
 	}
 
 
 
-	public void setTotal(Double total) {
+	public void setTotal(double total) {
 		this.total = total;
 	}
 
