@@ -57,13 +57,23 @@ public class DAO<E> {
 		em.close();
 	}
 	
-	public List<E> consultar(String nomeconsul, Object... params){
-		TypedQuery<E> query = em.createNamedQuery(nomeconsul, classe);
-		
-		for (int i = 0; i < params.length; i += 2) {
-			query.setParameter(params[i].toString(), params[i + 1]);
+	public E consultarporID(Long id) {
+		return em.find(classe, id);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<E> consultar(Object ... param){
+		if(param.length == 1) {
+			return em.createNamedQuery(param[0].toString()).getResultList();
+		} else {
+			TypedQuery<E> query = em.createNamedQuery(param[0].toString(), classe);
+			
+			for (int i = 1; i < param.length; i += 2) {
+				query.setParameter(param[i].toString(), param[i + 1]);
+			}
+			return query.getResultList();
 		}
-		return query.getResultList();
+		
 	}
 	
 	public E consultarUm(String nomeconsul, Object... params){

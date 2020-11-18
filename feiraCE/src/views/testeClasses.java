@@ -34,7 +34,7 @@ public class testeClasses {
 		//teste(5.0, 5.6);
 		
 		
-		DAO<Object> dao = new DAO<>();
+		DAO<Compra> dao = new DAO<>(Compra.class);
 		
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
 		
@@ -86,19 +86,29 @@ public class testeClasses {
 		
 		//COMPRA--------------------------------------------
 		Compra cp = new Compra(new Date(), itensCp, Pagamentos.DINHEIRO, 0.0, forn, Status.PAGO);
-		
-		
 		//----------------------------------------------------------------------------------------
 		
 		
+		itemCp.setCompra(cp);
+		itemCp2.setCompra(cp);
+		
 		dao.iniTrans();
 		
-		dao.incluir(forn);
-		dao.incluir(prod);
-		dao.incluir(prod2);
-		dao.incluir(itemCp);
-		dao.incluir(itemCp2);
-		dao.incluir(cp);
+		
+		
+		//NAMED NATIVE QUERY
+		List<Compra> lcp = dao.consultar("todasCompras");
+		
+		System.out.println(lcp.get(0).getQtdeItens());
+		
+		
+		//JPQL------------- NAME QUERY
+//		Compra ccp = dao.consultarUm("obterCompra", "paga", Pagamentos.DINHEIRO);
+//		
+//		System.out.println(ccp.getQtdeItens());
+
+		
+		
 		
 		dao.fecTrans();
 		

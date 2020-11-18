@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -57,6 +59,11 @@ public class Compra {
 		this.paga = paga;
 		this.forn = forn;
 		this.stat = stat;
+	}
+	
+	
+	public int getQtdeItens() {
+		return itens.size();
 	}
 
 

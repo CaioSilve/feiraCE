@@ -26,7 +26,7 @@ public class Venda {
 	private Long codi;
 	
 	@Column(name = "data_venda")
-	private Date compra;
+	private Date data;
 	@OneToMany(mappedBy = "venda")
 	private List<ItemVenda> itens;
 	@Column(name = "form_paga_venda")
@@ -48,26 +48,30 @@ public class Venda {
 	
 	
 	
-	public Venda(Date compra, List<ItemVenda> itens, Pagamentos paga, double total, Cliente clie, Status stat) {
+	public Venda(Date data, List<ItemVenda> itens, Pagamentos paga, double total, Cliente clie, Status stat) {
 		super();
-		this.compra = compra;
+		this.data = data;
 		this.itens = itens;
 		this.paga = paga;
 		this.total = total;
 		this.clie = clie;
 		this.stat = stat;
 	}
-
-
-
-	public Date getCompra() {
-		return compra;
+	
+	public int getQtdeItens() {
+		return itens.size();
 	}
 
 
 
-	public void setCompra(Date compra) {
-		this.compra = compra;
+	public Date getVenda() {
+		return data;
+	}
+
+
+
+	public void setVenda(Date data) {
+		this.data = data;
 	}
 
 

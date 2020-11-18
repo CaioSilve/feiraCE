@@ -9,7 +9,7 @@
 	
 	<named-query name="obterCompra">
 		<query>
-			select u from Compra u where u.codi like :codi
+			select distinct u from Compra u where u.paga like :paga
 		</query>
 	</named-query>
 	
@@ -44,19 +44,14 @@
 		</query>
 	</named-query>
 	
-	
-	
-	<named-native-query name="obterTodosNomesClientes" 
-		result-set-mapping="NomeMap">
-		<query>
-			select nome_clie as nome from Clientes
-		</query>
-	</named-native-query>
-	
-	<sql-result-set-mapping name="NomeMap">
-		<constructor-result target-class="model.entities.Cliente">
-			<column name="nome_clie" class="java.lang.String"/>
-		</constructor-result>
-	</sql-result-set-mapping>
+	<named-native-query name="todosClientes"
+            result-class="model.entities.Cliente">
+        <query>SELECT * FROM clientes ORDER BY nome_clie DESC</query>
+    </named-native-query>
+    
+    <named-native-query name="todasCompras"
+            result-class="model.entities.Compra">
+        <query>SELECT * FROM compras ORDER BY codi_compra DESC</query>
+    </named-native-query>
 
 </entity-mappings>
