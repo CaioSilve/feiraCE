@@ -46,7 +46,7 @@
 	
 	<named-native-query name="todosClientes"
             result-class="model.entities.Cliente">
-        <query>SELECT * FROM clientes ORDER BY nome_clie DESC</query>
+        <query>SELECT * FROM clientes ORDER BY nome_clie </query>
     </named-native-query>
     
     <named-native-query name="todasCompras"

@@ -97,9 +97,11 @@ public class testeClasses {
 		
 		
 		//NAMED NATIVE QUERY
-		List<Compra> lcp = dao.consultar("todasCompras");
+		//List<Compra> lcp = dao.consultar("todasCompras");
 		
-		System.out.println(lcp.get(0).getQtdeItens());
+		//System.out.println(lcp.get(0).getQtdeItens());
+		
+		
 		
 		
 		//JPQL------------- NAME QUERY
