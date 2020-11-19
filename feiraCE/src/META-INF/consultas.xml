@@ -53,5 +53,42 @@
             result-class="model.entities.Compra">
         <query>SELECT * FROM compras ORDER BY codi_compra DESC</query>
     </named-native-query>
+    
+    <named-native-query name="todosFornecedores"
+    		result-class="model.entities.Fornecedor">
+    	<query>SELECT * FROM fornecedores ORDER BY desc_form</query>
+    </named-native-query>
+    
+    <named-native-query name="todosFuncionarios"
+    		result-class="model.entities.Funcionario">
+    	<query>SELECT * FROM funcionarios ORDER BY nome_func</query>
+    </named-native-query>
+    
+    <named-native-query name="todosItensCompra"
+    		result-class="model.entities.ItemCompra">
+    	<query>SELECT * FROM itens_compra ORDER BY codi_itemcompra DESC</query>
+    </named-native-query>
+    
+    <named-native-query name="todosItensVenda"
+    		result-class="model.entities.ItemVenda">
+    	<query> SELECT * FROM itens_venda ORDER BY codi_itemvenda DESC</query>
+    </named-native-query>
+    
+    <named-native-query name="todosProdutos"
+    		result-class="model.entities.Produto">
+    	<query> SELECT * FROM produtos ORDER BY categ_prod</query>
+    </named-native-query>
+    
+    <named-native-query name="todosUsuarios"
+    		result-class="model.entities.Usuario">
+    	<query> SELECT * FROM usuarios ORDER BY cod_usua</query>
+    </named-native-query>
+    
+    <named-native-query name="todasVendas"
+    		result-class="model.entities.Venda">
+    	<query> SELECT * FROM vendas ORDER BY codi_venda DESC</query>
+    </named-native-query>
+    
+    
 
 </entity-mappings>
