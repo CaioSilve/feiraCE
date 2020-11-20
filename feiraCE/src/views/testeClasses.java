@@ -34,7 +34,7 @@ public class testeClasses {
 		//teste(5.0, 5.6);
 		
 		
-		DAO<Produto> dao = new DAO<>(Produto.class);
+		DAO<Object> dao = new DAO<>(Object.class);
 		
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
 		
@@ -42,7 +42,7 @@ public class testeClasses {
 		
 		
 		//CLIENTE--------------------------------------------
-		Cliente clie = new Cliente("Caio Silveira", data, "57.517.297-6", "507.480.968-17", "12665", "(16) 99294-1653", "14620-000", "Avenida E", "Jardim Benini", "1355", "caio.evil.silveira@gmail.com", 1, true);
+		Cliente clie = new Cliente("Erick Neves", data, "57.517.297-6", "507.480.968-17", "12665", "(16) 99294-1653", "14620-000", "Avenida E", "Jardim Benini", "1355", "caio.evil.silveira@gmail.com", 1, true);
 //		List<Cliente> clies = dao.consultar("obterNome", "nome", "%ck%");
 //		
 //		Cliente clies = dao.consultarUm("obterNome", "esta", "SP");
@@ -62,7 +62,7 @@ public class testeClasses {
 		Funcionario func = new Funcionario("Erick", data, "7188371878", "93819341873891", "dakshjdklajd", "8998891", "erick_nabotinha@gmail.com", "14620000", "Benini", "Avenida E", "1355", Niveis.ADMINISTRADOR, data);
 		
 		//PRODUTO--------------------------------------------
-		Produto prod = new Produto("Pão Frances", "Economico", 0.75, Categorias.PAES, Tipos.COMIDAS, data, 10);
+		Produto prod = new Produto("Bisnaguinha", "Economico", 0.75, Categorias.PAES, Tipos.COMIDAS, data, 10);
 		Produto prod2 = new Produto("Smartphone", "Xiaomi", 1800.0, Categorias.ELETRONICOS, Tipos.EQUIPAMENTOS, data, 3);
 //		System.out.println(Categorias.values()[7]);
 //		for (Categorias cat : Categorias.values()) {
@@ -90,8 +90,12 @@ public class testeClasses {
 		itemCp.setCompra(cp);
 		itemCp2.setCompra(cp);
 		//ITEMVENDA----------------------------------------
-		ItemVenda itemVd = new ItemVenda(prod, 2, 0);
-		ItemVenda itemVd2 = new ItemVenda(prod2, 1, 0);
+		
+		Produto p1 = (Produto)dao.consultarUm("obterProduto", "desc", prod.getDesc());
+		Produto p2 = (Produto)dao.consultarUm("obterProduto", "desc", prod2.getDesc());
+		
+		ItemVenda itemVd = new ItemVenda(prod, 20, 0);
+		ItemVenda itemVd2 = new ItemVenda(prod2, 10, 0);
 		
 		List<ItemVenda> itensVd = new ArrayList<ItemVenda>();
 		itensVd.add(itemVd);
@@ -109,12 +113,25 @@ public class testeClasses {
 		
 		dao.iniTrans();
 		
+		for(ItemVenda x : itensVd) {
+			if(dao.consultarUm("obterProduto", "desc", x.getProd().getDesc()) == null) {
+				dao.incluir(x.getProd());
+			}else {
+				x.setProd((Produto)dao.consultarUm("obterProduto", "desc", x.getProd().getDesc()));
+			}
+		}
 		
-		dao.consultarUm("obterProduto", "desc", prod.getDesc());
-		dao.consultarUm("obterProduto", "desc", prod2.getDesc());
+		if(dao.consultarUm("obterCliente", "nome", clie.getNome()) == null) {
+			dao.incluir(clie);
+		}else {
+			vd.setClie((Cliente)dao.consultarUm("obterCliente", "nome", clie.getNome()));
+		}
+		
+
 		dao.incluir(itemVd);
 		dao.incluir(itemVd2);
 		dao.incluir(vd);
+		
 		
 		
 		

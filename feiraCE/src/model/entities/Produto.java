@@ -22,7 +22,7 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codi_prod")
 	private Long codi;
-	@Column(name = "desc_prod", unique = true)
+	@Column(name = "desc_prod")
 	private String desc;
 	@Column(name = "marca_prod")
 	private String marca;

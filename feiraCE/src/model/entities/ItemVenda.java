@@ -33,9 +33,10 @@ public class ItemVenda {
 	
 	public ItemVenda(Produto prod, int qtde, double valor) {
 		super();
-		this.qtde = qtde;
-		this.valor = valor;
 		this.setProd(prod);
+		this.setQtde(qtde);
+		this.valor = valor;
+		
 	}
 	
 	public double precoTotal() {
@@ -73,11 +74,13 @@ public class ItemVenda {
 	public void setQtde(int qtde) {
 		if(qtde <= prod.getQtde()) {
 			this.qtde = qtde;
+			prod.setQtde(prod.getQtde() - qtde);
 		}else {
 			JOptionPane.showMessageDialog(null, "Quantidade indisponível", "Estoque", 1);
-			qtde = prod.getQtde();
+			this.qtde = prod.getQtde();
+			prod.setQtde(0);
 		}
-		prod.setQtde(prod.getQtde() - qtde);
+		
 	}
 	
 	public double getValor() {
