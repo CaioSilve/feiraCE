@@ -64,12 +64,8 @@ public class ItemCompra {
 	}
 
 	public void setQtde(int qtde) {
-		if (qtde <= prod.getQtde()) {
-			this.qtde = qtde;
-		} else {
-			JOptionPane.showMessageDialog(null, "Quantidade indisponível", "Estoque", 1);
-			qtde = prod.getQtde();
-		}
+		this.qtde = qtde;
+		prod.setQtde(prod.getQtde() + qtde);
 	}
 
 	public double getValor() {

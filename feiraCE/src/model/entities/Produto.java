@@ -20,9 +20,9 @@ public class Produto {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "codi_prod", unique = true)
+	@Column(name = "codi_prod")
 	private Long codi;
-	@Column(name = "desc_prod")
+	@Column(name = "desc_prod", unique = true)
 	private String desc;
 	@Column(name = "marca_prod")
 	private String marca;
@@ -39,14 +39,14 @@ public class Produto {
 	@Column(name = "qtde_min_prod")
 	private int qtdeMin;
 	
+
+
 	public Produto() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	
-	
-	
-	
+
 	public Produto(String desc, String marca, double valor, Categorias categoria, Tipos tipo, Date validade, int qtde) {
 		super();
 		this.desc = desc;
@@ -56,7 +56,11 @@ public class Produto {
 		this.tipo = tipo;
 		this.validade = validade;
 		this.qtde = qtde;
+		this.qtdeMin = 5;
 	}
+
+
+
 
 
 
@@ -113,6 +117,13 @@ public class Produto {
 	public double valorEsto() {
 		return valor*qtde;
 	}
+	public int getQtdeMin() {
+		return qtdeMin;
+	}
+	public void setQtdeMin(int qtdeMin) {
+		this.qtdeMin = qtdeMin;
+	}
+
 	
 	
 	

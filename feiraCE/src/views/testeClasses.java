@@ -34,7 +34,7 @@ public class testeClasses {
 		//teste(5.0, 5.6);
 		
 		
-		DAO<Compra> dao = new DAO<>(Compra.class);
+		DAO<Produto> dao = new DAO<>(Produto.class);
 		
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
 		
@@ -86,13 +86,36 @@ public class testeClasses {
 		
 		//COMPRA--------------------------------------------
 		Compra cp = new Compra(new Date(), itensCp, Pagamentos.DINHEIRO, 0.0, forn, Status.PAGO);
-		//----------------------------------------------------------------------------------------
-		
 		
 		itemCp.setCompra(cp);
 		itemCp2.setCompra(cp);
+		//ITEMVENDA----------------------------------------
+		ItemVenda itemVd = new ItemVenda(prod, 2, 0);
+		ItemVenda itemVd2 = new ItemVenda(prod2, 1, 0);
+		
+		List<ItemVenda> itensVd = new ArrayList<ItemVenda>();
+		itensVd.add(itemVd);
+		itensVd.add(itemVd2);
+		
+		//VENDA--------------------------------------------
+		Venda vd = new Venda(new Date(), itensVd, Pagamentos.CREDITO, 0, clie, Status.ABERTO);
+		
+		itemVd.setVenda(vd);
+		itemVd2.setVenda(vd);
+		
+		//----------------------------------------------------------------------------------------
+		
+		
 		
 		dao.iniTrans();
+		
+		
+		dao.consultarUm("obterProduto", "desc", prod.getDesc());
+		dao.consultarUm("obterProduto", "desc", prod2.getDesc());
+		dao.incluir(itemVd);
+		dao.incluir(itemVd2);
+		dao.incluir(vd);
+		
 		
 		
 		

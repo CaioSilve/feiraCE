@@ -6,9 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import javax.swing.JOptionPane;
-
-import model.entities.Cliente;
+import javax.persistence.criteria.CriteriaQuery;
 
 public class DAO<E> {
 

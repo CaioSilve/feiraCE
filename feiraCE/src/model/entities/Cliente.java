@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.criteria.CriteriaQuery;
 
 @Entity
 @Table(name = "clientes")
@@ -60,14 +62,6 @@ public class Cliente {
 	
 	
 	
-
-
-	
-
-
-
-
-
 	public Cliente(String nome, Date nasc, String rg, String cpf, String tele, String cele, String cep, String ende,
 			String bair, String nume, String email, int contas, boolean rece) {
 		super();
@@ -86,14 +80,6 @@ public class Cliente {
 		this.contas = contas;
 		this.rece = rece;
 	}
-
-
-
-
-
-
-
-
 
 
 
@@ -129,6 +115,8 @@ public class Cliente {
             throw new RuntimeException(e);
         }
     }
+	
+	
 
 
 	public Long getCodi() {

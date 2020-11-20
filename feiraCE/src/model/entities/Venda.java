@@ -53,7 +53,7 @@ public class Venda {
 		this.data = data;
 		this.itens = itens;
 		this.paga = paga;
-		this.total = total;
+		this.setTotal(total);
 		this.clie = clie;
 		this.stat = stat;
 	}
@@ -107,6 +107,11 @@ public class Venda {
 
 
 	public void setTotal(double total) {
+		if(total == 0) {
+			for(ItemVenda x: itens) {
+				total += x.precoTotal();
+			}
+		}
 		this.total = total;
 	}
 
