@@ -118,6 +118,7 @@ public class testeClasses {
 				dao.incluir(x.getProd());
 			}else {
 				x.setProd((Produto)dao.consultarUm("obterProduto", "desc", x.getProd().getDesc()));
+				
 			}
 		}
 		

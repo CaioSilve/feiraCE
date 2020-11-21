@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
+import animatefx.animation.Pulse;
 import dao.DAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,20 +41,22 @@ public class LoginControl {
 			Usuario clie = dao.consultarUm("obterUsuario", "nome", txtUser.getText());
 			
 			if (txtUser.getText().equalsIgnoreCase(clie.getNome())) {
-				if (txtPass.getText().equalsIgnoreCase(clie.getSenha())) {
-					Pane loader = FXMLLoader.load(getClass().getResource("/views/FXMLInicial.fxml"));
+				if (txtPass.getText().equals(clie.getSenha())) {
+					Pane loader = FXMLLoader.load(getClass().getResource("/views/FXMLPrincipal.fxml"));
 					Stage stage = (Stage) txtUser.getScene().getWindow();
 					stage.setTitle("Tela Inicial");
 					stage.setResizable(true);
-					stage.centerOnScreen();
-					Scene scene = new Scene(loader, 800, 600);
+					Scene scene = new Scene(loader, 1300, 700);
 					stage.setScene(scene);
+					stage.centerOnScreen();
+					new Pulse(loader).play();
 				} else {
 					JOptionPane.showMessageDialog(null, "Senha não bate com o usuário", "Senha", 0);
 				}
 			}
 		} catch(Exception ex) {
-			JOptionPane.showMessageDialog(null, "Usuário não encontrado", "Usuário", 0);
+			JOptionPane.showMessageDialog(null, ex.getMessage());
+			//JOptionPane.showMessageDialog(null, "Usuário não encontrado", "Usuário", 0);
 		}
 		
 		
