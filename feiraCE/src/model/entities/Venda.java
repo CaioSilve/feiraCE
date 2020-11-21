@@ -55,7 +55,7 @@ public class Venda {
 		this.paga = paga;
 		this.setTotal(total);
 		this.clie = clie;
-		this.stat = stat;
+		this.setStat(stat);
 	}
 	
 	public int getQtdeItens() {
@@ -137,6 +137,14 @@ public class Venda {
 
 	public void setStat(Status stat) {
 		this.stat = stat;
+		
+		if (stat == Status.ABERTO) {
+			clie.setContas(clie.getContas() + 1);
+		} else {
+			if(data == new Date()) {
+				clie.setContas(clie.getContas() - 1);
+			}
+		}
 	}
 	
 	

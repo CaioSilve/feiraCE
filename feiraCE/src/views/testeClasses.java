@@ -113,6 +113,7 @@ public class testeClasses {
 		
 		dao.iniTrans();
 		
+		
 		for(ItemVenda x : itensVd) {
 			if(dao.consultarUm("obterProduto", "desc", x.getProd().getDesc()) == null) {
 				dao.incluir(x.getProd());
