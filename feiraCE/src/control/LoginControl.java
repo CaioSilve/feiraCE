@@ -1,5 +1,7 @@
 package control;
 
+import java.awt.TrayIcon.MessageType;
+
 import javax.swing.JOptionPane;
 
 import com.jfoenix.controls.JFXPasswordField;
@@ -55,7 +57,7 @@ public class LoginControl {
 				}
 			}
 		} catch(Exception ex) {
-			JOptionPane.showMessageDialog(null, ex.getMessage());
+			JOptionPane.showMessageDialog(null, ex, "Erro aqi cara", 1);
 			//JOptionPane.showMessageDialog(null, "Usuário não encontrado", "Usuário", 0);
 		}
 		

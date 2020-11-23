@@ -22,7 +22,7 @@ public class feiraCE extends Application {
 		css = getClass().getResource("/views/lindeza.css").toExternalForm();
 		pane = FXMLLoader.load(getClass().getResource("/views/FXMLLogin.fxml"));
 
-		Scene cena = new Scene(pane, 800, 600);
+		Scene cena = new Scene(pane);
 		cena.getStylesheets().add(css);
 		primaryStage.setTitle("Login");
 		primaryStage.setResizable(false);

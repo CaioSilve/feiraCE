@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -20,36 +20,36 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Button mnemonicParsing="false" onAction="#identificarBotao" prefHeight="77.0" prefWidth="256.0" style="-fx-background-color: #0b9bb0; -fx-text-fill: black;" text="Vendas" textFill="#000000">
+            <JFXButton prefHeight="77.0" prefWidth="255.0" style="-fx-background-color: #0b9bb0; -fx-text-fill: black;" text="Vendas">
                <font>
-                  <Font size="15.0" />
+                  <Font name="Verdana" size="14.0" />
                </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#identificarBotao" prefHeight="77.0" prefWidth="256.0" style="-fx-background-color: #0b9bb0; -fx-text-fill: black;" text="Compras" textFill="#000000">
+            </JFXButton>
+            <JFXButton prefHeight="77.0" prefWidth="255.0" style="-fx-background-color: #0b9bb0; -fx-text-fill: black;" text="Compras">
                <font>
-                  <Font size="15.0" />
+                  <Font name="Verdana" size="14.0" />
                </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#identificarBotao" prefHeight="77.0" prefWidth="256.0" style="-fx-background-color: #0b9bb0; -fx-text-fill: black;" text="Produtos" textFill="#000000">
+            </JFXButton>
+            <JFXButton prefHeight="77.0" prefWidth="255.0" style="-fx-background-color: #0b9bb0; -fx-text-fill: black;" text="Clientes">
                <font>
-                  <Font size="15.0" />
+                  <Font name="Verdana" size="14.0" />
                </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#identificarBotao" prefHeight="77.0" prefWidth="256.0" style="-fx-background-color: #0b9bb0; -fx-text-fill: black;" text="Clientes" textFill="#000000">
+            </JFXButton>
+            <JFXButton prefHeight="77.0" prefWidth="255.0" style="-fx-background-color: #0b9bb0; -fx-text-fill: black;" text="Produtos">
                <font>
-                  <Font size="15.0" />
+                  <Font name="Verdana" size="14.0" />
                </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#identificarBotao" prefHeight="77.0" prefWidth="256.0" style="-fx-background-color: #0b9bb0; -fx-text-fill: black;" text="Funcionários" textFill="#000000">
+            </JFXButton>
+            <JFXButton prefHeight="77.0" prefWidth="255.0" style="-fx-background-color: #0b9bb0; -fx-text-fill: black;" text="Fornecedores">
                <font>
-                  <Font size="15.0" />
+                  <Font name="Verdana" size="14.0" />
                </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#identificarBotao" prefHeight="77.0" prefWidth="256.0" style="-fx-background-color: #0b9bb0; -fx-text-fill: black;" text="Usuários" textFill="#000000">
+            </JFXButton>
+            <JFXButton prefHeight="77.0" prefWidth="255.0" style="-fx-background-color: #0b9bb0; -fx-text-fill: black;" text="Funcionários">
                <font>
-                  <Font size="15.0" />
+                  <Font name="Verdana" size="14.0" />
                </font>
-            </Button>
+            </JFXButton>
          </children>
       </VBox>
    </children>
