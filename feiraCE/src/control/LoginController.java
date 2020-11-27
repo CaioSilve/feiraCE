@@ -16,7 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.entities.Usuario;
 
-public class LoginControl {
+public class LoginController {
 	
 	DAO<Usuario> dao = new DAO<>(Usuario.class); 
 
@@ -44,7 +44,7 @@ public class LoginControl {
 			
 			if (txtUser.getText().equalsIgnoreCase(clie.getNome())) {
 				if (txtPass.getText().equals(clie.getSenha())) {
-					Pane loader = FXMLLoader.load(getClass().getResource("/views/FXMLPrincipal.fxml"));
+					Pane loader = FXMLLoader.load(getClass().getResource("/views/FXMLBarra.fxml"));
 					Stage stage = (Stage) txtUser.getScene().getWindow();
 					stage.setTitle("Tela Inicial");
 					stage.setResizable(true);
