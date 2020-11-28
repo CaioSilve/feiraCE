@@ -18,7 +18,9 @@ import model.entities.Usuario;
 
 public class LoginController {
 	
-	DAO<Usuario> dao = new DAO<>(Usuario.class); 
+	private DAO<Usuario> daoUsua = new DAO<>(Usuario.class); 
+	
+	private static Usuario usua = null;
 
 	@FXML
 	public JFXTextField txtUser;
@@ -40,10 +42,10 @@ public class LoginController {
 		
 		
 		try {
-			Usuario clie = dao.consultarUm("obterUsuario", "nome", txtUser.getText());
+			this.usua = daoUsua.consultarUm("obterUsuario", "nome", txtUser.getText());
 			
-			if (txtUser.getText().equalsIgnoreCase(clie.getNome())) {
-				if (txtPass.getText().equals(clie.getSenha())) {
+			if (txtUser.getText().equalsIgnoreCase(usua.getNome())) {
+				if (txtPass.getText().equals(usua.getSenha())) {
 					Pane loader = FXMLLoader.load(getClass().getResource("/views/FXMLBarra.fxml"));
 					Stage stage = (Stage) txtUser.getScene().getWindow();
 					stage.setTitle("Tela Inicial");
@@ -57,12 +59,17 @@ public class LoginController {
 				}
 			}
 		} catch(Exception ex) {
-			JOptionPane.showMessageDialog(null, ex, "Erro aqi cara", 1);
+			JOptionPane.showMessageDialog(null, ex, "Erro aqui cara", 1);
 			//JOptionPane.showMessageDialog(null, "Usuário não encontrado", "Usuário", 0);
 		}
 		
 		
 		
+	}
+	
+	
+	public static Usuario getUsuario() {
+		return usua;
 	}
 }
 
