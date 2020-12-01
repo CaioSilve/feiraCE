@@ -56,7 +56,7 @@
     
     <named-native-query name="todosFornecedores"
     		result-class="model.entities.Fornecedor">
-    	<query>SELECT * FROM fornecedores ORDER BY desc_form</query>
+    	<query>SELECT * FROM fornecedores ORDER BY desc_forn</query>
     </named-native-query>
     
     <named-native-query name="todosFuncionarios"

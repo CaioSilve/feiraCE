@@ -1,7 +1,5 @@
 package control;
 
-import java.awt.TrayIcon.MessageType;
-
 import javax.swing.JOptionPane;
 
 import com.jfoenix.controls.JFXPasswordField;
@@ -28,6 +26,7 @@ public class LoginController {
 	@FXML
 	public JFXPasswordField txtPass;
 	
+	@SuppressWarnings("static-access")
 	public void entrar() throws Exception {	
 		if (txtUser.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Favor inserir um usuário", "Usuário", 2);
@@ -46,7 +45,7 @@ public class LoginController {
 			
 			if (txtUser.getText().equalsIgnoreCase(usua.getNome())) {
 				if (txtPass.getText().equals(usua.getSenha())) {
-					Pane loader = FXMLLoader.load(getClass().getResource("/views/FXMLBarra.fxml"));
+					Pane loader = FXMLLoader.load(getClass().getResource("../views/FXMLBarra.fxml"));
 					Stage stage = (Stage) txtUser.getScene().getWindow();
 					stage.setTitle("Tela Inicial");
 					stage.setResizable(true);
@@ -59,7 +58,7 @@ public class LoginController {
 				}
 			}
 		} catch(Exception ex) {
-			JOptionPane.showMessageDialog(null, ex, "Erro aqui cara", 1);
+			JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro aqui cara", 1);
 			//JOptionPane.showMessageDialog(null, "Usuário não encontrado", "Usuário", 0);
 		}
 		

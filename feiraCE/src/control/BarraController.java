@@ -1,26 +1,28 @@
 package control;
 
+import java.io.IOException;
 import java.net.URL;
-import java.util.Calendar;
 import java.util.ResourceBundle;
 
+import animatefx.animation.FadeIn;
+import animatefx.animation.SlideInRight;
+import animatefx.animation.SlideOutRight;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import views.Alerta;
 
 public class BarraController implements Initializable {
-	
-	
-	
-	
 	@FXML
 	private BorderPane borderPane;
 	@FXML
@@ -40,21 +42,23 @@ public class BarraController implements Initializable {
 	@FXML
 	private Button btnUsuarios;
 	@FXML
-	private Label lblUsuario;
-	@FXML
 	private AnchorPane anchorPane;
 	@FXML
 	private Label lblBemVindo;
-	
-	
-	private String telaAberta = "Home";
+	@FXML
+	private AnchorPane anchorBtns;
 
+	private String telaAberta;
+	private boolean barraBtns;
+	private ProdutoController prodCtrl;
+	private CompraController cmpCtrl;
 	
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		lblBemVindo.setText("Bem-vindo, " + LoginController.getUsuario().getNome());
-		lblUsuario.setText(LoginController.getUsuario().getNome());
+		anchorBtns.setVisible(false);
+		barraBtns = false;
 	}
 	
 	
@@ -63,8 +67,18 @@ public class BarraController implements Initializable {
 	public void Home(MouseEvent event) {
 		telaAberta = "Home";
 		resetarBtns();
+		
+		if(barraBtns) {
+			new SlideOutRight(anchorBtns).play();
+			barraBtns = false;
+		}
+		
 		borderPane.setCenter(anchorPane);
+		new FadeIn(anchorPane).play();
+		
 	}
+	
+	
 	// Event Listener on Button[#btnVendas].onMouseClicked
 	@FXML
 	public void Vendas(MouseEvent event) {
@@ -72,67 +86,106 @@ public class BarraController implements Initializable {
 		resetarBtns();
 		btnVendas.setStyle("-fx-background-color:  #040230;");
 		carregarTela("Venda");
+		new FadeIn(btnVendas).play();
 	}
+	
+	
 	// Event Listener on Button[#btnCompras].onMouseClicked
 	@FXML
 	public void Compras(MouseEvent event) {
 		telaAberta = "Compras";
 		resetarBtns();
 		btnCompras.setStyle("-fx-background-color:  #040230;");
-		//carregarTela("Compra");
+		carregarTela("Compra");
+		new FadeIn(btnCompras).play();
 	}
+	
+	
 	// Event Listener on Button[#btnProdutos].onMouseClicked
 	@FXML
 	public void Produtos(MouseEvent event) {
 		telaAberta = "Produtos";
 		resetarBtns();
 		btnProdutos.setStyle("-fx-background-color:  #040230;");
-		//carregarTela("Produto");
+		carregarTela("Produto");
+		new FadeIn(btnProdutos).play();
 	}
+	
+	
 	// Event Listener on Button[#btnClientes].onMouseClicked
 	@FXML
 	public void Clientes(MouseEvent event) {
 		telaAberta = "Clientes";
 		resetarBtns();
 		btnClientes.setStyle("-fx-background-color:  #040230;");
-		//carregarTela("Cliente");
+		carregarTela("Cliente");
+		new FadeIn(btnClientes).play();
 	}
+	
+	
 	// Event Listener on Button[#btnFuncionarios].onMouseClicked
 	@FXML
 	public void Funcionarios(MouseEvent event) {
 		telaAberta = "Funcionarios";
 		resetarBtns();
 		btnFuncionarios.setStyle("-fx-background-color:  #040230;");
-		//carregarTela("Funcionario");
+		carregarTela("Funcionario");
+		new FadeIn(btnFuncionarios).play();
 	}
+	
+	
 	// Event Listener on Button[#btnFornecedores].onMouseClicked
 	@FXML
 	public void Forncedores(MouseEvent event) {
 		telaAberta = "Fornecedores";
 		resetarBtns();
 		btnFornecedores.setStyle("-fx-background-color:  #040230;");
-		//carregarTela("Fornecedor");
+		carregarTela("Fornecedor");
+		new FadeIn(btnFornecedores).play();
 	}
+	
+	
 	// Event Listener on Button[#btnUsuarios].onMouseClicked
 	@FXML
 	public void Usuarios(MouseEvent event) {
 		telaAberta = "Usuarios";
 		resetarBtns();
 		btnUsuarios.setStyle("-fx-background-color:  #040230;");
-		//carregarTela("Usuario");
+		carregarTela("Usuario");
+		new FadeIn(btnUsuarios).play();
 	}
 	
+	
 	private void carregarTela(String tela) {
-		Parent root = null;
 		
 		try {
-			root = FXMLLoader.load(getClass().getResource("/views/FXML" + tela + ".fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/FXML" + tela + ".fxml"));
+			Parent root = loader.load();
+			if (telaAberta == "Vendas") {
+				
+			} else if(telaAberta == "Compras") {
+				cmpCtrl = loader.getController();
+			} else if(telaAberta == "Produtos") {
+				prodCtrl = loader.getController();
+			} else if(telaAberta == "Clientes") {
+				
+			} else if(telaAberta == "Funcionarios") {
+				
+			} else if(telaAberta == "Fornecedores") {
+				
+			} else {
+				
+			}
+			borderPane.setCenter(root);
+			new FadeIn(root).play();
 		} catch (Exception e) {
-			Alerta.showAlert("Erro", "Tela indisponível", "Erro ao carregar a tela " + tela, AlertType.ERROR);
+			Alerta.showAlert("Erro", "Tela indisponível", "" + e.getCause() /*+ tela*/, AlertType.ERROR);
+			System.out.println(e);
 		}
 		
-		borderPane.setCenter(root);
+		
 	}
+	
 	
 	private void resetarBtns() {
 		btnVendas.setStyle("-fx-background-color:   #075965;");
@@ -142,5 +195,68 @@ public class BarraController implements Initializable {
 		btnFuncionarios.setStyle("-fx-background-color:   #075965;");
 		btnClientes.setStyle("-fx-background-color:   #075965;");
 		btnUsuarios.setStyle("-fx-background-color:   #075965;");
+		if(!barraBtns) {
+			new SlideInRight(anchorBtns).play();
+			anchorBtns.setVisible(true);
+			barraBtns = true;
+		}
+	}
+	
+	
+	
+	@FXML
+	public void inserir(MouseEvent event) {
+		if (telaAberta == "Vendas") {
+			
+		} else if(telaAberta == "Compras") {
+			
+		} else if(telaAberta == "Produtos") {
+			prodCtrl.inserir();
+		} else if(telaAberta == "Clientes") {
+			
+		} else if(telaAberta == "Funcionarios") {
+			
+		} else if(telaAberta == "Fornecedores") {
+			
+		} else {
+			
+		}
+	}
+	
+	
+	// Event Listener on Button.onMouseClicked
+	@FXML
+	public void limpar(MouseEvent event) {
+		// TODO Autogenerated
+	}
+	
+	
+	// Event Listener on Button.onMouseClicked
+	@FXML
+	public void consultar(MouseEvent event) {
+		// TODO Autogenerated
+	}
+	
+	
+	// Event Listener on Button.onMouseClicked
+	@FXML
+	public void deletar(MouseEvent event) {
+		// TODO Autogenerated
+	}
+	
+	
+	// Event Listener on Button.onMouseClicked
+	@FXML
+	public void sair(MouseEvent event) throws IOException{
+		Stage stage = (Stage) borderPane.getScene().getWindow();
+		
+		Pane pane = FXMLLoader.load(getClass().getResource("/views/FXMLLogin.fxml"));
+
+		Scene cena = new Scene(pane);
+		stage.setTitle("Login");
+		stage.setResizable(false);
+		stage.setScene(cena);
+		stage.show();
+		stage.centerOnScreen();
 	}
 }

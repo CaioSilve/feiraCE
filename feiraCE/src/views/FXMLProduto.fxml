@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1080.0" style="-fx-background-color: #040230;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.ProdutoController">
+   <children>
+      <Label fx:id="lblBemVindo" layoutX="25.0" layoutY="34.0" text="Produtos" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="27.0" />
+         </font>
+      </Label>
+      <Line endX="-1.0" endY="1.52587890625E-5" layoutX="2.0" layoutY="106.0" startX="350.0" startY="7.62939453125E-6" stroke="WHITE" strokeMiterLimit="50.0" strokeWidth="2.0" />
+      <TextField fx:id="txtDesc" layoutX="64.0" layoutY="185.0" prefHeight="25.0" prefWidth="371.0">
+         <font>
+            <Font name="Arial" size="19.0" />
+         </font>
+      </TextField>
+      <Label layoutX="64.0" layoutY="155.0" text="Descrição" textFill="WHITE">
+         <font>
+            <Font name="Verdana" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="522.0" layoutY="155.0" text="Marca" textFill="WHITE" AnchorPane.leftAnchor="522.0">
+         <font>
+            <Font name="Verdana" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtMarca" layoutX="522.0" layoutY="185.0" prefHeight="25.0" prefWidth="220.0" AnchorPane.leftAnchor="522.0">
+         <font>
+            <Font name="Arial" size="19.0" />
+         </font>
+      </TextField>
+      <Label layoutX="829.0" layoutY="155.0" text="Valor" textFill="WHITE">
+         <font>
+            <Font name="Verdana" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtValor" layoutX="829.0" layoutY="185.0" prefHeight="25.0" prefWidth="120.0">
+         <font>
+            <Font name="Arial" size="19.0" />
+         </font>
+      </TextField>
+      <Label layoutX="64.0" layoutY="284.0" text="Tipo" textFill="WHITE">
+         <font>
+            <Font name="Verdana" size="18.0" />
+         </font>
+      </Label>
+      <ChoiceBox layoutX="64.0" layoutY="313.0" prefHeight="34.0" prefWidth="201.0" />
+      <Label layoutX="335.0" layoutY="282.0" text="Categoria" textFill="WHITE">
+         <font>
+            <Font name="Verdana" size="18.0" />
+         </font>
+      </Label>
+      <ChoiceBox disable="true" layoutX="335.0" layoutY="311.0" prefHeight="34.0" prefWidth="344.0" />
+   </children>
+</AnchorPane>
