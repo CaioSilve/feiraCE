@@ -17,5 +17,11 @@ public class ProdutoController {
 		JOptionPane.showMessageDialog(null, txtNome.getText());
 	}
 
+
+	public void limpar() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

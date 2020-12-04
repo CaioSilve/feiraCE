@@ -81,7 +81,7 @@
     
     <named-native-query name="todosUsuarios"
     		result-class="model.entities.Usuario">
-    	<query> SELECT * FROM usuarios ORDER BY cod_usua</query>
+    	<query> SELECT * FROM usuarios ORDER BY codi_usua</query>
     </named-native-query>
     
     <named-native-query name="todasVendas"

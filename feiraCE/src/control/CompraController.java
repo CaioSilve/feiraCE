@@ -53,11 +53,14 @@ public class CompraController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		carregarCbos();
+	}
+	
+	private void carregarCbos() {
 		cboFormPaga.getItems().setAll(Pagamentos.values());
 		for(Fornecedor f: daoForn.consultar("todosFornecedores")) {
 			cboForn.getItems().add(f.getDesc());
 		}
-		
 	}
 	
 

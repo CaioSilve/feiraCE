@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
-import animatefx.animation.Pulse;
+import animatefx.animation.ZoomIn;
 import dao.DAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,7 +52,7 @@ public class LoginController {
 					Scene scene = new Scene(loader, 1300, 700);
 					stage.setScene(scene);
 					stage.centerOnScreen();
-					new Pulse(loader).play();
+					new ZoomIn(loader).play();
 				} else {
 					JOptionPane.showMessageDialog(null, "Senha não bate com o usuário", "Senha", 0);
 				}
