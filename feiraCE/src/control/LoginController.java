@@ -5,14 +5,16 @@ import javax.swing.JOptionPane;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
-import animatefx.animation.ZoomIn;
+import animatefx.animation.SlideInDown;
 import dao.DAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.entities.Usuario;
+import views.Alerta;
 
 public class LoginController {
 	
@@ -29,12 +31,12 @@ public class LoginController {
 	@SuppressWarnings("static-access")
 	public void entrar() throws Exception {	
 		if (txtUser.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Favor inserir um usuário", "Usuário", 2);
+			Alerta.showAlert("Usuário", null, "Nome de usuário vazio", AlertType.INFORMATION);
 			return;
 		}
 		
 		if (txtPass.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Favor inserir uma senha", "Senha", 2);
+			Alerta.showAlert("Usuário", null, "Senha de usuário vazia", AlertType.INFORMATION);
 			return;
 		}
 		
@@ -52,14 +54,13 @@ public class LoginController {
 					Scene scene = new Scene(loader, 1300, 700);
 					stage.setScene(scene);
 					stage.centerOnScreen();
-					new ZoomIn(loader).play();
+					new SlideInDown(loader).play();
 				} else {
-					JOptionPane.showMessageDialog(null, "Senha não bate com o usuário", "Senha", 0);
+					Alerta.showAlert("Usuário", null, "Senha não bate com usuário", AlertType.ERROR);
 				}
 			}
 		} catch(Exception ex) {
-			JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro aqui cara", 1);
-			//JOptionPane.showMessageDialog(null, "Usuário não encontrado", "Usuário", 0);
+			Alerta.showAlert("Usuário", null, "Usuário não encontrado", AlertType.WARNING);
 		}
 		
 		

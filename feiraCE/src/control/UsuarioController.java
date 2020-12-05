@@ -5,13 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javax.swing.JOptionPane;
-
 import dao.DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -19,8 +18,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import model.entities.Usuario;
 import model.enums.Permissoes;
+import views.Alerta;
 
 public class UsuarioController implements Initializable {
 	@FXML
@@ -42,45 +44,120 @@ public class UsuarioController implements Initializable {
 	
 	private List<Usuario> usuas = new ArrayList<>();
 	
+	private Usuario sele;
+	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		tblUsuarios.setOnMouseClicked(new javafx.event.EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				if(event.getButton().equals(MouseButton.PRIMARY)){
+		            if(event.getClickCount() == 2){
+		                sele = tblUsuarios.getSelectionModel().getSelectedItem();
+		                txtDesc.setText(sele.getNome());
+		                txtSenha.setText(sele.getSenha());
+		                cboPermi.getSelectionModel().select(sele.getPermi());
+		            }
+		        }
+			};
+		});
+		
+		cboPermi.getItems().setAll(Permissoes.values());
 		colDesc.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		colPermi.setCellValueFactory(new PropertyValueFactory<>("permi"));
-		carregarTbl();
+		carregarTbl(null);
+	}
+	
+	@FXML
+	private void recarregarTbl() {
+		carregarTbl(null);
+	}
+	
+	private void carregarTbl(Usuario usua) {
+		usuas = daoUsua.consultar("todosUsuarios");
+		if(usua == null) {
+			tblUsuarios.setItems(listaDeUsuarios());
+		} else {
+			ObservableList<Usuario> obsUsua = FXCollections.observableArrayList(usua);
+			tblUsuarios.setItems(obsUsua);
+		}
+		tblUsuarios.getSelectionModel().clearSelection();
 	}
 
-
-	
-	private void carregarTbl() {
-		cboPermi.getItems().setAll(Permissoes.values());
-		usuas = daoUsua.consultar("todosUsuarios");
-		tblUsuarios.setItems(listaDeUsuarios());
+	private Usuario pegarTbl() {
+		return tblUsuarios.getSelectionModel().getSelectedItem();
 	}
 	
 	private ObservableList<Usuario> listaDeUsuarios() {
         return FXCollections.observableArrayList(usuas);
     }
-
-
+	
+	private boolean campoVazio() {
+		if((txtDesc.getText().isEmpty()) || (txtSenha.getText().isEmpty()) 
+				|| (cboPermi.getSelectionModel().getSelectedItem() == null)) {
+			Alerta.showAlert("Campo Vazio", null, "Não pode haver campos vazios", AlertType.WARNING);
+			return true;
+		}
+		return false;
+	}
 
 	public void inserir() {
+		if(campoVazio()) return;
 		Usuario usua = new Usuario(txtDesc.getText(), txtSenha.getText(), cboPermi.getSelectionModel().getSelectedItem());
 		
 		if(daoUsua.consultarUm("obterUsuario", "nome", usua.getNome()) == null) {
 			daoUsua.incluirAgora(usua);
+		} else {
+			Alerta.showAlert("Usuário", null, "O usuário já esta cadastrado!", AlertType.INFORMATION);
 		}
 		
-		carregarTbl();
+		carregarTbl(null);
 	}
-
-
 
 	public void limpar() {
 		txtDesc.setText("");
 		txtSenha.setText("");
 		cboPermi.getSelectionModel().clearSelection();
 	}
+
+	public void consultar() {
+		if(txtDesc.getText().isEmpty()) {
+			Alerta.showAlert("Erro ao consultar", null, "O campo descrição não pode estar vazio", AlertType.WARNING);
+			return;
+		}
+		Usuario usua = daoUsua.consultarUm("obterUsuario", "nome", txtDesc.getText());
+		carregarTbl(usua);
+	}
+	
+	public void alterar() {
+		if(campoVazio()) return;
+		
+		sele.setNome(txtDesc.getText().trim());
+		sele.setSenha(txtSenha.getText().trim());
+		sele.setPermi(cboPermi.getSelectionModel().getSelectedItem());
+		
+		daoUsua.alterarAgora(sele);
+		sele = null;
+		
+		Alerta.showAlert("Alteração", null, "Usuário alterado com sucesso!", AlertType.CONFIRMATION);
+		carregarTbl(null);
+		
+	}
+
+	
+	public void deletar() {
+		if(pegarTbl() == null) {
+			Alerta.showAlert("Deletar", null, "Favor selecione um registro", AlertType.INFORMATION);
+			return;
+		}
+		
+		daoUsua.excluirAgora(pegarTbl());
+		Alerta.showAlert("Exclusão", null, "Usuário excluído com sucesso!", AlertType.CONFIRMATION);
+		carregarTbl(null);
+	}
+
+	
 	
 	
 	

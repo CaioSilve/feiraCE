@@ -42,6 +42,15 @@ public class DAO<E> {
 		return this;
 	}
 	
+	public DAO<E> excluir(Object algo){
+		em.remove(algo);
+		return this;
+	}
+	
+	public DAO<E> excluirAgora(Object algo){
+		return this.iniTrans().excluir(algo).fecTrans();
+	}
+	
 	public DAO<E> incluir(Object algo){
 		em.persist(algo);
 		return this;
@@ -49,6 +58,15 @@ public class DAO<E> {
 	
 	public DAO<E> incluirAgora(Object algo){
 		return this.iniTrans().incluir(algo).fecTrans();
+	}
+	
+	public DAO<E> alterar(Object algo){
+		em.merge(algo);
+		return this;
+	}
+	
+	public DAO<E> alterarAgora(Object algo){
+		return this.iniTrans().alterar(algo).fecTrans();
 	}
 	
 	public void encerrar() {
