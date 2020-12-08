@@ -13,4 +13,15 @@ public class Alerta {
 		ale.setContentText(cont);
 		ale.show();
 	}
+	
+	public static boolean showConfirm(String titu, String cabe, String cont) {
+		Alert ale = new Alert(AlertType.CONFIRMATION);
+		ale.setTitle(titu);
+		ale.setHeaderText(cabe);
+		ale.setContentText(cont);
+		if(ale.showAndWait().get() != javafx.scene.control.ButtonType.OK) {
+			return false;
+		}
+		return true;
+	}
 }

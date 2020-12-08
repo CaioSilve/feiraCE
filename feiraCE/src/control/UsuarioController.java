@@ -89,7 +89,7 @@ public class UsuarioController implements Initializable {
 	
 	private ObservableList<Usuario> listaDeUsuarios() {
         	return FXCollections.observableArrayList(usuas);
-    	}
+    }
 	
 	private void setCampos() {
 		sele = pegarTbl();
@@ -110,13 +110,14 @@ public class UsuarioController implements Initializable {
 	public void inserir() {
 		if(campoVazio()) return;
 		Usuario usua = new Usuario(txtDesc.getText(), txtSenha.getText(), cboPermi.getSelectionModel().getSelectedItem());
-		
-		if(daoUsua.consultarUm("obterUsuario", "nome", usua.getNome()) == null) {
+		Usuario usua2 = daoUsua.consultarUm("obterUsuario", "nome", usua.getNome());
+		if(usua2 == null) {
 			daoUsua.incluirAgora(usua);
+			Alerta.showAlert("Inserir Usuário", null, "Usuário Inserido com sucesso", AlertType.CONFIRMATION);
 			carregarTbl(null);
 		} else {
 			Alerta.showAlert("Usuário", null, "O usuário já esta cadastrado!", AlertType.INFORMATION);
-			usua = daoUsua.consultarUm("obterUsuario", "nome", txtDesc.getText());
+			usua = usua2;
 			carregarTbl(usua);
 			sele = usua;
 			setCampos();
@@ -139,11 +140,20 @@ public class UsuarioController implements Initializable {
 			return;
 		}
 		Usuario usua = daoUsua.consultarUm("obterUsuario", "nome", txtDesc.getText());
+		if(usua == null) {
+			Alerta.showAlert("Consulta Usuário", null, "Usuário não encontrado", AlertType.INFORMATION);
+			return;
+		}
+		
 		carregarTbl(usua);
 	}
 	
 	public void alterar() {
 		if(campoVazio()) return;
+		if(sele == null) {
+			Alerta.showAlert("Alterar Usuário", null, "Favor selecionar usuário na tabela", AlertType.WARNING);
+			return;
+		}
 		
 		sele.setNome(txtDesc.getText().trim());
 		sele.setSenha(txtSenha.getText().trim());
@@ -164,9 +174,13 @@ public class UsuarioController implements Initializable {
 			return;
 		}
 		
-		daoUsua.excluirAgora(pegarTbl());
-		Alerta.showAlert("Exclusão", null, "Usuário excluído com sucesso!", AlertType.CONFIRMATION);
-		carregarTbl(null);
+		if(Alerta.showConfirm("Deletar Usuário?", null, "Deseja realmente deletar " + pegarTbl().getNome() + "?")) {
+			daoUsua.excluirAgora(pegarTbl());
+			Alerta.showAlert("Exclusão", null, "Usuário excluído com sucesso!", AlertType.CONFIRMATION);
+			carregarTbl(null);
+		}
+		
+		
 	}
 
 

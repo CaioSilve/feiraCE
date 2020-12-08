@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import javax.swing.JOptionPane;
-
 import dao.DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,9 +17,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import model.entities.Fornecedor;
-import model.entities.Usuario;
 import model.enums.Estados;
 import model.enums.TiposForn;
 import views.Alerta;
@@ -82,16 +80,24 @@ public class FornecedorController implements Initializable {
 		cboTipo.getItems().setAll(TiposForn.values());
 		txtCep.focusedProperty().addListener((ov, oldV, newV) ->{
 			if(!newV) {
-				if(txtCep.getAccessibleText().isEmpty() || txtCep.getLength() < 9) {
+				if(txtCep.getText().isEmpty() || txtCep.getLength() < 9) {
 					Alerta.showAlert("CEP", null, "Cep inserido incorretamente", AlertType.WARNING);
+					txtCep.requestFocus();
 				} else {
 					forn.buscarCep(txtCep.getText().trim());
-					JOptionPane.showMessageDialog(null, forn.getCida());
+					txtCida.setText(forn.getCida());
+					cboEsta.getSelectionModel().select(Estados.valueOf(forn.getEsta()));
 					txtCida.setDisable(false);
 					cboEsta.setDisable(false);
 				}
 			}
 		});
+		colDesc.setCellValueFactory(new PropertyValueFactory<>("desc"));
+		colEsta.setCellValueFactory(new PropertyValueFactory<>("esta"));
+		colTele.setCellValueFactory(new PropertyValueFactory<>("tele"));
+		colTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+		colDivi.setCellValueFactory(new PropertyValueFactory<>("divida"));
+		colGast.setCellValueFactory(new PropertyValueFactory<>("gastos"));
 	}
 	
 	
