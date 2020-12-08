@@ -40,6 +40,7 @@ public class UsuarioController implements Initializable {
 	@FXML
 	private ComboBox<Permissoes> cboPermi;
 	
+	
 	private DAO<Usuario> daoUsua = new DAO<Usuario>(Usuario.class);
 	
 	private List<Usuario> usuas = new ArrayList<>();
@@ -54,10 +55,7 @@ public class UsuarioController implements Initializable {
 			public void handle(MouseEvent event) {
 				if(event.getButton().equals(MouseButton.PRIMARY)){
 		            if(event.getClickCount() == 2){
-		                sele = tblUsuarios.getSelectionModel().getSelectedItem();
-		                txtDesc.setText(sele.getNome());
-		                txtSenha.setText(sele.getSenha());
-		                cboPermi.getSelectionModel().select(sele.getPermi());
+		            	setCampos();
 		            }
 		        }
 			};
@@ -70,7 +68,7 @@ public class UsuarioController implements Initializable {
 	}
 	
 	@FXML
-	private void recarregarTbl() {
+	public void recarregarTbl(MouseEvent event) {
 		carregarTbl(null);
 	}
 	
@@ -84,14 +82,21 @@ public class UsuarioController implements Initializable {
 		}
 		tblUsuarios.getSelectionModel().clearSelection();
 	}
-
+	
 	private Usuario pegarTbl() {
 		return tblUsuarios.getSelectionModel().getSelectedItem();
 	}
 	
 	private ObservableList<Usuario> listaDeUsuarios() {
-        return FXCollections.observableArrayList(usuas);
-    }
+        	return FXCollections.observableArrayList(usuas);
+    	}
+	
+	private void setCampos() {
+		sele = pegarTbl();
+        txtDesc.setText(sele.getNome());
+        txtSenha.setText(sele.getSenha());
+        cboPermi.getSelectionModel().select(sele.getPermi());
+	}
 	
 	private boolean campoVazio() {
 		if((txtDesc.getText().isEmpty()) || (txtSenha.getText().isEmpty()) 
@@ -108,17 +113,24 @@ public class UsuarioController implements Initializable {
 		
 		if(daoUsua.consultarUm("obterUsuario", "nome", usua.getNome()) == null) {
 			daoUsua.incluirAgora(usua);
+			carregarTbl(null);
 		} else {
 			Alerta.showAlert("Usuário", null, "O usuário já esta cadastrado!", AlertType.INFORMATION);
+			usua = daoUsua.consultarUm("obterUsuario", "nome", txtDesc.getText());
+			carregarTbl(usua);
+			sele = usua;
+			setCampos();
 		}
 		
-		carregarTbl(null);
 	}
 
 	public void limpar() {
 		txtDesc.setText("");
 		txtSenha.setText("");
 		cboPermi.getSelectionModel().clearSelection();
+		sele = null;
+		tblUsuarios.getSelectionModel().clearSelection();
+		
 	}
 
 	public void consultar() {
@@ -157,9 +169,6 @@ public class UsuarioController implements Initializable {
 		carregarTbl(null);
 	}
 
-	
-	
-	
-	
 
+	
 }

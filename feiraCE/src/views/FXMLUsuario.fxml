@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
@@ -20,43 +21,46 @@
          </font>
       </Label>
       <Line endX="-1.0" endY="1.52587890625E-5" layoutX="2.0" layoutY="106.0" startX="350.0" startY="7.62939453125E-6" stroke="WHITE" strokeMiterLimit="50.0" strokeWidth="2.0" />
-      <TableView fx:id="tblUsuarios" layoutX="364.0" layoutY="204.0" prefHeight="420.0" prefWidth="630.0">
-        <columns>
-          <TableColumn fx:id="colDesc" prefWidth="351.0" text="Descrição" />
-          <TableColumn fx:id="colPermi" prefWidth="275.0" text="Permissão" />
-        </columns>
-      </TableView>
-      <Label layoutX="48.0" layoutY="204.0" text="Descrição" textFill="WHITE">
+      <Label layoutX="39.0" layoutY="204.0" text="Descrição" textFill="WHITE">
          <font>
-            <Font name="Verdana" size="18.0" />
+            <Font name="Verdana" size="19.0" />
          </font>
       </Label>
-      <TextField fx:id="txtDesc" layoutX="48.0" layoutY="233.0" prefHeight="36.0" prefWidth="272.0">
+      <TextField fx:id="txtDesc" layoutX="42.0" layoutY="242.0" prefHeight="36.0" prefWidth="272.0">
          <font>
             <Font name="Arial" size="19.0" />
          </font>
       </TextField>
-      <Label layoutX="48.0" layoutY="301.0" text="Senha" textFill="WHITE">
+      <Label layoutX="39.0" layoutY="329.0" text="Senha" textFill="WHITE">
          <font>
-            <Font name="Verdana" size="18.0" />
+            <Font name="Verdana" size="19.0" />
          </font>
       </Label>
-      <PasswordField fx:id="txtSenha" layoutX="48.0" layoutY="332.0" prefHeight="36.0" prefWidth="272.0">
+      <PasswordField fx:id="txtSenha" layoutX="42.0" layoutY="362.0" prefHeight="36.0" prefWidth="272.0">
          <font>
             <Font name="Arial" size="19.0" />
          </font>
       </PasswordField>
-      <Label layoutX="48.0" layoutY="469.0" text="Permissão" textFill="WHITE">
+      <Label layoutX="41.0" layoutY="495.0" text="Permissão" textFill="WHITE">
          <font>
-            <Font name="Verdana" size="18.0" />
+            <Font name="Verdana" size="19.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cboPermi" layoutX="48.0" layoutY="500.0" prefHeight="36.0" prefWidth="272.0" />
+      <ComboBox fx:id="cboPermi" layoutX="41.0" layoutY="526.0" prefHeight="36.0" prefWidth="272.0" />
       <Button layoutX="836.0" layoutY="637.0" mnemonicParsing="false" onMouseClicked="#recarregarTbl" prefHeight="36.0" prefWidth="158.0" text="Recarregar Tabela">
          <font>
             <Font name="Verdana" size="13.0" />
          </font>
       </Button>
+      <TableView fx:id="tblUsuarios" layoutX="364.0" layoutY="204.0" prefHeight="420.0" prefWidth="630.0">
+        <columns>
+          <TableColumn fx:id="colDesc" prefWidth="351.0" text="Descrição" />
+          <TableColumn fx:id="colPermi" prefWidth="275.0" text="Permissão" />
+        </columns>
+         <effect>
+            <DropShadow spread="0.50" />
+         </effect>
+      </TableView>
    </children>
    <effect>
       <InnerShadow choke="0.5" height="0.0" radius="15.75" width="65.0" />
