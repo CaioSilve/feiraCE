@@ -54,6 +54,7 @@ public class BarraController implements Initializable {
 	private ProdutoController prodCtrl;
 	private CompraController cmpCtrl;
 	private UsuarioController usuCtrl;
+	private FornecedorController fornCtrl;
 	
 
 	@Override
@@ -179,7 +180,7 @@ public class BarraController implements Initializable {
 			} else if(telaAberta == "Funcionarios") {
 				
 			} else if(telaAberta == "Fornecedores") {
-				
+				fornCtrl = loader.getController();
 			} else {
 				usuCtrl = loader.getController();
 			}
@@ -224,7 +225,7 @@ public class BarraController implements Initializable {
 		} else if(telaAberta == "Funcionarios") {
 			
 		} else if(telaAberta == "Fornecedores") {
-			
+			fornCtrl.inserir();
 		} else {
 			usuCtrl.inserir();
 		}
@@ -245,7 +246,7 @@ public class BarraController implements Initializable {
 		} else if(telaAberta == "Funcionarios") {
 			
 		} else if(telaAberta == "Fornecedores") {
-			
+			fornCtrl.limpar();
 		} else {
 			usuCtrl.limpar();
 		}

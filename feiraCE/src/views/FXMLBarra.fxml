@@ -106,7 +106,7 @@
             <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="5.0" layoutY="642.0" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#sair" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: transparent; -fx-background-image: url(&quot;imgs/sair.png&quot;);" />
          </children>
          <effect>
-            <DropShadow />
+            <DropShadow height="0.0" radius="9.5" spread="0.5" width="40.0" />
          </effect></AnchorPane>
    </right>
 </BorderPane>

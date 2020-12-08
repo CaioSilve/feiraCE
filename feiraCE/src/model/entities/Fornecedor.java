@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.swing.JOptionPane;
 
+import model.enums.Estados;
 import model.enums.TiposForn;
 
 @Entity
