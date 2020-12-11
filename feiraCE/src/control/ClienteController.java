@@ -186,7 +186,7 @@ public class ClienteController implements Initializable {
 		clie.setNasc(Date.from(txtData.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
 		clie.setEmail(txtEmail.getText().trim());
 		clie.setNume(txtNume.getText().trim());
-		clie.setContas(Integer.parseInt(txtContas.getAccessibleText().trim()));
+		clie.setContas(Integer.parseInt(txtContas.getText()));
 		clie.setRece(chkRece.isSelected());
 	}
 	
