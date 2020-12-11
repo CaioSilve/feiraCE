@@ -173,11 +173,11 @@
       <TableView fx:id="tblClie" layoutX="47.0" layoutY="503.0" prefHeight="165.0" prefWidth="914.0">
         <columns>
           <TableColumn fx:id="colNome" prefWidth="215.99996757507324" text="Nome" />
-            <TableColumn fx:id="colEsta" prefWidth="70.0" text="Estado" />
-            <TableColumn fx:id="colCida" prefWidth="202.0" text="Cidade" />
-            <TableColumn fx:id="colCel" prefWidth="173.0" text="Celular" />
-            <TableColumn fx:id="colTele" prefWidth="166.0" text="Telefone" />
-            <TableColumn fx:id="colCon" prefWidth="83.0" text="Contas" />
+            <TableColumn fx:id="colCpf" prefWidth="140.0" text="CPF" />
+            <TableColumn fx:id="colEsta" prefWidth="83.0" text="Estado" />
+            <TableColumn fx:id="colCida" prefWidth="208.00003051757812" text="Cidade" />
+            <TableColumn fx:id="colCel" prefWidth="174.0" text="Celular" />
+            <TableColumn fx:id="colCon" prefWidth="92.0" text="Contas" />
         </columns>
       </TableView>
    </children>

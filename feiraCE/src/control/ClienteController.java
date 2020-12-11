@@ -57,7 +57,7 @@ public class ClienteController implements Initializable {
 	@FXML
 	private TableColumn<Cliente, String> colCel;
 	@FXML
-	private TableColumn<Cliente, String> colTele;
+	private TableColumn<Cliente, String> colCpf;
 	@FXML
 	private TableColumn<Cliente, Integer> colCon;
 	@FXML
@@ -139,7 +139,7 @@ public class ClienteController implements Initializable {
 		colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		colEsta.setCellValueFactory(new PropertyValueFactory<>("esta"));
 		colCida.setCellValueFactory(new PropertyValueFactory<>("cida"));
-		colTele.setCellValueFactory(new PropertyValueFactory<>("tele"));
+		colCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
 		colCel.setCellValueFactory(new PropertyValueFactory<>("cele"));
 		colCon.setCellValueFactory(new PropertyValueFactory<>("contas"));
 		clies = daoClie.consultar("todosClientes");
@@ -162,8 +162,8 @@ public class ClienteController implements Initializable {
 	
 	private boolean campoVazio() {
 		if(txtNome.getText().isEmpty() || txtBairro.getText().isEmpty() || txtCel.getText().isEmpty() ||
-				txtCep.getText().isEmpty() || txtCida.getText().isEmpty() || txtContas.getText().isEmpty() ||
-				txtCpf.getText().isEmpty() || txtEmail.getText().isEmpty() || txtEnde.getText().isEmpty() ||
+				txtCep.getText().isEmpty() || txtCida.getText().isEmpty() || txtCpf.getText().isEmpty() || 
+				txtEmail.getText().isEmpty() || txtEnde.getText().isEmpty() ||
 				txtNume.getText().isEmpty() || txtData.getValue() == null) {
 			
 			Alerta.showAlert("Campos vazios", null, "Não pode haver campos vazios", AlertType.WARNING);
@@ -185,6 +185,7 @@ public class ClienteController implements Initializable {
 		clie.setTele(txtTele.getText().trim());
 		clie.setNasc(Date.from(txtData.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
 		clie.setEmail(txtEmail.getText().trim());
+		clie.setContas(Integer.parseInt(txtContas.getAccessibleText().trim()));
 		if(chkRece.isArmed()) {
 			clie.setRece(true);
 		} else {
