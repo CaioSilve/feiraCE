@@ -7,6 +7,12 @@
 		</query>
 	</named-query>
 	
+	<named-query name="obterClienteCpf">
+		<query>
+			select c from Cliente c where c.cpf like :cpf
+		</query>
+	</named-query>
+	
 	<named-query name="obterCompra">
 		<query>
 			select distinct u from Compra u where u.paga like :paga

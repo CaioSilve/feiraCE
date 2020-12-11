@@ -22,7 +22,7 @@ import javafx.scene.input.MouseEvent;
 import model.entities.Fornecedor;
 import model.enums.Estados;
 import model.enums.TiposForn;
-import views.Alerta;
+import views.Utilitarios.Alerta;
 
 public class FornecedorController implements Initializable {
 	@FXML

@@ -14,7 +14,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.entities.Usuario;
-import views.Alerta;
+import views.Utilitarios.Alerta;
 
 public class LoginController {
 	

@@ -22,7 +22,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import model.entities.Usuario;
 import model.enums.Permissoes;
-import views.Alerta;
+import views.Utilitarios.Alerta;
 
 public class UsuarioController implements Initializable {
 	@FXML

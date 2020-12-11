@@ -21,7 +21,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.enums.Permissoes;
-import views.Alerta;
+import views.Utilitarios.Alerta;
 
 public class BarraController implements Initializable {
 	@FXML
@@ -55,6 +55,7 @@ public class BarraController implements Initializable {
 	private CompraController cmpCtrl;
 	private UsuarioController usuCtrl;
 	private FornecedorController fornCtrl;
+	private ClienteController clieCtrl;
 	
 
 	@Override
@@ -176,7 +177,7 @@ public class BarraController implements Initializable {
 			} else if(telaAberta == "Produtos") {
 				prodCtrl = loader.getController();
 			} else if(telaAberta == "Clientes") {
-				
+				clieCtrl = loader.getController();
 			} else if(telaAberta == "Funcionarios") {
 				
 			} else if(telaAberta == "Fornecedores") {
@@ -221,7 +222,7 @@ public class BarraController implements Initializable {
 		} else if(telaAberta == "Produtos") {
 			prodCtrl.inserir();
 		} else if(telaAberta == "Clientes") {
-			
+			clieCtrl.inserir();
 		} else if(telaAberta == "Funcionarios") {
 			
 		} else if(telaAberta == "Fornecedores") {
@@ -242,7 +243,7 @@ public class BarraController implements Initializable {
 		} else if(telaAberta == "Produtos") {
 			prodCtrl.limpar();
 		} else if(telaAberta == "Clientes") {
-			
+			clieCtrl.limpar();
 		} else if(telaAberta == "Funcionarios") {
 			
 		} else if(telaAberta == "Fornecedores") {
