@@ -1,6 +1,7 @@
 package control;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -105,6 +106,7 @@ public class ClienteController implements Initializable {
 				}
 			}
 		});
+
 		
 		tblClie.setOnMouseClicked(new javafx.event.EventHandler<MouseEvent>() {
 			@Override
