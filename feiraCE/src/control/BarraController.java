@@ -324,6 +324,8 @@ if (telaAberta == "Vendas") {
 
 		Scene cena = new Scene(pane);
 		stage.setTitle("Login");
+		stage.setWidth(800);
+		stage.setHeight(600);
 		stage.setResizable(false);
 		stage.setScene(cena);
 		stage.show();
