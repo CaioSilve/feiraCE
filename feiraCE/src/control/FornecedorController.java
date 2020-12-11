@@ -20,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import model.entities.Fornecedor;
+import model.entities.Usuario;
 import model.enums.Estados;
 import model.enums.TiposForn;
 import views.Utilitarios.Alerta;
@@ -69,6 +70,8 @@ public class FornecedorController implements Initializable {
 	private List<Fornecedor> forns = new ArrayList<>();
 	
 	private Fornecedor forn = new Fornecedor();
+	
+	private Fornecedor sele;
 	
 	
 	
@@ -149,10 +152,40 @@ public class FornecedorController implements Initializable {
 		return false;
 	}
 
-
-
+	private Fornecedor pegarTbl() {
+		return tblForns.getSelectionModel().getSelectedItem();
+	}
+	
+	private void setCampos() {
+		sele = pegarTbl();
+		txtDesc.setText(sele.getDesc());
+		cboTipo.getSelectionModel().select(sele.getTipo());
+		txtEnde.setText(sele.getEnde());
+		txtCep.setText(sele.getCep());
+		txtTele.setText(sele.getTele());
+		txtEmail.setText(sele.getEmail());
+		
+	}
+	
+	
 	public void inserir() {
-		// TODO Auto-generated method stub
+		if(campoVazio()) { return; }
+		Fornecedor forn = new Fornecedor(txtDesc.getText(), cboTipo.getSelectionModel().getSelectedItem(),
+										txtEnde.getText(), txtCep.getText(), txtTele.getText(), txtEmail.getText(),0.0,0.0);
+		Fornecedor forn2 = daoForns.consultarUm("obterFornecedor", "desc", forn.getDesc());
+		if(forn2 == null) {
+			daoForns.incluirAgora(forn);
+			Alerta.showAlert("Inserir Fornecedor", null, "Fornecedor Inserido com sucesso", AlertType.CONFIRMATION);
+			carregarTbl(null);
+		} else {
+			Alerta.showAlert("Fornecedor", null, "O fornecedor já está cadastrado!", AlertType.INFORMATION);
+			forn = forn2;
+			carregarTbl(forn);
+			sele = forn;
+			setCampos();
+			
+		}
+		
 		
 	}
 
