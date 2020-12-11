@@ -10,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -240,6 +241,18 @@ public class Formatacoes {
 	        });
 
 	    }
+	 
+	 public static void emailField(final TextField textField) {
+		 textField.focusedProperty().addListener((ov, oldV, newV) ->{
+				if(!newV) {
+					if(!textField.getText().contains("@")) {
+						Alerta.showAlert("Email", null, "Email inválido", AlertType.WARNING);
+						textField.requestFocus();
+					}
+				}
+			});
+	 }
+	  
 	 
 	
 

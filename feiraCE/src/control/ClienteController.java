@@ -106,15 +106,6 @@ public class ClienteController implements Initializable {
 			}
 		});
 		
-		txtEmail.focusedProperty().addListener((ov, oldV, newV) ->{
-			if(!newV) {
-				if(!txtEmail.getText().contains("@")) {
-					Alerta.showAlert("Email", null, "Email inválido", AlertType.WARNING);
-					txtEmail.requestFocus();
-				}
-			}
-		});
-		
 		tblClie.setOnMouseClicked(new javafx.event.EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
@@ -126,6 +117,7 @@ public class ClienteController implements Initializable {
 			};
 		});
 		
+		Formatacoes.emailField(txtEmail);
 		Formatacoes.mascaraData(txtData);
 		Formatacoes.cepField(txtCep);
 		Formatacoes.formaField(txtTele, "tele");
