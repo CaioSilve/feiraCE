@@ -185,12 +185,9 @@ public class ClienteController implements Initializable {
 		clie.setTele(txtTele.getText().trim());
 		clie.setNasc(Date.from(txtData.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
 		clie.setEmail(txtEmail.getText().trim());
+		clie.setNume(txtNume.getText().trim());
 		clie.setContas(Integer.parseInt(txtContas.getAccessibleText().trim()));
-		if(chkRece.isArmed()) {
-			clie.setRece(true);
-		} else {
-			clie.setRece(false);
-		}
+		clie.setRece(chkRece.isSelected());
 	}
 	
 	private void setCampos() {
@@ -209,12 +206,7 @@ public class ClienteController implements Initializable {
 		txtEmail.setText(clie.getEmail());
 		txtNume.setText(clie.getNume());
 		txtContas.setText(clie.getContas() + "");
-		if(clie.isRece()) {
-			System.out.println(clie.isRece());
-			chkRece.arm();
-		} else {
-			chkRece.disarm();
-		}
+		chkRece.setSelected(clie.isRece());
 		cboEsta.setDisable(false);
 		txtCida.setDisable(false);
 	}
@@ -234,11 +226,10 @@ public class ClienteController implements Initializable {
 		txtEmail.setText("");
 		txtNume.setText("");
 		txtContas.setText("");
-		chkRece.disarm();
+		chkRece.setSelected(false);;
 		cboEsta.setDisable(true);
 		txtCida.setDisable(true);
 	}
-
 
 	public void inserir() {
 		if(campoVazio()) return;
@@ -273,6 +264,7 @@ public class ClienteController implements Initializable {
 			
 	}
 
+	
 
 
 
