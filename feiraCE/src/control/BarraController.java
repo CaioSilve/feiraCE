@@ -328,7 +328,7 @@ if (telaAberta == "Vendas") {
 		stage.setHeight(600);
 		stage.setResizable(false);
 		stage.setScene(cena);
-		stage.show();
 		stage.centerOnScreen();
+		stage.show();
 	}
 }
