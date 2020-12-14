@@ -232,6 +232,7 @@ public class ClienteController implements Initializable {
 		cboEsta.setDisable(true);
 		txtCida.setDisable(true);
 		tblClie.getSelectionModel().clearSelection();
+		txtNome.requestFocus();
 		clie = null;
 	}
 

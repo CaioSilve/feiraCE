@@ -159,9 +159,9 @@ public class FornecedorController implements Initializable {
 		if(txtDesc.getText().isEmpty() || txtTele.getText().isEmpty() || txtEnde.getText().isEmpty() ||
 			txtCep.getText().isEmpty() || txtEmail.getText().isEmpty() || txtCida.getText().isEmpty() ||
 			cboEsta.getSelectionModel().isEmpty() || cboTipo.getSelectionModel().isEmpty()) {
+			Alerta.showAlert("Campos Vazios", null, "Nâo pode haver campos vazios", AlertType.WARNING);
 			return true;
 		}
-		Alerta.showAlert("Campos Vazios", null, "Nâo pode haver campos vazios", AlertType.WARNING);
 		return false;
 	}
 
@@ -222,7 +222,7 @@ public class FornecedorController implements Initializable {
 	}
 
 	public void alterar() {
-		if(campoVazio()) { return; }
+		if(campoVazio()) return;
 		if(sele == null) {
 			Alerta.showAlert("Alterar Fornecedor", null, "Favor selecionar fornecedor na tabela", AlertType.WARNING);
 			return;
