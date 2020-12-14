@@ -18,6 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import model.entities.Fornecedor;
 import model.entities.Usuario;
@@ -95,6 +96,18 @@ public class FornecedorController implements Initializable {
 				}
 			}
 		});
+		
+		tblForns.setOnMouseClicked(new javafx.event.EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				if(event.getButton().equals(MouseButton.PRIMARY)){
+		            if(event.getClickCount() == 2){
+		            	setCampos();
+		            }
+		        }
+			};
+		});
+		
 		colDesc.setCellValueFactory(new PropertyValueFactory<>("desc"));
 		colEsta.setCellValueFactory(new PropertyValueFactory<>("esta"));
 		colTele.setCellValueFactory(new PropertyValueFactory<>("tele"));
@@ -164,6 +177,8 @@ public class FornecedorController implements Initializable {
 		txtCep.setText(sele.getCep());
 		txtTele.setText(sele.getTele());
 		txtEmail.setText(sele.getEmail());
+		txtCida.setText(sele.getCida());
+		cboEsta.getSelectionModel().select(Estados.valueOf(sele.getEsta()));
 		
 	}
 	
@@ -189,8 +204,56 @@ public class FornecedorController implements Initializable {
 		
 	}
 
+	public void consultar() {
+		if(txtDesc.getText().isEmpty()) {
+			Alerta.showAlert("Erro ao consultar", null, "O campo descrição não pode estar vazio",  AlertType.WARNING);
+			return;
+		}
+		Fornecedor forn = daoForns.consultarUm("obterFornecedor", "desc", txtDesc.getText());
+		if(forn == null) {
+			Alerta.showAlert("Consulta Fornecedor", null, "Fornecedor não encontrado", AlertType.INFORMATION);
+			return;
+		}
+		
+		carregarTbl(forn);
+	}
 
-
+	public void alterar() {
+		if(campoVazio()) { return; }
+		if(sele == null) {
+			Alerta.showAlert("Alterar Fornecedor", null, "Favor selecionar fornecedor na tabela", AlertType.WARNING);
+			return;
+		}
+		
+		
+		sele.setDesc(txtDesc.getText().trim());
+		sele.setTipo(cboTipo.getSelectionModel().getSelectedItem());
+		sele.setEnde(txtEnde.getText().trim());
+		sele.setCep(txtCep.getText().trim());
+		sele.setTele(txtTele.getText().trim());
+		sele.setEmail(txtEmail.getText().trim());
+		
+		daoForns.alterarAgora(sele);
+		sele = null;
+		
+		Alerta.showAlert("Alteração", null, "Fornecedor alterado com sucesso!", AlertType.CONFIRMATION);
+		carregarTbl(null);
+		
+	}
+	
+	public void deletar() {
+		if(pegarTbl() == null) {
+			Alerta.showAlert("Deletar", null, "Favor selecionar um Fornecedor", AlertType.INFORMATION);
+			return;
+		}
+		
+		if(Alerta.showConfirm("Deletar Fornecedor?", null, "Deseja realmente deletar" + pegarTbl().getDesc() + "?"));
+		daoForns.excluirAgora(pegarTbl());
+		Alerta.showAlert("Exclusão", null, "Fornecedor excluído com sucesso!",  AlertType.CONFIRMATION);
+		carregarTbl(null);
+		
+	}
+	
 	public void limpar() {
 		txtCida.setDisable(true);
 		cboEsta.setDisable(true);

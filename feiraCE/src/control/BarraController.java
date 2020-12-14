@@ -268,7 +268,7 @@ public class BarraController implements Initializable {
 		} else if(telaAberta == "Funcionarios") {
 			
 		} else if(telaAberta == "Fornecedores") {
-			
+			fornCtrl.consultar();
 		} else {
 			usuCtrl.consultar();
 		}
@@ -277,7 +277,7 @@ public class BarraController implements Initializable {
 	// Event Listener on Button.onMouseClicked
 	@FXML
 	public void alterar(MouseEvent event) {
-if (telaAberta == "Vendas") {
+		if (telaAberta == "Vendas") {
 			
 		} else if(telaAberta == "Compras") {
 			
@@ -288,7 +288,7 @@ if (telaAberta == "Vendas") {
 		} else if(telaAberta == "Funcionarios") {
 			
 		} else if(telaAberta == "Fornecedores") {
-			
+			fornCtrl.alterar();
 		} else {
 			usuCtrl.alterar();
 		}
@@ -308,7 +308,7 @@ if (telaAberta == "Vendas") {
 		} else if(telaAberta == "Funcionarios") {
 			
 		} else if(telaAberta == "Fornecedores") {
-			
+			fornCtrl.deletar();
 		} else {
 			usuCtrl.deletar();
 		}
