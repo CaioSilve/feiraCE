@@ -120,6 +120,12 @@ public class ClienteController implements Initializable {
 			};
 		});
 		
+		colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+		colEsta.setCellValueFactory(new PropertyValueFactory<>("esta"));
+		colCida.setCellValueFactory(new PropertyValueFactory<>("cida"));
+		colCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+		colCel.setCellValueFactory(new PropertyValueFactory<>("cele"));
+		colCon.setCellValueFactory(new PropertyValueFactory<>("contas"));
 		Formatacoes.emailField(txtEmail);
 		Formatacoes.mascaraData(txtData);
 		Formatacoes.cepField(txtCep);
@@ -139,12 +145,6 @@ public class ClienteController implements Initializable {
 	}
 	
 	private void carregarTbl(Cliente clie) {
-		colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-		colEsta.setCellValueFactory(new PropertyValueFactory<>("esta"));
-		colCida.setCellValueFactory(new PropertyValueFactory<>("cida"));
-		colCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-		colCel.setCellValueFactory(new PropertyValueFactory<>("cele"));
-		colCon.setCellValueFactory(new PropertyValueFactory<>("contas"));
 		clies = daoClie.consultar("todosClientes");
 		if(clie == null) {
 			tblClie.setItems(listaDeClientes());

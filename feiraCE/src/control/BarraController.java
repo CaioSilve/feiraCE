@@ -277,7 +277,7 @@ public class BarraController implements Initializable {
 	// Event Listener on Button.onMouseClicked
 	@FXML
 	public void alterar(MouseEvent event) {
-		if (telaAberta == "Vendas") {
+if (telaAberta == "Vendas") {
 			
 		} else if(telaAberta == "Compras") {
 			
