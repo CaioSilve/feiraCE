@@ -179,6 +179,8 @@ public class FornecedorController implements Initializable {
 		txtEmail.setText(sele.getEmail());
 		txtCida.setText(sele.getCida());
 		cboEsta.getSelectionModel().select(Estados.valueOf(sele.getEsta()));
+		cboEsta.setDisable(false);
+		txtCida.setDisable(false);
 		
 	}
 	
@@ -192,6 +194,7 @@ public class FornecedorController implements Initializable {
 			daoForns.incluirAgora(forn);
 			Alerta.showAlert("Inserir Fornecedor", null, "Fornecedor Inserido com sucesso", AlertType.CONFIRMATION);
 			carregarTbl(null);
+			limpar();
 		} else {
 			Alerta.showAlert("Fornecedor", null, "O fornecedor já está cadastrado!", AlertType.INFORMATION);
 			forn = forn2;
@@ -238,6 +241,7 @@ public class FornecedorController implements Initializable {
 		
 		Alerta.showAlert("Alteração", null, "Fornecedor alterado com sucesso!", AlertType.CONFIRMATION);
 		carregarTbl(null);
+		limpar();
 		
 	}
 	
@@ -251,6 +255,7 @@ public class FornecedorController implements Initializable {
 		daoForns.excluirAgora(pegarTbl());
 		Alerta.showAlert("Exclusão", null, "Fornecedor excluído com sucesso!",  AlertType.CONFIRMATION);
 		carregarTbl(null);
+		limpar();
 		
 	}
 	
