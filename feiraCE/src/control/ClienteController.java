@@ -153,6 +153,7 @@ public class ClienteController implements Initializable {
 			tblClie.setItems(obsClie);
 		}
 		tblClie.getSelectionModel().clearSelection();
+		tblClie.refresh();
 	}
 	
 	private ObservableList<Cliente> listaDeClientes(){

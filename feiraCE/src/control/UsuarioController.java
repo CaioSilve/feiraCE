@@ -81,6 +81,7 @@ public class UsuarioController implements Initializable {
 			tblUsuarios.setItems(obsUsua);
 		}
 		tblUsuarios.getSelectionModel().clearSelection();
+		tblUsuarios.refresh();
 	}
 	
 	private Usuario pegarTbl() {
