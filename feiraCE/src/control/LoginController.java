@@ -61,6 +61,7 @@ public class LoginController {
 			}
 		} catch(Exception ex) {
 			Alerta.showAlert("Usuário", null, "Usuário não encontrado", AlertType.WARNING);
+			System.out.println(ex);
 		}
 		
 		

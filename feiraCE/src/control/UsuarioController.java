@@ -162,7 +162,7 @@ public class UsuarioController implements Initializable {
 		daoUsua.alterarAgora(sele);
 		sele = null;
 		
-		Alerta.showAlert("Alteração", null, "Usuário alterado com sucesso!", AlertType.CONFIRMATION);
+		Alerta.showAlert("Alteração", null, "Usuário alterado com sucesso!", AlertType.INFORMATION);
 		carregarTbl(null);
 		
 	}

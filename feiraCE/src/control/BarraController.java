@@ -262,9 +262,9 @@ public class BarraController implements Initializable {
 		} else if(telaAberta == "Compras") {
 			
 		} else if(telaAberta == "Produtos") {
-			prodCtrl.limpar();
+			prodCtrl.consultar();
 		} else if(telaAberta == "Clientes") {
-			
+			clieCtrl.consultar();
 		} else if(telaAberta == "Funcionarios") {
 			
 		} else if(telaAberta == "Fornecedores") {
@@ -282,9 +282,9 @@ public class BarraController implements Initializable {
 		} else if(telaAberta == "Compras") {
 			
 		} else if(telaAberta == "Produtos") {
-			prodCtrl.limpar();
+			prodCtrl.alterar();
 		} else if(telaAberta == "Clientes") {
-			
+			clieCtrl.alterar();
 		} else if(telaAberta == "Funcionarios") {
 			
 		} else if(telaAberta == "Fornecedores") {
@@ -304,7 +304,7 @@ public class BarraController implements Initializable {
 		} else if(telaAberta == "Produtos") {
 			prodCtrl.limpar();
 		} else if(telaAberta == "Clientes") {
-			
+			clieCtrl.deletar();
 		} else if(telaAberta == "Funcionarios") {
 			
 		} else if(telaAberta == "Fornecedores") {

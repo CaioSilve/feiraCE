@@ -1,12 +1,13 @@
 package control;
 
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
 
 import dao.DAO;
 import javafx.collections.FXCollections;
@@ -25,7 +26,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import model.entities.Cliente;
-import model.entities.Usuario;
 import model.enums.Estados;
 import views.Utilitarios.Alerta;
 import views.Utilitarios.Formatacoes;
@@ -113,7 +113,8 @@ public class ClienteController implements Initializable {
 			public void handle(MouseEvent event) {
 				if(event.getButton().equals(MouseButton.PRIMARY)){
 		            if(event.getClickCount() == 2){
-		            	setCampos();
+		            	clie = pegarTbl();
+		            	if(clie != null) setCampos();
 		            }
 		        }
 			};
@@ -164,9 +165,9 @@ public class ClienteController implements Initializable {
 	
 	private boolean campoVazio() {
 		if(txtNome.getText().isEmpty() || txtBairro.getText().isEmpty() || txtCel.getText().isEmpty() ||
-				txtCep.getText().isEmpty() || txtCida.getText().isEmpty() || txtCpf.getText().isEmpty() || 
-				txtEmail.getText().isEmpty() || txtEnde.getText().isEmpty() ||
-				txtNume.getText().isEmpty() || txtData.getValue() == null) {
+			cboEsta.getSelectionModel().isEmpty() || txtCep.getText().isEmpty() || 
+			txtCida.getText().isEmpty() || txtCpf.getText().isEmpty() || 
+			txtEnde.getText().isEmpty() || txtNume.getText().isEmpty() || txtData.getValue() == null) {
 			
 			Alerta.showAlert("Campos vazios", null, "Não pode haver campos vazios", AlertType.WARNING);
 			return true;
@@ -193,18 +194,17 @@ public class ClienteController implements Initializable {
 	}
 	
 	private void setCampos() {
-		clie = pegarTbl();
 		txtNome.setText(clie.getNome());
 		txtCpf.setText(clie.getCpf());
 		txtRg.setText(clie.getRg());
 		txtCep.setText(clie.getCep());
 		txtEnde.setText(clie.getEnde());
 		txtCida.setText(clie.getCida());
-		cboEsta.getSelectionModel().select(Estados.valueOf(clie.getEsta()));;
+		cboEsta.getSelectionModel().select(Estados.valueOf(clie.getEsta()));
 		txtBairro.setText(clie.getBairro());
 		txtCel.setText(clie.getCele());
 		txtTele.setText(clie.getTele());
-		txtData.setUserData(clie.getNasc());
+		txtData.setValue(clie.getNasc().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 		txtEmail.setText(clie.getEmail());
 		txtNume.setText(clie.getNume());
 		txtContas.setText(clie.getContas() + "");
@@ -224,13 +224,15 @@ public class ClienteController implements Initializable {
 		txtBairro.setText("");
 		txtCel.setText("");
 		txtTele.setText("");
-		txtData.setUserData(null);
+		txtData.setValue(null);
 		txtEmail.setText("");
 		txtNume.setText("");
 		txtContas.setText("");
 		chkRece.setSelected(false);;
 		cboEsta.setDisable(true);
 		txtCida.setDisable(true);
+		tblClie.getSelectionModel().clearSelection();
+		clie = null;
 	}
 
 	public void inserir() {
@@ -257,13 +259,76 @@ public class ClienteController implements Initializable {
 			Alerta.showAlert("Inserção de Cliente", null, "Já existe um cliente com este nome", AlertType.WARNING);
 		}
 		
-		if(Alerta.showConfirm("Carregar cliente", null, "Trazer o cliente para alteração?")) {
+		if(Alerta.showConfirm("Alterar cliente", null, "Trazer o cliente para alteração?")) {
 			clie = conClie;
+			setCampos();
+		} else {
+			limpar();
 		}
 		carregarTbl(conClie);
 			
 			
 			
+	}
+
+
+	
+	public void consultar() {
+		if(txtNome.getText().trim().isEmpty() && txtCpf.getText().trim().isEmpty()) {
+			Alerta.showAlert("Consulta Cliente", null, "Favor preencher ou o campo Nome ou o campo CPF", AlertType.INFORMATION);
+			return;
+		}
+		
+		clie = daoClie.consultarUm("obterCliente", "nome", txtNome.getText());
+		if(clie == null) {
+			clie = daoClie.consultarUm("obterClienteCpf", "cpf", txtCpf.getText());
+			if(clie == null) {
+				Alerta.showAlert("Consulta Cliente", "Cliente não encontrado", "Favor, verificar se os dados"
+						+ " inseridos estão corretos", AlertType.INFORMATION);
+				return;
+			}
+		}
+		
+		setCampos();
+		carregarTbl(clie);
+		
+	}
+
+
+	
+	
+	public void alterar() {
+		if(campoVazio()) return;
+		if(clie == null) {
+			Alerta.showAlert("Alteração Cliente", null, "Favor selecionar um Cliente da tabela ou consultar", AlertType.INFORMATION);
+			return;
+		}
+		
+		pegarCampos();
+		
+		daoClie.alterarAgora(clie);
+		
+		limpar();
+		
+		Alerta.showAlert("Alteração Cliente", null, "Cliente alterado com sucesso!", AlertType.INFORMATION);
+		
+		carregarTbl(null);
+		
+		
+	}
+
+
+	public void deletar() {
+		if(pegarTbl() == null) {
+			Alerta.showAlert("Deletar Cliente", null, "Favor selecionar um Cliente da tabela ou consultar", AlertType.INFORMATION);
+			return;
+		}
+		
+		if(Alerta.showConfirm("Deletar Cliente?", null, "Deseja realmente deletar " + pegarTbl().getNome() + "?")) {
+			daoClie.excluirAgora(pegarTbl());
+			Alerta.showAlert("Exclusão", null, "Cliente excluído com sucesso!", AlertType.CONFIRMATION);
+			carregarTbl(null);
+		}
 	}
 
 	

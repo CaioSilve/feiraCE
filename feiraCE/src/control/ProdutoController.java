@@ -23,5 +23,17 @@ public class ProdutoController {
 		
 	}
 
+
+	public void consultar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void alterar() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

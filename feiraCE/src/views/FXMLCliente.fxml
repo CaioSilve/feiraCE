@@ -176,7 +176,7 @@
             <TableColumn fx:id="colEsta" prefWidth="83.0" text="Estado" />
             <TableColumn fx:id="colCida" prefWidth="208.00003051757812" text="Cidade" />
             <TableColumn fx:id="colCel" prefWidth="174.0" text="Celular" />
-            <TableColumn fx:id="colCon" prefWidth="92.0" text="Contas" />
+            <TableColumn fx:id="colCon" prefWidth="87.0" text="Contas" />
         </columns>
       </TableView>
    </children>

@@ -17,3 +17,40 @@
 	-fx-prompt-text-fill: white;
 }
 
+
+#inserir{
+	-fx-background-image: url("../imgs/inserir.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-color: transparent;
+	-fx-text-alignment: center;
+}
+#limpar{
+	-fx-background-image: url("../imgs/borracha.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-color: transparent;
+	-fx-text-alignment: center;
+}
+#consultar{
+	-fx-background-image: url("../imgs/consultar.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-color: transparent;
+	-fx-text-alignment: center;
+}
+#alterar{
+	-fx-background-image: url("../imgs/alterar.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-color: transparent;
+	-fx-text-alignment: center;
+}
+#deletar{
+	-fx-background-image: url("../imgs/deletar.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-color: transparent;
+	-fx-text-alignment: center;
+}
+#sair{
+	-fx-background-image: url("../imgs/sair.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-color: transparent;
+	-fx-text-alignment: center;
+}

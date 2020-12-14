@@ -98,12 +98,12 @@
    <right>
       <AnchorPane fx:id="anchorBtns" prefHeight="600.0" prefWidth="50.0" style="-fx-background-color: #075965;" BorderPane.alignment="CENTER">
          <children>
-            <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="5.0" layoutY="156.0" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#inserir" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: transparent; -fx-background-image: url(&quot;imgs/inserir.png&quot;);" />
-            <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="5.0" layoutY="226.0" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#limpar" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: transparent; -fx-background-image: url(&quot;imgs/borracha.png&quot;);" />
-            <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="5.0" layoutY="304.0" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#consultar" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: transparent; -fx-background-image: url(&quot;imgs/consultar.png&quot;);" />
-            <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="5.0" layoutY="375.0" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#alterar" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: transparent; -fx-background-image: url(&quot;imgs/alterar.png&quot;);" />
-            <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="5.0" layoutY="468.0" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#deletar" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: transparent; -fx-background-image: url(&quot;imgs/deletar.png&quot;);" />
-            <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="5.0" layoutY="642.0" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#sair" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: transparent; -fx-background-image: url(&quot;imgs/sair.png&quot;);" />
+            <Button id="inserir" alignment="CENTER" contentDisplay="RIGHT" layoutX="5.0" layoutY="156.0" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#inserir" prefHeight="32.0" prefWidth="32.0" stylesheets="@lindeza.css" />
+            <Button id="limpar" alignment="CENTER" contentDisplay="RIGHT" layoutX="5.0" layoutY="226.0" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#limpar" prefHeight="32.0" prefWidth="32.0" stylesheets="@lindeza.css" />
+            <Button id="consultar" alignment="CENTER" contentDisplay="RIGHT" layoutX="5.0" layoutY="304.0" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#consultar" prefHeight="32.0" prefWidth="32.0" stylesheets="@lindeza.css" />
+            <Button id="alterar" alignment="CENTER" contentDisplay="RIGHT" layoutX="5.0" layoutY="375.0" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#alterar" prefHeight="32.0" prefWidth="32.0" stylesheets="@lindeza.css" />
+            <Button id="deletar" alignment="CENTER" contentDisplay="RIGHT" layoutX="5.0" layoutY="468.0" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#deletar" prefHeight="32.0" prefWidth="32.0" stylesheets="@lindeza.css" />
+            <Button id="sair" alignment="CENTER" contentDisplay="RIGHT" layoutX="5.0" layoutY="642.0" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#sair" prefHeight="32.0" prefWidth="32.0" stylesheets="@lindeza.css" />
          </children>
          <effect>
             <DropShadow height="0.0" radius="9.5" spread="0.5" width="40.0" />
