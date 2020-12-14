@@ -25,6 +25,7 @@ import model.entities.Usuario;
 import model.enums.Estados;
 import model.enums.TiposForn;
 import views.Utilitarios.Alerta;
+import views.Utilitarios.Formatacoes;
 
 public class FornecedorController implements Initializable {
 	@FXML
@@ -79,7 +80,7 @@ public class FornecedorController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		carregarTbl(null);
+		
 		cboEsta.getItems().setAll(Estados.values());
 		cboTipo.getItems().setAll(TiposForn.values());
 		txtCep.focusedProperty().addListener((ov, oldV, newV) ->{
@@ -108,12 +109,21 @@ public class FornecedorController implements Initializable {
 			};
 		});
 		
+
 		colDesc.setCellValueFactory(new PropertyValueFactory<>("desc"));
 		colEsta.setCellValueFactory(new PropertyValueFactory<>("esta"));
 		colTele.setCellValueFactory(new PropertyValueFactory<>("tele"));
 		colTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
 		colDivi.setCellValueFactory(new PropertyValueFactory<>("divida"));
 		colGast.setCellValueFactory(new PropertyValueFactory<>("gastos"));
+		
+		carregarTbl(null);
+		
+		Formatacoes.emailField(txtEmail);
+		Formatacoes.formaField(txtTele, "tele");
+		Formatacoes.cepField(txtCep);
+		cboEsta.getItems().setAll(Estados.values());
+		
 	}
 	
 	
