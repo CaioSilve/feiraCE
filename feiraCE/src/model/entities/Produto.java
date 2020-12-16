@@ -1,5 +1,6 @@
 package model.entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import javassist.Loader.Simple;
 import model.enums.Categorias;
 import model.enums.Tipos;
 
@@ -24,22 +26,24 @@ public class Produto {
 	private Long codi;
 	@Column(name = "desc_prod")
 	private String desc;
+	@Column(name = "barra_prod")
+	private String barra;
 	@Column(name = "marca_prod")
 	private String marca;
 	@Column(name = "valor_prod")
-	private double valor;
+	private Double valor;
 	@Column(name = "categ_prod")
-	private Categorias categoria;
+	private Categorias cate;
 	@Column(name = "tipo_prod")
 	private Tipos tipo;
 	@Column(name = "valid_prod")
-	private Date validade;
+	private Date vali;
 	@Column(name = "qtde_prod")
 	private int qtde;
 	@Column(name = "qtde_min_prod")
 	private int qtdeMin;
-	
 
+	SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
 
 	public Produto() {
 		// TODO Auto-generated constructor stub
@@ -52,9 +56,9 @@ public class Produto {
 		this.desc = desc;
 		this.marca = marca;
 		this.valor = valor;
-		this.categoria = categoria;
+		this.cate = categoria;
 		this.tipo = tipo;
-		this.validade = validade;
+		this.vali = validade;
 		this.qtde = qtde;
 		this.qtdeMin = 5;
 	}
@@ -62,15 +66,8 @@ public class Produto {
 
 
 
-
-
-
-
 	public Long getCodi() {
 		return codi;
-	}
-	public void setCodi(Long codi) {
-		this.codi = codi;
 	}
 	public String getDesc() {
 		return desc;
@@ -84,17 +81,23 @@ public class Produto {
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
-	public double getValor() {
+	public Double getValor() {
 		return valor;
 	}
-	public void setValor(double valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
+	public String getBarra() {
+		return barra;
+	}
+	public void setBarra(String barra) {
+		this.barra = barra;
+	}
 	public Categorias getCategoria() {
-		return categoria;
+		return cate;
 	}
 	public void setCategoria(Categorias categoria) {
-		this.categoria = categoria;
+		this.cate = categoria;
 	}
 	public Tipos getTipo() {
 		return tipo;
@@ -103,10 +106,10 @@ public class Produto {
 		this.tipo = tipo;
 	}
 	public Date getValidade() {
-		return validade;
+		return formato.format(vali);
 	}
 	public void setValidade(Date validade) {
-		this.validade = validade;
+		this.vali = validade;
 	}
 	public int getQtde() {
 		return qtde;
@@ -114,7 +117,7 @@ public class Produto {
 	public void setQtde(int qtde) {
 		this.qtde = qtde;
 	}
-	public double valorEsto() {
+	public Double valorEsto() {
 		return valor*qtde;
 	}
 	public int getQtdeMin() {

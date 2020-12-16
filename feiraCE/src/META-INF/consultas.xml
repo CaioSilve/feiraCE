@@ -43,6 +43,12 @@
 		</query>
 	</named-query>
 	
+	<named-query name="obterProdutoBarra">
+		<query>
+			select u from Produto u where u.barra like :barra
+		</query>
+	</named-query>
+	
 	
 	<named-query name="obterUsuario">
 		<query>

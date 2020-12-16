@@ -87,10 +87,13 @@ public class ClienteController implements Initializable {
 	
 	private List<Cliente> clies = new ArrayList<>();
 	
+	private boolean limpo = true;
+	
 	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
 		txtCep.focusedProperty().addListener((ov, oldV, newV) ->{
 			if(!newV) {
 				if(txtCep.getText().isEmpty() || txtCep.getLength() < 9) {
@@ -103,6 +106,45 @@ public class ClienteController implements Initializable {
 					txtCida.setDisable(false);
 					cboEsta.setDisable(false);
 					txtEnde.requestFocus();
+				}
+			}
+		});
+		
+		txtNome.focusedProperty().addListener((ov, oldV, newV) ->{
+			if(!newV) {
+				if(txtNome.getText().trim().isEmpty()) {
+					return;
+				} else {
+					if(!limpo) return;
+					Cliente conClie = daoClie.consultarUm("obterCliente", "nome", txtNome.getText());
+					if(conClie == null) return;
+					
+					if(Alerta.showConfirm("Alterar cliente", "Trazer o cliente para alteração?", "Já existe um cliente com este Nome")) {
+						clie = conClie;
+						setCampos();
+					}
+						
+					carregarTbl(conClie);
+				}
+			}
+		});
+		
+		txtCpf.focusedProperty().addListener((ov, oldV, newV) -> {
+			if(!newV) {
+				if(txtNome.getText().trim().isEmpty()) {
+					return;
+				} else {
+					if(!limpo) return;
+					Cliente conClie = daoClie.consultarUm("obterClienteCpf", "cpf", txtCpf.getText());
+				
+					if(conClie == null) return;
+					
+					if(Alerta.showConfirm("Alterar cliente", "Trazer o cliente para alteração?", "Já existe um cliente com este Nome")) {
+						clie = conClie;
+						setCampos();
+					}
+						
+					carregarTbl(conClie);
 				}
 			}
 		});
@@ -176,7 +218,7 @@ public class ClienteController implements Initializable {
 		return false;
 	}
 
-	private void pegarCampos() {
+	private void getCampos() {
 		clie.setNome(txtNome.getText().trim());
 		clie.setCpf(txtCpf.getText().trim());
 		clie.setRg(txtRg.getText().trim());
@@ -195,6 +237,7 @@ public class ClienteController implements Initializable {
 	}
 	
 	private void setCampos() {
+		limpo = false;
 		txtNome.setText(clie.getNome());
 		txtCpf.setText(clie.getCpf());
 		txtRg.setText(clie.getRg());
@@ -235,13 +278,16 @@ public class ClienteController implements Initializable {
 		tblClie.getSelectionModel().clearSelection();
 		txtNome.requestFocus();
 		clie = null;
+		limpo = true;
 	}
 
 	public void inserir() {
 		if(campoVazio()) return;
 		
-		pegarCampos();
-		Cliente conClie;
+		getCampos();
+		Cliente conClie = new Cliente();
+		
+		String campo;
 			
 		conClie = daoClie.consultarUm("obterCliente", "nome", clie.getNome());
 		if(conClie == null) {
@@ -254,19 +300,19 @@ public class ClienteController implements Initializable {
 				limpar();
 				return;
 			} else {
-				Alerta.showAlert("Inserção de Cliente", null, "Já existe um cliente com este CPF", AlertType.WARNING);
+				campo = "CPF";
 			}
 				
 		} else {
-			Alerta.showAlert("Inserção de Cliente", null, "Já existe um cliente com este nome", AlertType.WARNING);
+			campo = "nome";
 		}
 		
-		if(Alerta.showConfirm("Alterar cliente", null, "Trazer o cliente para alteração?")) {
+		
+		if(Alerta.showConfirm("Alterar cliente", "Trazer o cliente para alteração?", "Já existe um cliente com este " + campo)) {
 			clie = conClie;
 			setCampos();
-		} else {
-			limpar();
 		}
+		
 		carregarTbl(conClie);
 			
 			
@@ -306,7 +352,7 @@ public class ClienteController implements Initializable {
 			return;
 		}
 		
-		pegarCampos();
+		getCampos();
 		
 		daoClie.alterarAgora(clie);
 		

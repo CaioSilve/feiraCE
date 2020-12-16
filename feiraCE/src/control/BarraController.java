@@ -302,7 +302,7 @@ if (telaAberta == "Vendas") {
 		} else if(telaAberta == "Compras") {
 			
 		} else if(telaAberta == "Produtos") {
-			prodCtrl.limpar();
+			prodCtrl.deletar();
 		} else if(telaAberta == "Clientes") {
 			clieCtrl.deletar();
 		} else if(telaAberta == "Funcionarios") {
