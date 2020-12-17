@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -19,7 +20,7 @@
          </font>
       </Label>
       <Line endX="-1.0" endY="1.52587890625E-5" layoutX="2.0" layoutY="106.0" startX="350.0" startY="7.62939453125E-6" stroke="WHITE" strokeMiterLimit="50.0" strokeWidth="2.0" />
-      <Label fx:id="lblRegua" layoutX="457.0" layoutY="96.0" text="__________" textFill="WHITE" />
+      <Label fx:id="lblRegua" layoutX="620.0" layoutY="78.0" text="__________" textFill="WHITE" />
       <Label layoutX="64.0" layoutY="155.0" text="Descrição" textFill="WHITE">
          <font>
             <Font name="Verdana" size="16.0" />
@@ -35,7 +36,7 @@
             <Font name="Verdana" size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="txtCodi" layoutX="485.0" layoutY="184.0" prefHeight="32.0" prefWidth="470.0">
+      <TextField fx:id="txtCodi" layoutX="485.0" layoutY="184.0" prefHeight="32.0" prefWidth="477.0">
          <font>
             <Font name="Arial" size="15.0" />
          </font>
@@ -61,43 +62,48 @@
             <Font name="Verdana" size="16.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="cboCate" disable="true" layoutX="585.0" layoutY="283.0" prefHeight="34.0" prefWidth="371.0" />
-      <Label layoutX="64.0" layoutY="350.0" text="Valor" textFill="WHITE">
+      <ChoiceBox fx:id="cboCate" disable="true" layoutX="585.0" layoutY="283.0" prefHeight="34.0" prefWidth="378.0" />
+      <DatePicker fx:id="txtData" disable="true" layoutX="265.0" layoutY="379.0" prefHeight="32.0" prefWidth="174.0" />
+      <CheckBox fx:id="chkPere" layoutX="64.0" layoutY="384.0" mnemonicParsing="false" onMouseClicked="#perecivel" text="Produto Perecível" textFill="WHITE" selected="false">
+         <font>
+            <Font name="Verdana" size="16.0" />
+         </font>
+      </CheckBox>
+      <Label layoutX="496.0" layoutY="349.0" text="Valor" textFill="WHITE">
          <font>
             <Font name="Verdana" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtValor" alignment="CENTER_RIGHT" layoutX="64.0" layoutY="380.0" prefHeight="32.0" prefWidth="149.0">
+      <TextField fx:id="txtValor" alignment="CENTER_RIGHT" layoutX="496.0" layoutY="379.0" prefHeight="32.0" prefWidth="149.0">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
       </TextField>
-      <Label layoutX="264.0" layoutY="350.0" text="Qtde" textFill="WHITE">
+      <Label layoutX="696.0" layoutY="349.0" text="Qtde" textFill="WHITE">
          <font>
             <Font name="Verdana" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtQtde" alignment="CENTER_RIGHT" disable="true" layoutX="264.0" layoutY="380.0" prefHeight="25.0" prefWidth="120.0">
+      <TextField fx:id="txtQtde" alignment="CENTER_RIGHT" disable="true" layoutX="696.0" layoutY="379.0" prefHeight="32.0" prefWidth="96.0">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
       </TextField>
-      <Label layoutX="434.0" layoutY="349.0" text="Qtde Mínima" textFill="WHITE">
+      <Label layoutX="842.0" layoutY="350.0" text="Qtde Mínima" textFill="WHITE">
          <font>
             <Font name="Verdana" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtQtdeMin" alignment="CENTER_RIGHT" disable="true" layoutX="434.0" layoutY="379.0" prefHeight="25.0" prefWidth="120.0">
+      <TextField fx:id="txtQtdeMin" alignment="CENTER_RIGHT" disable="true" layoutX="842.0" layoutY="380.0" prefHeight="25.0" prefWidth="120.0">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
       </TextField>
-      <Label layoutX="604.0" layoutY="350.0" text="Data de Validade" textFill="WHITE">
+      <Label layoutX="265.0" layoutY="350.0" text="Data de Validade" textFill="WHITE">
          <font>
             <Font name="Verdana" size="15.0" />
          </font>
       </Label>
-      <DatePicker fx:id="txtData" layoutX="604.0" layoutY="379.0" prefHeight="32.0" prefWidth="174.0" />
       <Button layoutX="756.0" layoutY="425.0" mnemonicParsing="false" onMouseClicked="#recarregarTbl" prefHeight="32.0" prefWidth="206.0" text="Recarregar Tabela">
          <font>
             <Font name="Verdana" size="13.0" />
@@ -110,7 +116,7 @@
             <TableColumn fx:id="colCate" prefWidth="192.00003051757812" text="Categoria" />
             <TableColumn fx:id="colValor" prefWidth="100.0" text="Valor" />
             <TableColumn fx:id="colQtde" prefWidth="59.0" text="Qtde" />
-            <TableColumn fx:id="colVali" prefWidth="157.0" text="Validade" />
+            <TableColumn fx:id="colVali" prefWidth="135.0" text="Validade" />
         </columns>
       </TableView>
    </children>

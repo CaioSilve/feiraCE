@@ -62,8 +62,8 @@ public class testeClasses {
 		Funcionario func = new Funcionario("Erick", data, "7188371878", "93819341873891", "dakshjdklajd", "8998891", "erick_nabotinha@gmail.com", "14620000", "Benini", "Avenida E", "1355", Niveis.ADMINISTRADOR, data);
 		
 		//PRODUTO--------------------------------------------
-		Produto prod = new Produto("Bisnaguinha", "Economico", 0.75, Categorias.PAES, Tipos.COMIDAS, data, 10);
-		Produto prod2 = new Produto("Smartphone", "Xiaomi", 1800.0, Categorias.ELETRONICOS, Tipos.EQUIPAMENTOS, data, 3);
+		Produto prod = new Produto("Bisnaguinha", "Economico", 0.75, Categorias.PAES, Tipos.COMIDAS, true, data, 10);
+		Produto prod2 = new Produto("Smartphone", "Xiaomi", 1800.0, Categorias.ELETRONICOS, Tipos.EQUIPAMENTOS, false, data, 3);
 //		System.out.println(Categorias.values()[7]);
 //		for (Categorias cat : Categorias.values()) {
 //			if(cat.getIndice() == 1)

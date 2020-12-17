@@ -367,7 +367,7 @@ public class ClienteController implements Initializable {
 
 
 	public void deletar() {
-		if(pegarTbl() == null) {
+		if(pegarTbl() == null && clie == null) {
 			Alerta.showAlert("Deletar Cliente", null, "Favor selecionar um Cliente da tabela ou consultar", AlertType.INFORMATION);
 			return;
 		}

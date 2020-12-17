@@ -1,6 +1,5 @@
 package model.entities;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import javassist.Loader.Simple;
 import model.enums.Categorias;
 import model.enums.Tipos;
 
@@ -36,6 +34,8 @@ public class Produto {
 	private Categorias cate;
 	@Column(name = "tipo_prod")
 	private Tipos tipo;
+	@Column(name = "pere_prod")
+	private boolean pere;
 	@Column(name = "valid_prod")
 	private Date vali;
 	@Column(name = "qtde_prod")
@@ -43,21 +43,22 @@ public class Produto {
 	@Column(name = "qtde_min_prod")
 	private int qtdeMin;
 
-	SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+	
 
 	public Produto() {
-		// TODO Auto-generated constructor stub
+		this.pere = false;
 	}
 	
 	
 
-	public Produto(String desc, String marca, double valor, Categorias categoria, Tipos tipo, Date validade, int qtde) {
+	public Produto(String desc, String marca, double valor, Categorias categoria, Tipos tipo, boolean pere, Date validade, int qtde) {
 		super();
 		this.desc = desc;
 		this.marca = marca;
 		this.valor = valor;
 		this.cate = categoria;
 		this.tipo = tipo;
+		this.pere = pere;
 		this.vali = validade;
 		this.qtde = qtde;
 		this.qtdeMin = 5;
@@ -105,11 +106,15 @@ public class Produto {
 	public void setTipo(Tipos tipo) {
 		this.tipo = tipo;
 	}
-	public Date getValidade() {
-		return formato.format(vali);
+	public Date getValidade(){
+		return vali;
 	}
 	public void setValidade(Date validade) {
-		this.vali = validade;
+		if(pere) {
+			this.vali = validade;
+		} else {
+			this.vali = null;
+		}
 	}
 	public int getQtde() {
 		return qtde;
@@ -125,6 +130,12 @@ public class Produto {
 	}
 	public void setQtdeMin(int qtdeMin) {
 		this.qtdeMin = qtdeMin;
+	}
+	public boolean isPere() {
+		return pere;
+	}
+	public void setPere(boolean pere) {
+		this.pere = pere;
 	}
 
 	

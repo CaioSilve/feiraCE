@@ -1,11 +1,14 @@
 package control;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
 
 import dao.DAO;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -18,6 +21,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -69,7 +73,9 @@ public class ProdutoController implements Initializable {
 	@FXML
 	private TableColumn<Produto, Integer> colQtde;
 	@FXML
-	private TableColumn<Produto, Date> colVali;
+	private TableColumn<Produto, String> colVali;
+	@FXML
+	private CheckBox chkPere;
 	
 	private DAO<Produto> daoProd = new DAO<Produto>(Produto.class);
 	
@@ -77,7 +83,10 @@ public class ProdutoController implements Initializable {
 	
 	private List<Produto> prods = new ArrayList<>();
 	
+	SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+	
 	private boolean limpo = true;
+	
 	
 
 	
@@ -160,11 +169,45 @@ public class ProdutoController implements Initializable {
 		colCate.setCellValueFactory((param) -> new ReadOnlyObjectWrapper<>((param.getValue().getCategoria())));
 		colValor.setCellValueFactory((param) -> new ReadOnlyObjectWrapper<>((param.getValue().valorEsto())));
 		colQtde.setCellValueFactory(new PropertyValueFactory<>("qtde"));
-		colVali.setCellValueFactory((param) -> new ReadOnlyObjectWrapper<>((param.getValue().getValidade())));
+		colVali.setCellValueFactory((param) ->{
+			if(param.getValue().getValidade() != null) {
+				return new ReadOnlyObjectWrapper<>(formato.format((param.getValue().getValidade())));
+			} else {
+				return new SimpleStringProperty("Não Perecível");
+			}
+			
+		});
 		carregarTbl(null);
 		
 	}
 	
+	
+	@FXML
+	public void perecivel() {
+		prod.setPere(chkPere.isSelected());
+		if(prod.isPere()) {
+			txtData.setDisable(false);
+		} else {
+			txtData.setDisable(true);
+		}
+	}
+	
+	// Event Listener on Button.onMouseClicked
+	@FXML
+	public void recarregarTbl(MouseEvent event) {
+		carregarTbl(null);
+	}
+	
+	private void carregarTbl(Produto p) {
+		prods = daoProd.consultar("todosProdutos");
+		if(p == null) {
+			tblProd.setItems(listaDeProds());
+		} else {
+			tblProd.setItems(FXCollections.observableArrayList(p));
+		}
+		tblProd.getSelectionModel().clearSelection();
+		tblProd.refresh();
+	}
 	
 	private Produto pegarTbl() {
 		return tblProd.getSelectionModel().getSelectedItem();
@@ -174,16 +217,7 @@ public class ProdutoController implements Initializable {
 		return FXCollections.observableArrayList(prods);
 	}
 	
-	private void carregarTbl(Produto prod) {
-		prods = daoProd.consultar("todosProdutos");
-		if(prod == null) {
-			tblProd.setItems(listaDeProds());
-		} else {
-			tblProd.setItems(FXCollections.observableArrayList(prod));
-		}
-		tblProd.getSelectionModel().clearSelection();
-		tblProd.refresh();
-	}
+
 	
 	private void setCampos() {
 		txtDesc.setText(prod.getDesc());
@@ -194,7 +228,14 @@ public class ProdutoController implements Initializable {
 		txtValor.setText(prod.getValor().toString());
 		txtQtde.setText(prod.getQtde() + "");
 		txtQtdeMin.setText(prod.getQtdeMin() + "");
-		txtData.setValue(prod.getValidade().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+		chkPere.setSelected(prod.isPere());
+		if(prod.isPere()) {
+			txtData.setDisable(false);
+			txtData.setValue(prod.getValidade().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+		} else {
+			txtData.setDisable(true);
+			txtData.setValue(null);
+		}
 		txtQtde.setDisable(false);
 		txtQtdeMin.setDisable(false);
 		limpo = false;
@@ -207,16 +248,16 @@ public class ProdutoController implements Initializable {
 		prod.setTipo(cboTipo.getSelectionModel().getSelectedItem());
 		prod.setCategoria(cboCate.getSelectionModel().getSelectedItem());
 		prod.setValor(Double.parseDouble(txtValor.getText()));
-		prod.setQtde(Integer.parseInt(txtQtde.getText()));
-		prod.setQtdeMin(Integer.parseInt(txtQtdeMin.getText()));
+		prod.setQtde(txtQtde.getText().trim().isEmpty() ? 0 : Integer.parseInt(txtQtde.getText().trim()));
+		prod.setQtdeMin(txtQtdeMin.getText().trim().isEmpty() ? 5 : Integer.parseInt(txtQtdeMin.getText().trim()));
+		if(prod.isPere())
 		prod.setValidade(Date.from(txtData.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
 	}
 	
 	private boolean campoVazio() {
 		if(txtDesc.getText().trim().isEmpty() || txtCodi.getText().trim().isEmpty() ||
 			txtMarca.getText().trim().isEmpty() || cboTipo.getSelectionModel().isEmpty() ||
-			cboCate.getSelectionModel().isEmpty() || txtValor.getText().trim().isEmpty() ||
-			txtData.getValue() == null) {
+			cboCate.getSelectionModel().isEmpty() || txtValor.getText().trim().isEmpty()) {
 			Alerta.showAlert("Campos vazios", null, "Não pode haver campos vazios", AlertType.WARNING);
 			return true;
 		}
@@ -224,12 +265,6 @@ public class ProdutoController implements Initializable {
 		return false;
 	}
 	
-	// Event Listener on Button.onMouseClicked
-	@FXML
-	public void recarregarTbl(MouseEvent event) {
-		carregarTbl(null);
-	}
-
 	public void inserir() {
 		if(campoVazio()) return;
 		
@@ -275,9 +310,11 @@ public class ProdutoController implements Initializable {
 		txtValor.setText("");
 		txtQtde.setText("");
 		txtQtdeMin.setText("");
+		chkPere.setSelected(false);
 		txtData.setValue(null);
 		txtQtde.setDisable(true);
 		txtQtdeMin.setDisable(true);
+		txtData.setDisable(true);
 		tblProd.getSelectionModel().clearSelection();
 		txtDesc.requestFocus();
 		prod = null;
@@ -285,17 +322,54 @@ public class ProdutoController implements Initializable {
 	}
 
 	public void consultar() {
-		// TODO Auto-generated method stub
+		if(txtDesc.getText().trim().isEmpty() || txtCodi.getText().trim().isEmpty()) {
+			Alerta.showAlert("Consultar Cliente", null, "Favor preencher ou o campo Descrição ou o campo Código de barras", AlertType.INFORMATION);
+			return;
+		}
+		
+		prod = daoProd.consultarUm("obterProduto", "desc", txtDesc.getText().trim());
+		if(prod == null) {
+			prod = daoProd.consultarUm("obterProdutoBarra", "barra", txtCodi.getText().trim());
+			if(prod == null) {
+				Alerta.showAlert("Consultar Produto", "Produto não encontrado", "Favor, verificar se os dados"
+						+ " inseridos estão corretos", AlertType.INFORMATION);
+				return;
+			}
+		}
+		
+		getCampos();
+		carregarTbl(prod);
 		
 	}
 
 	public void alterar() {
-		// TODO Auto-generated method stub
+		if(campoVazio()) return;
+		if(prod == null) {
+			Alerta.showAlert("Alteração Produto", null, "Favor selecionar um Produto da tabela ou consultar", AlertType.INFORMATION);
+			return;
+		}
 		
+		getCampos();
+		
+		daoProd.alterarAgora(prod);
+		
+		limpar();
+		
+		Alerta.showAlert("Alteração Produto", null, "Produto alterado com sucesso!", AlertType.INFORMATION);
+		
+		carregarTbl(null);
 	}
 
 	public void deletar() {
-		// TODO Auto-generated method stub
+		if(pegarTbl() == null && prod == null) {
+			Alerta.showAlert("Deletar Produto", null, "Favor selecionar um Produto da tabela ou consultar", AlertType.INFORMATION);
+			return;
+		}
 		
+		if(Alerta.showConfirm("Deletar Produto?", null, "Deseja realmente deletar " + pegarTbl().getDesc() + "?")) {
+			daoProd.excluirAgora(pegarTbl() == null ? prod : pegarTbl());
+			Alerta.showAlert("Exclusão", null, "Produto excluído com sucesso!", AlertType.CONFIRMATION);
+			carregarTbl(null);
+		}
 	}
 }
