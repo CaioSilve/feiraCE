@@ -56,6 +56,8 @@ public class BarraController implements Initializable {
 	private UsuarioController usuCtrl;
 	private FornecedorController fornCtrl;
 	private ClienteController clieCtrl;
+	private FuncionarioController funcCtrl;
+	
 	
 
 	@Override
@@ -179,7 +181,7 @@ public class BarraController implements Initializable {
 			} else if(telaAberta == "Clientes") {
 				clieCtrl = loader.getController();
 			} else if(telaAberta == "Funcionarios") {
-				
+				funcCtrl = loader.getController();
 			} else if(telaAberta == "Fornecedores") {
 				fornCtrl = loader.getController();
 			} else {
@@ -224,7 +226,7 @@ public class BarraController implements Initializable {
 		} else if(telaAberta == "Clientes") {
 			clieCtrl.inserir();
 		} else if(telaAberta == "Funcionarios") {
-			
+			funcCtrl.inserir();
 		} else if(telaAberta == "Fornecedores") {
 			fornCtrl.inserir();
 		} else {
@@ -245,7 +247,7 @@ public class BarraController implements Initializable {
 		} else if(telaAberta == "Clientes") {
 			clieCtrl.limpar();
 		} else if(telaAberta == "Funcionarios") {
-			
+			funcCtrl.limpar();
 		} else if(telaAberta == "Fornecedores") {
 			fornCtrl.limpar();
 		} else {
@@ -266,7 +268,7 @@ public class BarraController implements Initializable {
 		} else if(telaAberta == "Clientes") {
 			clieCtrl.consultar();
 		} else if(telaAberta == "Funcionarios") {
-			
+			funcCtrl.consultar();
 		} else if(telaAberta == "Fornecedores") {
 			fornCtrl.consultar();
 		} else {
@@ -277,7 +279,7 @@ public class BarraController implements Initializable {
 	// Event Listener on Button.onMouseClicked
 	@FXML
 	public void alterar(MouseEvent event) {
-if (telaAberta == "Vendas") {
+		if (telaAberta == "Vendas") {
 			
 		} else if(telaAberta == "Compras") {
 			
@@ -286,7 +288,7 @@ if (telaAberta == "Vendas") {
 		} else if(telaAberta == "Clientes") {
 			clieCtrl.alterar();
 		} else if(telaAberta == "Funcionarios") {
-			
+			funcCtrl.alterar();
 		} else if(telaAberta == "Fornecedores") {
 			fornCtrl.alterar();
 		} else {
@@ -306,7 +308,7 @@ if (telaAberta == "Vendas") {
 		} else if(telaAberta == "Clientes") {
 			clieCtrl.deletar();
 		} else if(telaAberta == "Funcionarios") {
-			
+			funcCtrl.deletar();
 		} else if(telaAberta == "Fornecedores") {
 			fornCtrl.deletar();
 		} else {
