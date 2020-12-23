@@ -134,7 +134,7 @@ public class FuncionarioController implements Initializable {
 		
 		txtCpf.focusedProperty().addListener((ov, oldV, newV) -> {
 			if(!newV) {
-				if(txtNome.getText().trim().isEmpty()) {
+				if(txtCpf.getText().trim().isEmpty()) {
 					return;
 				} else {
 					if(!limpo) return;
@@ -142,7 +142,7 @@ public class FuncionarioController implements Initializable {
 				
 					if(conFunc == null) return;
 					
-					if(Alerta.showConfirm("Alterar Funcionario", "Trazer o funcionario para alteração?", "Já existe um funcionario com este Nome")) {
+					if(Alerta.showConfirm("Alterar Funcionario", "Trazer o funcionario para alteração?", "Já existe um funcionario com este CPF")) {
 						func = conFunc;
 						setCampos();
 					}

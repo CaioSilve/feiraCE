@@ -36,7 +36,6 @@ public enum Categorias {
 	INTIMOS(5),
 	CALÇADOS(5),
 	ACESSORIOS(5),
-	ELETRONICOS(6),
 	SOBREVIVENCIA(6),
 	PROTEÇÃO(6),
 	FERRAMENTAS(6),

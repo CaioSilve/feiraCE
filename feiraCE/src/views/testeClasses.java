@@ -63,7 +63,7 @@ public class testeClasses {
 		
 		//PRODUTO--------------------------------------------
 		Produto prod = new Produto("Bisnaguinha", "Economico", 0.75, Categorias.PAES, Tipos.COMIDAS, true, data, 10);
-		Produto prod2 = new Produto("Smartphone", "Xiaomi", 1800.0, Categorias.ELETRONICOS, Tipos.EQUIPAMENTOS, false, data, 3);
+		Produto prod2 = new Produto("Smartphone", "Xiaomi", 1800.0, Categorias.CELULARES, Tipos.ELETRONICOS, false, data, 3);
 //		System.out.println(Categorias.values()[7]);
 //		for (Categorias cat : Categorias.values()) {
 //			if(cat.getIndice() == 1)
