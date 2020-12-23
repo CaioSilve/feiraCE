@@ -191,7 +191,7 @@ public class BarraController implements Initializable {
 			new FadeIn(root).play();
 		} catch (Exception e) {
 			Alerta.showAlert("Erro", "Tela indisponível", "" + e.getCause() /*+ tela*/, AlertType.ERROR);
-			System.out.println(e);
+			System.out.println(e.getCause());
 		}
 		
 		

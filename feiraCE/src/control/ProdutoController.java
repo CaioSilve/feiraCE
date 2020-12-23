@@ -137,6 +137,7 @@ public class ProdutoController implements Initializable {
 					if(conProd == null) return;
 					
 					if(Alerta.showConfirm("Alterar produto", "Trazer o produto para alteração?", "Já existe um produto com esta Descrição")) {
+						prod = conProd;
 						setCampos();
 					}
 						
@@ -155,6 +156,7 @@ public class ProdutoController implements Initializable {
 					if(conProd == null) return;
 					
 					if(Alerta.showConfirm("Alterar produto", "Trazer o produto para alteração?", "Já existe um produto com este código de barras")) {
+						prod = conProd;
 						setCampos();
 					}
 						
@@ -184,8 +186,7 @@ public class ProdutoController implements Initializable {
 	
 	@FXML
 	public void perecivel() {
-		prod.setPere(chkPere.isSelected());
-		if(prod.isPere()) {
+		if(chkPere.isSelected()) {
 			txtData.setDisable(false);
 		} else {
 			txtData.setDisable(true);
@@ -250,6 +251,7 @@ public class ProdutoController implements Initializable {
 		prod.setValor(Double.parseDouble(txtValor.getText()));
 		prod.setQtde(txtQtde.getText().trim().isEmpty() ? 0 : Integer.parseInt(txtQtde.getText().trim()));
 		prod.setQtdeMin(txtQtdeMin.getText().trim().isEmpty() ? 5 : Integer.parseInt(txtQtdeMin.getText().trim()));
+		prod.setPere(chkPere.isSelected());
 		if(prod.isPere())
 		prod.setValidade(Date.from(txtData.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
 	}
@@ -319,6 +321,7 @@ public class ProdutoController implements Initializable {
 		txtDesc.requestFocus();
 		prod = null;
 		limpo = true;
+		carregarTbl(null);
 	}
 
 	public void consultar() {

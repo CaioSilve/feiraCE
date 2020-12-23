@@ -7,6 +7,7 @@ public enum Tipos {
 	LIMPEZA(4),
 	ROUPAS(5),
 	EQUIPAMENTOS(6),
+	ELETRONICOS(9),
 	DESCARTAVEIS(7),
 	OUTROS(8);
 

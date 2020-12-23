@@ -31,6 +31,12 @@
 		</query>
 	</named-query>
 	
+	<named-query name="obterFuncionarioCpf">
+		<query>
+			select u from Funcionario u where u.cpf like :cpf
+		</query>
+	</named-query>
+	
 	<named-query name="obterItemCompra">
 		<query>
 			select u from ItemCompra u where u.codi like :compra

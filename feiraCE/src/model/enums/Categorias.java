@@ -5,6 +5,7 @@ public enum Categorias {
 	REFRIGERANTE(1),
 	AGUA(1),
 	LEITE(1),
+	PO(1),
 	FRUTAS(2),
 	LEGUMES_E_VERDURAS(2),
 	DOCES(2),
@@ -43,6 +44,14 @@ public enum Categorias {
 	COPOS(7),
 	PRATOS(7),
 	TALHERES(7),
+	CELULARES(9),
+	COMPUTADORES(9),
+	NOTEBOOKS(9),
+	MONITORES(9),
+	SOFTWARE(9),
+	HARDWARE(9),
+	PERIFERICOS(9),
+	
 	OUTROS(8);
 
 	Categorias(int i) {

@@ -61,8 +61,6 @@ public class FuncionarioController implements Initializable {
 	@FXML
 	private TableColumn<Funcionario, String> colCpf;
 	@FXML
-	private TableColumn<Funcionario, Integer> colCon;
-	@FXML
 	private TableColumn<Funcionario, Integer> colNiv;
 	@FXML
 	private DatePicker txtData;
@@ -97,7 +95,8 @@ public class FuncionarioController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		cboEsta.getItems().setAll(Estados.values());
+		cboNivel.getItems().setAll(Niveis.values());
 		txtCep.focusedProperty().addListener((ov, oldV, newV) ->{
 			if(!newV) {
 				if(txtCep.getText().isEmpty() || txtCep.getLength() < 9) {
@@ -171,7 +170,6 @@ public class FuncionarioController implements Initializable {
 		colCida.setCellValueFactory(new PropertyValueFactory<>("cida"));
 		colCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
 		colCel.setCellValueFactory(new PropertyValueFactory<>("cele"));
-		colCon.setCellValueFactory(new PropertyValueFactory<>("contas"));
 		Formatacoes.emailField(txtEmail);
 		Formatacoes.mascaraData(txtData);
 		Formatacoes.cepField(txtCep);
@@ -179,7 +177,6 @@ public class FuncionarioController implements Initializable {
 		Formatacoes.formaField(txtCel, "cel");
 		Formatacoes.formaField(txtCpf, "cpf");
 		Formatacoes.formaField(txtRg, "rg");
-		cboEsta.getItems().setAll(Estados.values());
 		carregarTbl(null);
 	}
 	
@@ -237,7 +234,6 @@ public class FuncionarioController implements Initializable {
 		func.setEmai(txtEmail.getText().trim());
 		func.setNume(txtNume.getText().trim());
 		func.setNivel(cboNivel.getSelectionModel().getSelectedItem());
-		//func.setRece(chkRece.isSelected());
 	}
 	
 	private void setCampos() {
@@ -348,43 +344,43 @@ public class FuncionarioController implements Initializable {
 
 	
 	
-	public FuncionarioController(Label lblBemVindo, TextField txtNome, Label lblRegua, TextField txtEnde,
-			TextField txtCep, TextField txtCida, ChoiceBox<Estados> cboEsta, TextField txtEmail,
-			TableView<Funcionario> tblFunc, TableColumn<Funcionario, String> colNome,
-			TableColumn<Funcionario, String> colEsta, TableColumn<Funcionario, String> colCida,
-			TableColumn<Funcionario, String> colCel, TableColumn<Funcionario, String> colCpf,
-			TableColumn<Funcionario, Integer> colCon, DatePicker txtData, TextField txtRg, TextField txtCpf,
-			TextField txtTele, TextField txtCel, TextField txtBairro, TextField txtNume, ChoiceBox<Niveis> cboNiveis,
-			CheckBox chkRece, DAO<Funcionario> daoFunc, Funcionario func, List<Funcionario> funcs, boolean limpo) {
-		super();
-		this.lblBemVindo = lblBemVindo;
-		this.txtNome = txtNome;
-		this.lblRegua = lblRegua;
-		this.txtEnde = txtEnde;
-		this.txtCep = txtCep;
-		this.txtCida = txtCida;
-		this.cboEsta = cboEsta;
-		this.txtEmail = txtEmail;
-		this.tblFunc = tblFunc;
-		this.colNome = colNome;
-		this.colEsta = colEsta;
-		this.colCida = colCida;
-		this.colCel = colCel;
-		this.colCpf = colCpf;
-		this.colCon = colCon;
-		this.txtData = txtData;
-		this.txtRg = txtRg;
-		this.txtCpf = txtCpf;
-		this.txtTele = txtTele;
-		this.txtCel = txtCel;
-		this.txtBairro = txtBairro;
-		this.txtNume = txtNume;
-		this.cboNivel = cboNiveis;
-		this.daoFunc = daoFunc;
-		this.func = func;
-		this.funcs = funcs;
-		this.limpo = limpo;
-	}
+//	public FuncionarioController(Label lblBemVindo, TextField txtNome, Label lblRegua, TextField txtEnde,
+//			TextField txtCep, TextField txtCida, ChoiceBox<Estados> cboEsta, TextField txtEmail,
+//			TableView<Funcionario> tblFunc, TableColumn<Funcionario, String> colNome,
+//			TableColumn<Funcionario, String> colEsta, TableColumn<Funcionario, String> colCida,
+//			TableColumn<Funcionario, String> colCel, TableColumn<Funcionario, String> colCpf,
+//			TableColumn<Funcionario, Integer> colCon, DatePicker txtData, TextField txtRg, TextField txtCpf,
+//			TextField txtTele, TextField txtCel, TextField txtBairro, TextField txtNume, ChoiceBox<Niveis> cboNiveis,
+//			CheckBox chkRece, DAO<Funcionario> daoFunc, Funcionario func, List<Funcionario> funcs, boolean limpo) {
+//		super();
+//		this.lblBemVindo = lblBemVindo;
+//		this.txtNome = txtNome;
+//		this.lblRegua = lblRegua;
+//		this.txtEnde = txtEnde;
+//		this.txtCep = txtCep;
+//		this.txtCida = txtCida;
+//		this.cboEsta = cboEsta;
+//		this.txtEmail = txtEmail;
+//		this.tblFunc = tblFunc;
+//		this.colNome = colNome;
+//		this.colEsta = colEsta;
+//		this.colCida = colCida;
+//		this.colCel = colCel;
+//		this.colCpf = colCpf;
+//		this.colCon = colCon;
+//		this.txtData = txtData;
+//		this.txtRg = txtRg;
+//		this.txtCpf = txtCpf;
+//		this.txtTele = txtTele;
+//		this.txtCel = txtCel;
+//		this.txtBairro = txtBairro;
+//		this.txtNume = txtNume;
+//		this.cboNivel = cboNiveis;
+//		this.daoFunc = daoFunc;
+//		this.func = func;
+//		this.funcs = funcs;
+//		this.limpo = limpo;
+//	}
 
 
 	public void alterar() {
