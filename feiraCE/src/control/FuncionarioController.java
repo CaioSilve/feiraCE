@@ -95,6 +95,13 @@ public class FuncionarioController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		Formatacoes.emailField(txtEmail);
+		Formatacoes.mascaraData(txtData);
+		Formatacoes.cepField(txtCep);
+		Formatacoes.formaField(txtTele, "tele");
+		Formatacoes.formaField(txtCel, "cel");
+		Formatacoes.formaField(txtCpf, "cpf");
+		Formatacoes.formaField(txtRg, "rg");
 		cboEsta.getItems().setAll(Estados.values());
 		cboNivel.getItems().setAll(Niveis.values());
 		txtCep.focusedProperty().addListener((ov, oldV, newV) ->{
@@ -140,7 +147,11 @@ public class FuncionarioController implements Initializable {
 					if(!limpo) return;
 					Funcionario conFunc = daoFunc.consultarUm("obterFuncionarioCpf", "cpf", txtCpf.getText());
 				
+					
+					
 					if(conFunc == null) return;
+					
+					System.out.println(conFunc.getNome());
 					
 					if(Alerta.showConfirm("Alterar Funcionario", "Trazer o funcionario para alteração?", "Já existe um funcionario com este CPF")) {
 						func = conFunc;
@@ -170,13 +181,6 @@ public class FuncionarioController implements Initializable {
 		colCida.setCellValueFactory(new PropertyValueFactory<>("cida"));
 		colCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
 		colCel.setCellValueFactory(new PropertyValueFactory<>("cele"));
-		Formatacoes.emailField(txtEmail);
-		Formatacoes.mascaraData(txtData);
-		Formatacoes.cepField(txtCep);
-		Formatacoes.formaField(txtTele, "tele");
-		Formatacoes.formaField(txtCel, "cel");
-		Formatacoes.formaField(txtCpf, "cpf");
-		Formatacoes.formaField(txtRg, "rg");
 		carregarTbl(null);
 	}
 	

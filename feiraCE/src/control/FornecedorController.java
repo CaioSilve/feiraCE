@@ -81,9 +81,12 @@ public class FornecedorController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		Formatacoes.emailField(txtEmail);
+		Formatacoes.formaField(txtTele, "tele");
+		Formatacoes.cepField(txtCep);
 		cboEsta.getItems().setAll(Estados.values());
 		cboTipo.getItems().setAll(TiposForn.values());
+		
 		txtCep.focusedProperty().addListener((ov, oldV, newV) ->{
 			if(!newV) {
 				if(txtCep.getText().isEmpty() || txtCep.getLength() < 9) {
@@ -119,11 +122,6 @@ public class FornecedorController implements Initializable {
 		colGast.setCellValueFactory(new PropertyValueFactory<>("gastos"));
 		
 		carregarTbl(null);
-		
-		Formatacoes.emailField(txtEmail);
-		Formatacoes.formaField(txtTele, "tele");
-		Formatacoes.cepField(txtCep);
-		cboEsta.getItems().setAll(Estados.values());
 		
 	}
 	

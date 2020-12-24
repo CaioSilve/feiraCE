@@ -93,7 +93,13 @@ public class ClienteController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		Formatacoes.emailField(txtEmail);
+		Formatacoes.mascaraData(txtData);
+		Formatacoes.cepField(txtCep);
+		Formatacoes.formaField(txtTele, "tele");
+		Formatacoes.formaField(txtCel, "cel");
+		Formatacoes.formaField(txtCpf, "cpf");
+		Formatacoes.formaField(txtRg, "rg");
 		txtCep.focusedProperty().addListener((ov, oldV, newV) ->{
 			if(!newV) {
 				if(txtCep.getText().isEmpty() || txtCep.getLength() < 9) {
@@ -168,13 +174,6 @@ public class ClienteController implements Initializable {
 		colCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
 		colCel.setCellValueFactory(new PropertyValueFactory<>("cele"));
 		colCon.setCellValueFactory(new PropertyValueFactory<>("contas"));
-		Formatacoes.emailField(txtEmail);
-		Formatacoes.mascaraData(txtData);
-		Formatacoes.cepField(txtCep);
-		Formatacoes.formaField(txtTele, "tele");
-		Formatacoes.formaField(txtCel, "cel");
-		Formatacoes.formaField(txtCpf, "cpf");
-		Formatacoes.formaField(txtRg, "rg");
 		cboEsta.getItems().setAll(Estados.values());
 		carregarTbl(null);
 	}
