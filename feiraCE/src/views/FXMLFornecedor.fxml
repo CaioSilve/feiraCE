@@ -44,7 +44,6 @@
             <Font name="Arial" size="16.0" />
          </font>
       </TextField>
-      <Label fx:id="lblRegua" layoutX="438.0" layoutY="119.0" text="__________" textFill="WHITE" />
       <Label layoutX="52.0" layoutY="256.0" text="Endereço" textFill="WHITE">
          <font>
             <Font name="Verdana" size="15.0" />
